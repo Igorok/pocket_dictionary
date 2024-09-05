@@ -9,18 +9,65 @@ a,
   padding: 3px;
 }
 
-.lessons {
-}
-.lesson-item {
-}
-
 .card {
   border: 1px;
   border-style: solid;
-  border-color: var(--color-primary);
+  border-color: var(--color-teal);
   padding: 10px;
-  margin: 10px;
 }
+
+.font-success {
+  color: var(--color-teal);
+}
+.font-error {
+  color: var(--color-pink);
+}
+.font-info {
+  color: var(--color-indigo);
+}
+.font-warning {
+  color: var(--color-orange);
+}
+
+.item-success {
+  color: var(--color-teal);
+  border-color: var(--color-teal);
+}
+.item-error {
+  color: var(--color-pink);
+  border-color: var(--color-pink);
+}
+.item-info {
+  color: var(--color-indigo);
+  border-color: var(--color-indigo);
+}
+.item-warning {
+  color: var(--color-yellow);
+  border-color: var(--color-yellow);
+}
+
+.alert-success {
+  color: var(--color-white);
+  background-color: var(--color-teal);
+  border-color: var(--color-green);
+}
+.alert-error {
+  color: var(--color-white);
+  background-color: var(--color-pink);
+  border-color: var(--color-red);
+}
+.alert-info {
+  color: var(--color-white);
+  background-color: var(--color-indigo);
+  border-color: var(--color-purple);
+}
+.alert-warning {
+  color: var(--color-white);
+  background-color: var(--color-yellow);
+  border-color: var(--color-orange);
+}
+
+
 
 #app {
   /* max-width: 1280px; */
@@ -72,16 +119,20 @@ main {
 
 /* dictionary */
 .dictionary {
+  font-size: 18px;
 }
 .dictionary .card-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.dictionary .card-wrapper .card {
-}
-.dictionary .lesson-item h3 {
+
+.dictionary h3 {
   text-align: center;
-  color: var(--color-primary);
+  font-size: 20px;
+}
+
+.dictionary .lesson-item .card {
+  margin: 10px;
 }
 
 @media (hover: hover) {
@@ -91,10 +142,10 @@ main {
 }
 
 @media (min-width: 1024px) {
-  body {
+  /* body {
     display: flex;
     place-items: center;
-  }
+  } */
 
   #app {
     display: grid;

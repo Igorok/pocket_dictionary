@@ -11108,7 +11108,7 @@ const wordsList = [{
     "en": "truck"
 }, {
     "id": 2777,
-    "ru": "TRUE",
+    "ru": "Правда",
     "en": "TRUE"
 }, {
     "id": 2778,

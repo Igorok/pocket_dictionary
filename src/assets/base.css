@@ -35,11 +35,19 @@
 
   --section-gap: 160px;
 
-  --color-primary: #e14eca;
-  --color-warning: #ff8d72;
-  --color-success: #00f2c3;
-  --color-info: #1d8cf8;
-  --color-danger: #fd5d93;
+  --color-blue: #0d6efd;
+  --color-indigo: #6610f2;
+  --color-purple: #6f42c1;
+  --color-pink: #d63384;
+  --color-red: #dc3545;
+  --color-orange: #fd7e14;
+  --color-yellow: #ffc107;
+  --color-green: #198754;
+  --color-teal: #20c997;
+  --color-cyan: #0dcaf0;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray: #7E8299;
 }
 
 @media (prefers-color-scheme: dark) {
