@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { getNotRepeated, setRepeated } from "../repositories/dictionary";
-
-
+import { ref } from "vue";
+import {
+  getNotRepeated,
+  setRepeated,
+  setLessonStats,
+} from "../repositories/dictionary";
 
 const LIMIT = 10;
 const CARDS_COUNT = 4;
 const TIMEOUT = 1 * 1000;
 
-let words = getNotRepeated({ topic: 'all', limit: LIMIT * CARDS_COUNT});
+let words = getNotRepeated({ topic: "all", limit: LIMIT * CARDS_COUNT });
 
 console.log(words);
 
@@ -16,17 +18,23 @@ const repeatedIds = [];
 const lesson = [];
 
 let i = 0;
-while (i < LIMIT * CARDS_COUNT) {
-  const options = [];
-  for (let j = 0; j < CARDS_COUNT; ++j) {
-    const { id, en, ru } = words[i++];
+let j = LIMIT;
+while (i < LIMIT) {
+  const options = [
+    {
+      ...words[i],
+      success: false,
+      error: false,
+    },
+  ];
+  ++i;
+  for (let k = 0; k < CARDS_COUNT - 1; ++k) {
     options.push({
-      id,
-      en,
-      ru,
+      ...words[j],
       success: false,
       error: false,
     });
+    ++j;
   }
 
   const word = options[Math.floor(Math.random() * CARDS_COUNT)];
@@ -46,13 +54,13 @@ const activeItem = ref(lesson[idx]);
 
 let successCount = 0;
 let errorCount = 0;
-const selectCard = (selected: {id: number}) => {
+const selectCard = (selected: { id: number }) => {
   if (activeItem.value.completed) {
     return;
   }
 
   activeItem.value.completed = true;
-  console.log('option', selected);
+  console.log("option", selected);
 
   activeItem.value.options.forEach((option) => {
     if (option.id === activeItem.value.word.id) {
@@ -74,20 +82,20 @@ const selectCard = (selected: {id: number}) => {
       activeItem.value = lesson[++idx];
     }, TIMEOUT);
   } else {
-    setRepeated({ topic: 'all', ids: repeatedIds });
+    setRepeated({ topic: "all", ids: repeatedIds });
+    setLessonStats({ topic: "all", success: successCount, error: errorCount });
     lessonCompleted = true;
   }
 };
-
 </script>
 
 <template>
   <div class="dictionary">
     <h1>Dictionary</h1>
     <p>
-      <b class="font-success">Success: {{successCount}}</b>
+      <b class="font-success">Success: {{ successCount }}</b>
       <span>&nbsp;</span>
-      <b class="font-error">Error: {{errorCount}}</b>
+      <b class="font-error">Error: {{ errorCount }}</b>
     </p>
 
     <div v-if="lessonCompleted">
@@ -95,8 +103,10 @@ const selectCard = (selected: {id: number}) => {
         <h2>Lesson is completed</h2>
       </div>
       <div v-for="item in lesson" :key="item.id">
-        <p :class="{'font-success': item.success, 'font-error': !item.success}">
-          {{item.word.en}} - {{item.word.ru}}
+        <p
+          :class="{ 'font-success': item.success, 'font-error': !item.success }"
+        >
+          {{ item.word.en }} - {{ item.word.ru }}
         </p>
       </div>
     </div>
@@ -105,8 +115,12 @@ const selectCard = (selected: {id: number}) => {
       <div class="card-wrapper">
         <div
           class="card"
-          :class="{ 'alert-success': option.success, 'alert-error': option.error }"
-          v-for="option in activeItem.options" :key="option.id"
+          :class="{
+            'alert-success': option.success,
+            'alert-error': option.error,
+          }"
+          v-for="option in activeItem.options"
+          :key="option.id"
           v-on:click="selectCard(option)"
         >
           {{ option.en }}

@@ -47,7 +47,8 @@
   --color-cyan: #0dcaf0;
   --color-black: #000000;
   --color-white: #ffffff;
-  --color-gray: #7E8299;
+  --color-gray: #7e8299;
+  --color-light-gray: #f9fcfe;
 }
 
 @media (prefers-color-scheme: dark) {
