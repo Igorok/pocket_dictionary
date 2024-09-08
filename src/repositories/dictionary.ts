@@ -1,10 +1,59 @@
+import type { Word, CourseItem, StatsItem, Stats } from '../dto/dictionary';
 import { shuffle } from "lodash";
 import wordsList from "../data/translated";
 
-const wordsById = wordsList.reduce((acc: object, item: object) => {
+type WordsById = {
+  [k: string]: Word;
+};
+type CourseItemsById = {
+  [k: string]: CourseItem;
+};
+
+const wordsById: WordsById = wordsList.reduce((acc: WordsById, item: Word) => {
   acc[item.id] = item;
   return acc;
 }, {});
+
+
+const getLessonStats = ({ topic, dt }: { topic: string, dt: string }): Stats => {
+  let stats;
+  let saved = localStorage.getItem("stats");
+  if (saved) {
+    stats = JSON.parse(saved);
+  } else {
+    stats = {
+      [dt]: {
+        [topic]: {
+          success: 0,
+          error: 0,
+        },
+      },
+    };
+  }
+
+  return stats;
+};
+
+const getAllStats = (): Stats => {
+  let saved = localStorage.getItem("stats");
+  if (saved) {
+    return JSON.parse(saved);
+  }
+  return {};
+};
+
+const setLessonStats = ({
+  topic,
+  success,
+  error,
+}: StatsItem) => {
+  const dt = new Date().toLocaleDateString("en-US");
+  const saved: Stats = getLessonStats({ topic, dt });
+  saved[dt][topic].success += success;
+  saved[dt][topic].error += error;
+  localStorage.setItem("stats", JSON.stringify(saved));
+};
+
 
 /**
  * Get data about course
@@ -58,15 +107,16 @@ const setRepeated = ({
   ids,
 }: {
   topic: string;
-  ids: number[];
+  ids: CourseItem[];
 }) => {
-  const course = getCourse(topic);
-  const courseById = course.reduce((acc: object, item: object) => {
+  const course: CourseItem[] = getCourse(topic);
+  const courseById: CourseItemsById = course.reduce((acc: CourseItemsById, item: CourseItem) => {
     acc[item.id] = item;
     return acc;
   }, {});
-  ids.forEach((id) => {
-    courseById[id].t = Date.now();
+  ids.forEach(({ id, e, t}) => {
+    courseById[id].t = t;
+    courseById[id].e += e;
   });
   localStorage.setItem(
     `dictionary_${topic}`,
@@ -76,33 +126,6 @@ const setRepeated = ({
   getCourse(topic);
 };
 
-const setLessonStats = ({
-  topic,
-  success,
-  error,
-}: {
-  topic: string;
-  success: number;
-  error: number;
-}) => {
-  const dt = new Date().toLocaleDateString("en-US");
-  let stats;
-  let saved = localStorage.getItem("stats");
-  if (saved) {
-    stats = JSON.parse(saved);
-  } else {
-    stats = {
-      [dt]: {
-        [topic]: {
-          success: 0,
-          error: 0,
-        },
-      },
-    };
-  }
-  stats[dt][topic].success += success;
-  stats[dt][topic].error += error;
-  localStorage.setItem("stats", JSON.stringify(stats));
-};
 
-export { getNotRepeated, setRepeated, setLessonStats };
+
+export { getNotRepeated, setRepeated, getAllStats, setLessonStats };

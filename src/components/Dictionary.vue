@@ -3,8 +3,8 @@ import { ref } from "vue";
 import {
   getNotRepeated,
   setRepeated,
-  setLessonStats,
 } from "../repositories/dictionary";
+import type { Word, LessonOption, LessonItem, CourseItem } from "../dto/dictionary";
 
 const LIMIT = 10;
 const CARDS_COUNT = 4;
@@ -14,13 +14,13 @@ let words = getNotRepeated({ topic: "all", limit: LIMIT * CARDS_COUNT });
 
 console.log(words);
 
-const repeatedIds = [];
-const lesson = [];
+const repeatedIds: CourseItem[] = [];
+const lesson: LessonItem[] = [];
 
 let i = 0;
 let j = LIMIT;
 while (i < LIMIT) {
-  const options = [
+  const options: LessonOption[] = [
     {
       ...words[i],
       success: false,
@@ -37,8 +37,7 @@ while (i < LIMIT) {
     ++j;
   }
 
-  const word = options[Math.floor(Math.random() * CARDS_COUNT)];
-  repeatedIds.push(word.id);
+  const word: Word = options[Math.floor(Math.random() * CARDS_COUNT)];
 
   lesson.push({
     word,
@@ -77,13 +76,18 @@ const selectCard = (selected: { id: number }) => {
     errorCount++;
   }
 
+  repeatedIds.push({
+      id: activeItem.value.word.id,
+      t: Date.now(),
+      e: selected.id == activeItem.value.word.id ? 1 : 0,
+    });
+
   if (idx < LIMIT - 1) {
     setTimeout(() => {
       activeItem.value = lesson[++idx];
     }, TIMEOUT);
   } else {
     setRepeated({ topic: "all", ids: repeatedIds });
-    setLessonStats({ topic: "all", success: successCount, error: errorCount });
     lessonCompleted = true;
   }
 };
@@ -102,7 +106,7 @@ const selectCard = (selected: { id: number }) => {
       <div class="card item-info">
         <h2>Lesson is completed</h2>
       </div>
-      <div v-for="item in lesson" :key="item.id">
+      <div v-for="item in lesson" :key="item.word.id">
         <p
           :class="{ 'font-success': item.success, 'font-error': !item.success }"
         >
