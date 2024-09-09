@@ -46,6 +46,37 @@ a,
   border-color: var(--color-yellow);
 }
 
+.input-text {
+  display: block;
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+  padding: 0.4rem 0.7rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.input-text:focus {
+  outline: none;
+}
+
+.btn {
+  display: block;
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+  padding: 0.4rem 0.7rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  cursor: pointer;
+  background-color: var(--color-light-gray);
+}
+.btn:hover {
+  background-color: var(--color-gray);
+  color: var(--color-white);
+}
+
+.form-item {
+  margin-bottom: 1rem;
+}
+
 .alert-success {
   color: var(--color-white);
   background-color: var(--color-teal);
@@ -76,13 +107,13 @@ a,
 /* header */
 header {
   line-height: 1.5;
-  height: 100vh;
   padding: 10px;
 }
 
 header .logo {
   display: block;
   margin: 0 auto 2rem;
+  width: 210px;
 }
 
 header nav {
@@ -114,24 +145,27 @@ header nav a:first-of-type {
 main {
   background-color: var(--color-light-gray);
   padding: 10px;
+  font-size: 18px;
+}
+
+.main h3 {
+  font-size: 1.5rem;
 }
 
 /* dictionary */
 .dictionary {
-  font-size: 18px;
 }
 .dictionary .card-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.dictionary h3 {
-  text-align: center;
-  font-size: 20px;
-}
-
 .dictionary .lesson-item .card {
   margin: 10px;
+}
+
+.sign-in-container {
+  margin: 3rem;
 }
 
 @media (hover: hover) {
@@ -152,13 +186,11 @@ main {
   }
 
   header {
-    /* display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2); */
+    height: 100vh;
   }
 
   header .logo {
-    margin: 0 2rem 0 0;
+    margin: 2rem 2rem 2rem 0;
   }
 
   header .wrapper {

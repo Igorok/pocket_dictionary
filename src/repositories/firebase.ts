@@ -29,7 +29,10 @@ class FBRepository {
     email: string;
     password: string;
   }) {
-    localStorage.setItem("currentUser", JSON.stringify({ email, password }));
+    localStorage.setItem(
+      "currentUser",
+      JSON.stringify({ id: 1, email, password }),
+    );
   }
   signInWithEmailAndPassword({
     email,
@@ -38,7 +41,10 @@ class FBRepository {
     email: string;
     password: string;
   }) {
-    localStorage.setItem("currentUser", JSON.stringify({ email, password }));
+    localStorage.setItem(
+      "currentUser",
+      JSON.stringify({ id: 1, email, password }),
+    );
   }
   getCurrentUser() {
     const currentUser = localStorage.getItem("currentUser");

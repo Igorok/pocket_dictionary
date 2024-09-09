@@ -105,9 +105,8 @@ const selectCard = (selected: { id: number }) => {
     </p>
 
     <div v-if="lessonCompleted">
-      <div class="card item-info">
-        <h2>Lesson is completed</h2>
-      </div>
+      <h2 class="font-success">Lesson is completed</h2>
+
       <div v-for="item in lesson" :key="item.word.id">
         <p
           :class="{ 'font-success': item.success, 'font-error': !item.success }"
