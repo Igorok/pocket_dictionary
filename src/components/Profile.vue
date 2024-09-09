@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-    getAllStats
-} from "../repositories/dictionary";
+import { getAllStats } from "../repositories/dictionary";
 import type { Stats, StatsItem } from "../dto/dictionary";
 
 const lessonStata = getAllStats();
-
 </script>
 
 <template>

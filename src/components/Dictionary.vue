@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-  getNotRepeated,
-  setRepeated,
-} from "../repositories/dictionary";
-import type { Word, LessonOption, LessonItem, CourseItem } from "../dto/dictionary";
+import { getNotRepeated, setRepeated } from "../repositories/dictionary";
+import type {
+  Word,
+  LessonOption,
+  LessonItem,
+  CourseItem,
+} from "../dto/dictionary";
 
 const LIMIT = 10;
 const CARDS_COUNT = 4;
@@ -77,10 +79,10 @@ const selectCard = (selected: { id: number }) => {
   }
 
   repeatedIds.push({
-      id: activeItem.value.word.id,
-      t: Date.now(),
-      e: selected.id == activeItem.value.word.id ? 1 : 0,
-    });
+    id: activeItem.value.word.id,
+    t: Date.now(),
+    e: selected.id == activeItem.value.word.id ? 1 : 0,
+  });
 
   if (idx < LIMIT - 1) {
     setTimeout(() => {

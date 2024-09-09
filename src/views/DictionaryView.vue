@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Dictionary from '../components/Dictionary.vue'
+import Dictionary from "../components/Dictionary.vue";
 </script>
 
 <template>

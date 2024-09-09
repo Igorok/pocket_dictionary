@@ -1,4 +1,4 @@
-import type { Word, CourseItem, StatsItem, Stats } from '../dto/dictionary';
+import type { Word, CourseItem, StatsItem, Stats } from "../dto/dictionary";
 import { shuffle } from "lodash";
 import wordsList from "../data/translated";
 
@@ -14,8 +14,13 @@ const wordsById: WordsById = wordsList.reduce((acc: WordsById, item: Word) => {
   return acc;
 }, {});
 
-
-const getLessonStats = ({ topic, dt }: { topic: string, dt: string }): Stats => {
+const getLessonStats = ({
+  topic,
+  dt,
+}: {
+  topic: string;
+  dt: string;
+}): Stats => {
   let stats;
   let saved = localStorage.getItem("stats");
   if (saved) {
@@ -42,18 +47,13 @@ const getAllStats = (): Stats => {
   return {};
 };
 
-const setLessonStats = ({
-  topic,
-  success,
-  error,
-}: StatsItem) => {
+const setLessonStats = ({ topic, success, error }: StatsItem) => {
   const dt = new Date().toLocaleDateString("en-US");
   const saved: Stats = getLessonStats({ topic, dt });
   saved[dt][topic].success += success;
   saved[dt][topic].error += error;
   localStorage.setItem("stats", JSON.stringify(saved));
 };
-
 
 /**
  * Get data about course
@@ -110,11 +110,14 @@ const setRepeated = ({
   ids: CourseItem[];
 }) => {
   const course: CourseItem[] = getCourse(topic);
-  const courseById: CourseItemsById = course.reduce((acc: CourseItemsById, item: CourseItem) => {
-    acc[item.id] = item;
-    return acc;
-  }, {});
-  ids.forEach(({ id, e, t}) => {
+  const courseById: CourseItemsById = course.reduce(
+    (acc: CourseItemsById, item: CourseItem) => {
+      acc[item.id] = item;
+      return acc;
+    },
+    {},
+  );
+  ids.forEach(({ id, e, t }) => {
     courseById[id].t = t;
     courseById[id].e += e;
   });
@@ -125,7 +128,5 @@ const setRepeated = ({
 
   getCourse(topic);
 };
-
-
 
 export { getNotRepeated, setRepeated, getAllStats, setLessonStats };
