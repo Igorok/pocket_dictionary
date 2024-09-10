@@ -1,16 +1,16 @@
 import type { Student } from '../dto/student';
-import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 
 import { getRepository } from '../repositories/UserFirebase';
 
-const repository = getRepository();
 
 export const useStudentStore = defineStore('student', {
     state: () => {
+        const repository = getRepository(undefined);
+
         let student = repository.getCurrentUser();
         if (!student) {
-            student = { id: '', email: '', password: '', signin: false };
+            student = { id: '', email: ''};
         }
         return {
             student
@@ -18,26 +18,14 @@ export const useStudentStore = defineStore('student', {
     },
     getters: {
         getStudent: (state): Student => {
-            const s: Student = state.student;
-            s.password = '';
-            return s;
+            return state.student;
         }
     },
     actions: {
-        login({
-            id,
-            email,
-            password
-        }: {
-            id: string;
-            email: string;
-            password: string;
-        }) {
+        login({ id, email }: Student) {
             this.student = {
                 id,
                 email,
-                password,
-                signin: true
             };
         }
     }

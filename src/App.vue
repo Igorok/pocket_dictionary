@@ -4,16 +4,18 @@ import HelloWorld from './components/HelloWorld.vue';
 
 import { useStudentStore } from './stores/student';
 const studentStore = useStudentStore();
+
+
 </script>
 
 <template>
     <header>
-        <img alt="Logo" class="logo" src="./assets/books.jpeg" />
+        <img alt="Logo" class="logo" src="./assets/book.jpeg" />
 
         <div class="wrapper">
             <HelloWorld msg="Pocket Dictionary" />
 
-            <div v-if="studentStore.getStudent.signin">
+            <div v-if="Boolean(studentStore.getStudent)">
                 <nav>
                     <RouterLink to="/">Home</RouterLink>
                     <RouterLink to="/about">About</RouterLink>

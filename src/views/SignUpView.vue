@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { getRepository } from '../repositories/UserFirebase';
 import { useRouter } from 'vue-router';
-const router = useRouter();
+import { getRepository } from '../repositories/UserFirebase';
+import { useStudentStore } from '../stores/student';
 
-const repository = getRepository();
-let user = repository.getCurrentUser();
+const router = useRouter();
+const repository = getRepository(undefined);
+const studentStore = useStudentStore();
 
 let inputEmail = ref('');
 let inputPassword = ref('');
@@ -13,18 +14,14 @@ let error = ref({
     message: ''
 });
 
-const signIn = () => {
-    console.log(
-        'inputEmail',
-        inputEmail.value,
-        'inputPassword',
-        inputPassword.value
-    );
+const signUp = async () => {
     try {
-        repository.createUserWithEmailAndPassword({
+        const student = await repository.createUserWithEmailAndPassword({
             email: inputEmail.value,
             password: inputPassword.value
         });
+        studentStore.login(student);
+
         error.value.message = '';
         router.push({ name: 'home' });
     } catch (e) {
@@ -46,7 +43,7 @@ const signIn = () => {
 
                 <h3 class="font-success">Sign Up</h3>
 
-                <form @submit.prevent="signIn">
+                <form @submit.prevent="signUp">
                     <div class="form-item">
                         <label for="inputEmail" class="form-label"
                             >Email address</label

@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import type { Student } from '../dto/student';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getRepository } from '../repositories/UserFirebase';
 import { useStudentStore } from '../stores/student';
 
 const router = useRouter();
-const repository = getRepository();
+const repository = getRepository(undefined);
 const studentStore = useStudentStore();
 
 let inputEmail = ref('');
@@ -14,22 +15,16 @@ let error = ref({
     message: ''
 });
 
-const signIn = () => {
-    console.log(
-        'inputEmail',
-        inputEmail.value,
-        'inputPassword',
-        inputPassword.value
-    );
+const signIn = async () => {
     try {
-        const student = repository.signInWithEmailAndPassword({
+        const student: Student = await repository.signInWithEmailAndPassword({
             email: inputEmail.value,
             password: inputPassword.value
         });
-        error.value.message = '';
-        router.push({ name: 'home' });
-
         studentStore.login(student);
+        error.value.message = '';
+
+        router.push({ name: 'home' });
     } catch (e) {
         error.value.message = e.message;
     }

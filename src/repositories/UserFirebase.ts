@@ -1,14 +1,12 @@
-import type { FBConfig } from '../dto/firebase';
+import type { FirebaseApp } from 'firebase/app';
+import type { Auth } from 'firebase/auth';
 import type { Student } from '../dto/student';
-import { firebaseConfig } from '../config/local-config';
-import { initializeApp } from 'firebase/app';
 import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword
 } from 'firebase/auth';
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+
 
 /**
  *
@@ -17,120 +15,60 @@ const auth = getAuth(app);
  *
  */
 class FBRepository {
-    config: FBConfig;
+    auth: Auth;
 
-    constructor(config: FBConfig) {
-        this.config = config;
+    constructor(app: FirebaseApp) {
+        this.auth = getAuth(app);
     }
 
-    createUserWithEmailAndPassword({
+    async createUserWithEmailAndPassword({
         email,
         password
     }: {
         email: string;
         password: string;
-    }) {
-        const data = localStorage.getItem('currentUser');
-        if (data) {
-            const message = 'User already exists. Please correct and reenter.';
-            const currentUser = JSON.parse(data);
-            if (
-                currentUser.email === email &&
-                currentUser.password === password
-            ) {
-                throw new Error(message);
-            }
+    }): Promise<Student> {
+        const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+        const student: Student = {
+            email: userCredential.user.email || '',
+            id: userCredential.user.uid,
         }
-
-        localStorage.setItem(
-            'currentUser',
-            JSON.stringify({ email, password, id: '1', signin: false })
-        );
+        return student;
     }
 
-    signInWithEmailAndPassword({
+    async signInWithEmailAndPassword({
         email,
         password
     }: {
         email: string;
         password: string;
-    }): Student {
-        const message =
-            'Invalid Login or Password Information Entered.  Please correct and reenter.';
-        const data = localStorage.getItem('currentUser');
-        if (!data) {
-            throw new Error(message);
+    }): Promise<Student> {
+        const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+        const student: Student = {
+            email: userCredential.user.email || '',
+            id: userCredential.user.uid,
         }
-
-        const currentUser = JSON.parse(data);
-        if (currentUser.email != email || currentUser.password !== password) {
-            throw new Error(message);
-        }
-        currentUser.signin = true;
-
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-        return currentUser;
+        return student;
     }
 
     getCurrentUser(): Student | undefined {
-        const data = localStorage.getItem('currentUser');
-        if (!data) return undefined;
-        const currentUser = JSON.parse(data);
-        return currentUser ? currentUser.signin : undefined;
-        // return auth.currentUser;
+        if (!this.auth.currentUser) {
+            return;
+        }
+        const student: Student = {
+            email: this.auth.currentUser.email || '',
+            id: this.auth.currentUser.uid,
+        }
+        return student;
     }
 }
 
 let repository: FBRepository;
-const getRepository = (): FBRepository => {
-    if (!repository) {
-        repository = new FBRepository(firebaseConfig);
+const getRepository = (app: FirebaseApp | undefined): FBRepository => {
+    if (!repository && app) {
+        repository = new FBRepository(app);
     }
     return repository;
 };
 
 export { getRepository };
-
-/*
-
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-
-const auth = getAuth();
-createUserWithEmailAndPassword(auth, email, password)
-.then((userCredential) => {
-    // Signed up
-    const user = userCredential.user;
-    // ...
-})
-.catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-});
-
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/

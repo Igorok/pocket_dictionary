@@ -115,11 +115,17 @@ header {
     line-height: 1.5;
     padding: 10px;
 }
+header h1 {
+    text-align: center;
+}
+header h3 {
+    text-align: center;
+}
 
 header .logo {
     display: block;
     margin: 0 auto 2rem;
-    width: 210px;
+    width: 150px;
 }
 
 header nav {
@@ -209,14 +215,10 @@ main h3 {
         height: 100vh;
     }
 
-    header .logo {
-        margin: 2rem 2rem 2rem 0;
-    }
-
     header .wrapper {
-        display: flex;
+        /* display: flex;
         place-items: flex-start;
-        flex-wrap: wrap;
+        flex-wrap: wrap; */
     }
 
     header nav {
