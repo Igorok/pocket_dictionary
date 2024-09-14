@@ -1,5 +1,6 @@
 import readlinePromises from 'node:readline/promises';
 import { writeFile } from 'node:fs/promises';
+import parsed from './parsed.json' with { type: 'json' };
 
 const rl = readlinePromises.createInterface({
     input: process.stdin,
@@ -8,17 +9,15 @@ const rl = readlinePromises.createInterface({
 let id = 0;
 const wordsList = [];
 rl.on('line', (line) => {
-    const data = line.split(',');
-    const en = data[0].trim();
-    const ru = data[1].trim();
+    const { word, topic } = parsed[id];
     wordsList.push({
-        id,
-        ru,
-        en,
+        word,
+        topics: [topic],
+        tr_ru: line.trim(),
     });
     id += 1;
 }).on('close', async () => {
-    await writeFile('./translated.json', JSON.stringify(wordsList));
+    await writeFile('./merged.json', JSON.stringify(wordsList));
 
     console.log('Finished!');
     process.exit(0);

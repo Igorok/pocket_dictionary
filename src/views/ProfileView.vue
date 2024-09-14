@@ -1,8 +1,5 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <main>
-            qqq
-    </main>
+    <main>qqq</main>
 </template>

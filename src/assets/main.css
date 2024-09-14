@@ -64,7 +64,6 @@ label {
 }
 
 .btn {
-    display: block;
     border: 1px solid var(--color-text);
     color: var(--color-text);
     padding: 0.4rem 0.7rem;
@@ -76,6 +75,42 @@ label {
 }
 .btn:hover {
     background-color: var(--color-gray);
+    color: var(--color-white);
+}
+
+.btn-red {
+    border: 1px solid var(--color-red);
+    color: var(--color-red);
+}
+.btn-red:hover {
+    background-color: var(--color-pink);
+    color: var(--color-white);
+}
+
+.btn-green {
+    border: 1px solid var(--color-green);
+    color: var(--color-green);
+}
+.btn-green:hover {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+}
+
+.btn-orange {
+    border: 1px solid var(--color-orange);
+    color: var(--color-orange);
+}
+.btn-orange:hover {
+    background-color: var(--color-yellow);
+    color: var(--color-white);
+}
+
+.btn-purple {
+    border: 1px solid var(--color-purple);
+    color: var(--color-purple);
+}
+.btn-purple:hover {
+    background-color: var(--color-indigo);
     color: var(--color-white);
 }
 
@@ -191,6 +226,7 @@ main h3 {
     width: 100%;
 }
 .sign-in-wrapper .btn {
+    display: block;
     width: 100%;
 }
 

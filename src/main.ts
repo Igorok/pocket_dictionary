@@ -3,14 +3,20 @@ import './assets/main.css';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 import { firebaseConfig } from './config/local-config';
-import { getRepository } from './repositories/UserFirebase';
+import { getAuthRepository } from './repositories/UserFirebase';
+import { getWordsRepository } from './repositories/WordsFirebase';
+import { getAdminRepository } from './repositories/AdminFirebase';
 
 import App from './App.vue';
 import router from './router';
 
 const firebaseApp = initializeApp(firebaseConfig);
-getRepository(firebaseApp);
+getAuthRepository(firebaseApp);
+const db = getFirestore(firebaseApp);
+getWordsRepository(db);
+getAdminRepository(db);
 
 const app = createApp(App);
 

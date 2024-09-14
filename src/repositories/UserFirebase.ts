@@ -7,14 +7,7 @@ import {
     signInWithEmailAndPassword
 } from 'firebase/auth';
 
-
-/**
- *
- *
- * https://firebase.google.com/docs/auth/web/start
- *
- */
-class FBRepository {
+class AuthRepository {
     auth: Auth;
 
     constructor(app: FirebaseApp) {
@@ -28,11 +21,15 @@ class FBRepository {
         email: string;
         password: string;
     }): Promise<Student> {
-        const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(
+            this.auth,
+            email,
+            password
+        );
         const student: Student = {
             email: userCredential.user.email || '',
-            id: userCredential.user.uid,
-        }
+            id: userCredential.user.uid
+        };
         return student;
     }
 
@@ -43,11 +40,15 @@ class FBRepository {
         email: string;
         password: string;
     }): Promise<Student> {
-        const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+        const userCredential = await signInWithEmailAndPassword(
+            this.auth,
+            email,
+            password
+        );
         const student: Student = {
             email: userCredential.user.email || '',
-            id: userCredential.user.uid,
-        }
+            id: userCredential.user.uid
+        };
         return student;
     }
 
@@ -57,18 +58,18 @@ class FBRepository {
         }
         const student: Student = {
             email: this.auth.currentUser.email || '',
-            id: this.auth.currentUser.uid,
-        }
+            id: this.auth.currentUser.uid
+        };
         return student;
     }
 }
 
-let repository: FBRepository;
-const getRepository = (app: FirebaseApp | undefined): FBRepository => {
+let repository: AuthRepository;
+export const getAuthRepository = (
+    app: FirebaseApp | undefined
+): AuthRepository => {
     if (!repository && app) {
-        repository = new FBRepository(app);
+        repository = new AuthRepository(app);
     }
     return repository;
 };
-
-export { getRepository };

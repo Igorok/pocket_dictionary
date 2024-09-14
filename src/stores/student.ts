@@ -1,16 +1,15 @@
 import type { Student } from '../dto/student';
 import { defineStore } from 'pinia';
 
-import { getRepository } from '../repositories/UserFirebase';
-
+import { getAuthRepository } from '../repositories/UserFirebase';
 
 export const useStudentStore = defineStore('student', {
     state: () => {
-        const repository = getRepository(undefined);
+        const repository = getAuthRepository(undefined);
 
         let student = repository.getCurrentUser();
         if (!student) {
-            student = { id: '', email: ''};
+            student = { id: '', email: '' };
         }
         return {
             student
@@ -25,7 +24,7 @@ export const useStudentStore = defineStore('student', {
         login({ id, email }: Student) {
             this.student = {
                 id,
-                email,
+                email
             };
         }
     }

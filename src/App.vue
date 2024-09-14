@@ -4,8 +4,6 @@ import HelloWorld from './components/HelloWorld.vue';
 
 import { useStudentStore } from './stores/student';
 const studentStore = useStudentStore();
-
-
 </script>
 
 <template>

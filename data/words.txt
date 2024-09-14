@@ -1849,8 +1849,7 @@ outdoor adj. B1
 outdoors adv. B1
 outer adj. B2
 outline n., v. B2
-outside adv. A1, prep., noun., adj.
-A2
+outside adv. A1, prep., noun., adj. A2
 oven n. A2
 over prep., adv. A1
 overall adj., adv. B2
@@ -3247,7 +3246,6 @@ carbon n. B2
 cargo n. C1
 carriage n. C1
 carve v. C1
-
 casino n. C1
 casual adj. B2
 casualty n. C1
@@ -4169,8 +4167,7 @@ minimal adj. C1
 minimize v. C1
 mining n. C1
 ministry n. C1
-minute
-2 adj. C1
+minute 2 adj. C1
 miracle n. C1
 miserable adj. B2
 misery n. C1

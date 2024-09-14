@@ -5,64 +5,9 @@ The most important words to learn in English.
 
 <h3>How can I use these?</h3>
 
-```
-
-import readlinePromises from 'node:readline/promises';
-import { writeFile } from 'node:fs/promises';
-
-const rl = readlinePromises.createInterface({
-    input: process.stdin,
-});
-
-const wordsList = [];
-rl.on('line', (line) => {
-    const data = line.split(' ');
-    const word = data[0];
-    wordsList.push(word);
-}).on('close', async () => {
-    await writeFile('./wordsList.json', JSON.stringify(wordsList));
-
-    console.log('Finished!');
-    process.exit(0);
-});
-
-```
-
-<h3>How can I translate these?</h3>
-
-I can translate all words by [google](https://translate.google.com/?sl=en&tl=ru&op=docs)
-
-```
-
-import readlinePromises from 'node:readline/promises';
-import { writeFile } from 'node:fs/promises';
-
-const rl = readlinePromises.createInterface({
-    input: process.stdin,
-});
-
-let id = 0;
-const wordsList = [];
-rl.on('line', (line) => {
-    const data = line.split(',');
-    const en = data[0].trim();
-    const ru = data[1].trim();
-    wordsList.push({
-        id,
-        ru,
-        en,
-    });
-    id += 1;
-}).on('close', async () => {
-    await writeFile('./translated.json', JSON.stringify(wordsList));
-
-    console.log('Finished!');
-    process.exit(0);
-});
-
-```
-
-
-
-https://ui.vuestic.dev/getting-started/installation
+1) Download vocabulary
+2) Copy in text file
+3) Parse file into csv table, convert table into excel format
+4) Translate a table with a google traslate, convert into a csv format
+5) Parse a csv format and merge with data
 
