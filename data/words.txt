@@ -1522,8 +1522,7 @@ lie2 (tell a lie) v., n. B1
 life n. A1
 lifestyle n. A2
 lift v., n. A2
-light (from the sun/a lamp) n.,
-adj. A1, v. A2
+light (from the sun/a lamp) n.,adj. A1, v. A2
 light (not heavy) adj. A2
 like (similar) prep. A1
 like (find sb/sth pleasant) v. A1,
@@ -1605,8 +1604,7 @@ marry v. A2
 mass n., adj. B2
 massive adj. B2
 master n., v. B2
-match (contest/correspond) n.,
-v. A1
+match (contest/correspond) n.,v. A1
 matching adj. B2
 material n. A2, adj. B2
 mathematics n. A2
@@ -4585,7 +4583,9 @@ satisfaction n. B2
 say n. C1
 scandal n. B2
 scare v., n. B2
-scattered adj. C1 scenario n. B2 sceptical adj. C1
+scattered adj. C1
+scenario n. B2
+sceptical adj. C1
 scholar n. B2
 scholarship n. B2
 scope n. C1
@@ -4593,7 +4593,11 @@ scratch v., n. B2
 screening n. B2
 screw v., n. C1
 scrutiny n. C1
-seal v., n. C1 secular adj. C1 seeker n. B2 seemingly adv. C1 segment n. C1
+seal v., n. C1
+secular adj. C1
+seeker n. B2
+seemingly adv. C1
+segment n. C1
 seizev. C1
 seldom adv. C1
 selective adj.C1
@@ -4605,7 +4609,8 @@ sentiment n. C1
 separation n. C1
 serial adj. C1
 settlement n. C1
-settler n. B2 set-up n. C1
+settler n. B2
+set-up n. C1
 severely adv. B2
 sexuality n. C1
 sexy adj. B2

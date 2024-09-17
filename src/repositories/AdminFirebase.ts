@@ -1,16 +1,6 @@
 import type { Firestore } from 'firebase/firestore';
 import { doc, setDoc, writeBatch } from 'firebase/firestore';
-
 import allWords from '../data/merged.json' with { type: 'json' };
-
-/*
-// Add a new document in collection "cities"
-await setDoc(doc(db, "cities", "LA"), {
-  name: "Los Angeles",
-  state: "CA",
-  country: "USA"
-});
-*/
 
 class AdminRepository {
     db: Firestore;
@@ -20,13 +10,52 @@ class AdminRepository {
     }
 
     async importAllWords() {
-        return;
-
         const batch = writeBatch(this.db);
 
         allWords.forEach(({ word, topics, tr_ru }) => {
             const wordRef = doc(this.db, 'words', word);
             batch.set(wordRef, { word, topics, tr_ru });
+        });
+
+        await batch.commit();
+    }
+
+    async importCourses() {
+        const topics = new Set();
+        allWords.forEach(({ topics: t }) => {
+            topics.add(t[0]);
+        });
+
+        const courses = [];
+        topics.forEach((topic) => {
+            courses.push({
+                title: topic,
+                type: 'words',
+                updated_at: Date.now(),
+                topic,
+            });
+        });
+
+
+        console.log('courses', courses);
+
+        const batch = writeBatch(this.db);
+
+        courses.forEach((course) => {
+            const {
+                title,
+                type,
+                updated_at,
+                topic,
+            } = course;
+
+            const courseRef = doc(this.db, 'courses', topic);
+            batch.set(courseRef, {
+                title,
+                type,
+                updated_at,
+                topic
+            });
         });
 
         await batch.commit();

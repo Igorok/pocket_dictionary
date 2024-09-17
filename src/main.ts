@@ -8,6 +8,7 @@ import { firebaseConfig } from './config/local-config';
 import { getAuthRepository } from './repositories/UserFirebase';
 import { getWordsRepository } from './repositories/WordsFirebase';
 import { getAdminRepository } from './repositories/AdminFirebase';
+import { getCourseRepository } from './repositories/CourseFirebase';
 
 import App from './App.vue';
 import router from './router';
@@ -17,6 +18,7 @@ getAuthRepository(firebaseApp);
 const db = getFirestore(firebaseApp);
 getWordsRepository(db);
 getAdminRepository(db);
+getCourseRepository(db);
 
 const app = createApp(App);
 

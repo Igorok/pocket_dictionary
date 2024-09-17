@@ -230,6 +230,17 @@ main h3 {
     width: 100%;
 }
 
+/* course-list */
+.course-list .card-wrapper {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+.course-list .card-wrapper .card {
+    margin: 10px;
+}
+
 @media (hover: hover) {
     a:hover {
         background-color: hsla(160, 100%, 37%, 0.2);

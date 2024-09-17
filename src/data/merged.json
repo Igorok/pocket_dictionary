@@ -540,11 +540,6 @@
         "tr_ru": "придерживаться"
     },
     {
-        "word": "adj.",
-        "topics": ["A2"],
-        "tr_ru": "прил."
-    },
-    {
         "word": "adjacent",
         "topics": ["C1"],
         "tr_ru": "соседний"
@@ -613,11 +608,6 @@
         "word": "adult",
         "topics": ["A2"],
         "tr_ru": "взрослый"
-    },
-    {
-        "word": "adv.",
-        "topics": ["B1"],
-        "tr_ru": "нареч."
     },
     {
         "word": "advance",
@@ -6996,7 +6986,7 @@
     },
     {
         "word": "double",
-        "topics": ["A2,"],
+        "topics": ["A2"],
         "tr_ru": "двойной"
     },
     {
@@ -8751,7 +8741,7 @@
     },
     {
         "word": "farm",
-        "topics": ["v.A2"],
+        "topics": ["A2"],
         "tr_ru": "ферма"
     },
     {
@@ -8791,7 +8781,7 @@
     },
     {
         "word": "fat",
-        "topics": ["n.A2"],
+        "topics": ["A2"],
         "tr_ru": "толстый"
     },
     {
@@ -12956,7 +12946,7 @@
     },
     {
         "word": "light",
-        "topics": ["n.,"],
+        "topics": ["A1"],
         "tr_ru": "свет"
     },
     {
@@ -13626,7 +13616,7 @@
     },
     {
         "word": "match",
-        "topics": ["n.,"],
+        "topics": ["A1"],
         "tr_ru": "соответствовать"
     },
     {
@@ -14488,11 +14478,6 @@
         "word": "myth",
         "topics": ["B2"],
         "tr_ru": "миф"
-    },
-    {
-        "word": "n.",
-        "topics": ["B1"],
-        "tr_ru": "н."
     },
     {
         "word": "nail",
@@ -15421,7 +15406,7 @@
     },
     {
         "word": "original",
-        "topics": ["n.B1"],
+        "topics": ["B1"],
         "tr_ru": "оригинальный"
     },
     {
@@ -19455,9 +19440,9 @@
         "tr_ru": "сиденье"
     },
     {
-        "word": "second1",
-        "topics": ["det./"],
-        "tr_ru": "второй1"
+        "word": "second",
+        "topics": ["A1"],
+        "tr_ru": "второй"
     },
     {
         "word": "secondary",
@@ -19520,11 +19505,6 @@
         "tr_ru": "казаться"
     },
     {
-        "word": "seizev.",
-        "topics": ["C1"],
-        "tr_ru": "сейзев."
-    },
-    {
         "word": "seldom",
         "topics": ["C1"],
         "tr_ru": "редко"
@@ -19541,7 +19521,7 @@
     },
     {
         "word": "selective",
-        "topics": ["adj.C1"],
+        "topics": ["C1"],
         "tr_ru": "селективный"
     },
     {
@@ -21316,7 +21296,7 @@
     },
     {
         "word": "stun",
-        "topics": ["v.C1"],
+        "topics": ["C1"],
         "tr_ru": "оглушить"
     },
     {
@@ -21406,7 +21386,7 @@
     },
     {
         "word": "suburb",
-        "topics": ["n.B2"],
+        "topics": ["B2"],
         "tr_ru": "пригород"
     },
     {
@@ -22257,7 +22237,7 @@
     {
         "word": "the",
         "topics": ["A1"],
-        "tr_ru": ""
+        "tr_ru": "определенный артикль"
     },
     {
         "word": "theatre",
@@ -22271,7 +22251,7 @@
     },
     {
         "word": "theft",
-        "topics": ["n.B2"],
+        "topics": ["B2"],
         "tr_ru": "кража"
     },
     {
@@ -23590,11 +23570,6 @@
         "tr_ru": "крайне"
     },
     {
-        "word": "v.",
-        "topics": ["A1"],
-        "tr_ru": "в."
-    },
-    {
         "word": "vacation",
         "topics": ["A1"],
         "tr_ru": "отпуск"
@@ -24636,7 +24611,7 @@
     },
     {
         "word": "wrist",
-        "topics": ["n.B2"],
+        "topics": ["B2"],
         "tr_ru": "запястье"
     },
     {

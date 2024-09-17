@@ -14,18 +14,31 @@ let success = ref({
 const repository = getAdminRepository(undefined);
 
 const importAllWords = async () => {
+    return ;
+
     try {
         await repository.importAllWords();
 
         success.value.message = 'All words successfully imported!';
-        setTimeout(() => {
-            success.value.message = '';
-        }, 2000);
     } catch (e) {
         console.log('e', e);
         error.value.message = e.message;
     }
 };
+
+const importCourses = async () => {
+    return;
+
+    try {
+        await repository.importCourses();
+
+        success.value.message = 'All courses successfully imported!';
+    } catch (e) {
+        console.log('e', e);
+        error.value.message = e.message;
+    }
+};
+
 </script>
 
 <template>
@@ -46,8 +59,14 @@ const importAllWords = async () => {
 
                 <br />
 
+                <!-- Words -->
                 <button class="btn btn-red" v-on:click="importAllWords">
                     Import all words
+                </button>
+                <br /><br />
+                <!-- Courses -->
+                <button class="btn btn-red" v-on:click="importCourses">
+                    Import courses
                 </button>
                 <br /><br />
             </div>
