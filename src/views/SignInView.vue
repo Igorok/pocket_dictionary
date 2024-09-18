@@ -2,7 +2,7 @@
 import type { Student } from '../dto/student';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { getAuthRepository } from '../repositories/UserFirebase';
+import { getAuthRepository } from '../repositories/StudentFirebase';
 import { useStudentStore } from '../stores/student';
 
 const router = useRouter();

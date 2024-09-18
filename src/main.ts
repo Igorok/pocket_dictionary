@@ -5,7 +5,7 @@ import { createPinia } from 'pinia';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { firebaseConfig } from './config/local-config';
-import { getAuthRepository } from './repositories/UserFirebase';
+import { getAuthRepository } from './repositories/StudentFirebase';
 import { getWordsRepository } from './repositories/WordsFirebase';
 import { getAdminRepository } from './repositories/AdminFirebase';
 import { getCourseRepository } from './repositories/CourseFirebase';

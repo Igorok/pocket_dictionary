@@ -14,7 +14,7 @@ let success = ref({
 const repository = getAdminRepository(undefined);
 
 const importAllWords = async () => {
-    return ;
+    return;
 
     try {
         await repository.importAllWords();
@@ -38,7 +38,6 @@ const importCourses = async () => {
         error.value.message = e.message;
     }
 };
-
 </script>
 
 <template>

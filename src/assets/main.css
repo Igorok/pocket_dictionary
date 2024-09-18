@@ -241,6 +241,11 @@ main h3 {
     margin: 10px;
 }
 
+.course-list .card-wrapper .card a.btn {
+    display: block;
+    text-align: center;
+}
+
 @media (hover: hover) {
     a:hover {
         background-color: hsla(160, 100%, 37%, 0.2);

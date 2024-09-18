@@ -32,22 +32,16 @@ class AdminRepository {
                 title: topic,
                 type: 'words',
                 updated_at: Date.now(),
-                topic,
+                topic
             });
         });
-
 
         console.log('courses', courses);
 
         const batch = writeBatch(this.db);
 
         courses.forEach((course) => {
-            const {
-                title,
-                type,
-                updated_at,
-                topic,
-            } = course;
+            const { title, type, updated_at, topic } = course;
 
             const courseRef = doc(this.db, 'courses', topic);
             batch.set(courseRef, {

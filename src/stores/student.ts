@@ -1,7 +1,7 @@
 import type { Student } from '../dto/student';
 import { defineStore } from 'pinia';
 
-import { getAuthRepository } from '../repositories/UserFirebase';
+import { getAuthRepository } from '../repositories/StudentFirebase';
 
 export const useStudentStore = defineStore('student', {
     state: () => {
