@@ -1,4 +1,4 @@
-import type { Course, StudentCourse } from '../dto/course';
+import type { Course, StudentCourse, Word, StudentWord } from '../dto/course';
 import type { Firestore } from 'firebase/firestore';
 import {
     collection,
@@ -10,6 +10,9 @@ import {
     doc
 } from 'firebase/firestore';
 
+import coursesJson from '../data/courses.json' with { type: 'json' };
+import wordsJson from '../data/merged.json' with { type: 'json' };
+
 class CourseRepository {
     db: Firestore;
 
@@ -18,21 +21,11 @@ class CourseRepository {
     }
 
     async getAllCourses(): Promise<Course[]> {
-        const querySnapshot = await getDocs(collection(this.db, 'courses'));
-        const courses: Course[] = [];
-        querySnapshot.forEach((doc) => {
-            const id = doc.id;
-            const { title, type, topic, updated_at } = doc.data();
-            courses.push({
-                id,
-                title,
-                type,
-                topic,
-                updated_at
-            });
-        });
-        return courses;
+        return coursesJson;
     }
+    async joinCourse(param: StudentCourse): Promise<any> {}
+
+
 
     async getStudentCourses(student_id: string): Promise<StudentCourse[]> {
         const querySnapshot = await getDocs(
@@ -56,8 +49,8 @@ class CourseRepository {
         return courses;
     }
 
-    async joinCourse(param: StudentCourse): Promise<any> {
-        let oldCourse;
+    async __joinCourse(param: StudentCourse): Promise<any> {
+        console.log('param', param);
 
         const qc = query(
             collection(this.db, 'student_courses'),
@@ -74,7 +67,9 @@ class CourseRepository {
             param
         );
 
-        const words = [];
+        console.log('newCourse', newCourse);
+
+        const words: StudentWord[] = [];
         const qw = query(
             collection(this.db, 'words'),
             where('topic', '==', param.topic)
@@ -89,17 +84,47 @@ class CourseRepository {
                 word,
                 tr_ru,
                 errors: 0,
-                learn_at: 0
+                learned_at: 0
             });
         });
 
         for (const word of words) {
             console.log('word', word);
 
-            // await addDoc(collection(this.db, "student_words"), word);
+            const collectionRef = collection(this.db, 'student_courses', newCourse.id, 'words');
+            await addDoc(collectionRef, word);
         }
 
-        console.log('joinCourse');
+        console.log('joinCourse finish');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    async __getAllCourses(): Promise<Course[]> {
+        const querySnapshot = await getDocs(collection(this.db, 'courses'));
+        const courses: Course[] = [];
+        querySnapshot.forEach((doc) => {
+            const id = doc.id;
+            const { title, type, topic, updated_at } = doc.data();
+            courses.push({
+                id,
+                title,
+                type,
+                topic,
+                updated_at
+            });
+        });
+        return courses;
     }
 }
 

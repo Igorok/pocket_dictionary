@@ -1,9 +1,19 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue';
-
+import { getStudentRepository } from './repositories/StudentFirebase';
 import { useStudentStore } from './stores/student';
+
+const studentRepository = getStudentRepository(undefined);
 const studentStore = useStudentStore();
+studentRepository.auth.onAuthStateChanged((user) => {
+    if (user) {
+        studentStore.login({
+            email: user.email || '',
+            id: user.uid,
+        });
+    }
+});
 </script>
 
 <template>
@@ -13,7 +23,7 @@ const studentStore = useStudentStore();
         <div class="wrapper">
             <HelloWorld msg="Pocket Dictionary" />
 
-            <div v-if="Boolean(studentStore.getStudent)">
+            <div v-if="Boolean(studentStore.getStudent?.id)">
                 <nav>
                     <RouterLink to="/">Home</RouterLink>
                     <RouterLink to="/about">About</RouterLink>

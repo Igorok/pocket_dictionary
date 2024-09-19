@@ -1,0 +1,32 @@
+[
+    {
+        "title": "A1 Beginner",
+        "type": "words",
+        "topic": "A1",
+        "updated_at": 0
+    },
+    {
+        "title": "A2 Pre-intermediate",
+        "type": "words",
+        "topic": "A2",
+        "updated_at": 0
+    },
+    {
+        "title": "B1 Intermediate",
+        "type": "words",
+        "topic": "B1",
+        "updated_at": 0
+    },
+    {
+        "title": "B2 Upper-Intermediate",
+        "type": "words",
+        "topic": "B2",
+        "updated_at": 0
+    },
+    {
+        "title": "C1 Advanced",
+        "type": "words",
+        "topic": "A1",
+        "updated_at": 0
+    }
+]

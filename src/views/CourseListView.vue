@@ -2,7 +2,7 @@
 import type { Course, StudentCourse } from '../dto/course';
 import { ref, onMounted } from 'vue';
 import { getCourseRepository } from '../repositories/CourseFirebase';
-import { getAuthRepository } from '../repositories/StudentFirebase';
+import { getStudentRepository } from '../repositories/StudentFirebase';
 
 type Joined = {
     joined: boolean;
@@ -10,7 +10,7 @@ type Joined = {
 };
 type CourseItem = Course & Joined;
 
-let success = ref({
+const success = ref({
     message: ''
 });
 const error = ref({
@@ -20,17 +20,21 @@ const error = ref({
 const coursesRefObj: CourseItem[] = [];
 const coursesRef = ref(coursesRefObj);
 
-const authRepository = getAuthRepository(undefined);
+const studentRepository = getStudentRepository(undefined);
 const courseRepository = getCourseRepository(undefined);
 
+let retry = 0;
 const getCoursesData = async (): Promise<CourseItem[]> => {
     console.log('start getCoursesData');
+    retry += 1;
+    if (retry === 5)
+        return [];
 
     const courses: CourseItem[] = [];
     try {
-        const student = authRepository.getCurrentUser();
-        console.log('student', student);
-        if (!student) return [];
+        const student = studentRepository.getCurrentUser();
+        console.log('student getCoursesData', student);
+        if (!student?.id) return [];
 
         const allCourses: Course[] = await courseRepository.getAllCourses();
         const joinedCourses: StudentCourse[] =
@@ -64,16 +68,20 @@ const getCoursesData = async (): Promise<CourseItem[]> => {
 };
 
 const joinCourse = async (course_id: string | undefined) => {
+    console.log(1);
     if (!course_id) return;
 
-    const student = authRepository.getCurrentUser();
-    if (!student) return;
+    console.log(2);
+    const student = studentRepository.getCurrentUser();
+    if (!student?.id) return;
 
+    console.log(3);
     const course = coursesRef.value.find(({ id }) => id === course_id);
     if (!course) return;
 
     const { id, topic, title, type } = course;
     const joined = {
+        id: '',
         course_id: id,
         student_id: student.id,
         title,
@@ -82,17 +90,24 @@ const joinCourse = async (course_id: string | undefined) => {
         updated_at: Date.now()
     };
     try {
+        console.log(4);
         await courseRepository.joinCourse(joined);
         success.value.message = 'Course successfully joined!';
     } catch (e) {
-        console.log('joinCourse', e);
-        error.value.message = e.message;
+        console.log('joinCourse error', e);
+        error.value.message = e?.message || 'Something wrong!';
     }
 };
 
 onMounted(async () => {
     coursesRef.value = await getCoursesData();
+    studentRepository.auth.onAuthStateChanged(async (user) => {
+        if (user) {
+            coursesRef.value = await getCoursesData();
+        }
+    });
 });
+
 </script>
 
 <template>
@@ -101,6 +116,11 @@ onMounted(async () => {
             <div v-if="Boolean(error.message)">
                 <div class="card item-error">
                     <p>{{ error.message }}</p>
+                </div>
+            </div>
+            <div v-if="Boolean(success.message)">
+                <div class="card item-success">
+                    <p>{{ success.message }}</p>
                 </div>
             </div>
 
