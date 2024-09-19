@@ -1,7 +1,7 @@
 import type { Student } from '../dto/student';
 import { defineStore } from 'pinia';
 
-export const useStudentStore = defineStore('student', {
+export const useAuthStore = defineStore('student', {
     state: () => {
         const student = { id: '', email: '' };
         return {

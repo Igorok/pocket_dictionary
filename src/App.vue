@@ -1,17 +1,35 @@
 <script setup lang="ts">
+import type { Unsubscribe } from 'firebase/auth';
+import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue';
-import { getStudentRepository } from './repositories/StudentFirebase';
-import { useStudentStore } from './stores/student';
+import { getAuthRepository } from './repositories/AuthFirebase';
+import { useAuthStore } from './stores/auth';
 
-const studentRepository = getStudentRepository(undefined);
-const studentStore = useStudentStore();
-studentRepository.auth.onAuthStateChanged((user) => {
-    if (user) {
-        studentStore.login({
-            email: user.email || '',
-            id: user.uid,
-        });
+const authRepository = getAuthRepository(undefined);
+const authStore = useAuthStore();
+
+const user = authRepository.getCurrentUser();
+if (user) {
+    console.log('user', user);
+    authStore.login(user);
+}
+
+let onAuthStateListener: Unsubscribe;
+onBeforeMount(async () => {
+    onAuthStateListener = authRepository.auth.onAuthStateChanged((updated) => {
+        if (updated && !user) {
+            console.log('onAuthStateChanged updated', updated);
+            authStore.login({
+                email: updated.email || '',
+                id: updated.uid
+            });
+        }
+    });
+});
+onBeforeUnmount(() => {
+    if (onAuthStateListener) {
+        onAuthStateListener();
     }
 });
 </script>
@@ -23,11 +41,11 @@ studentRepository.auth.onAuthStateChanged((user) => {
         <div class="wrapper">
             <HelloWorld msg="Pocket Dictionary" />
 
-            <div v-if="Boolean(studentStore.getStudent?.id)">
+            <div v-if="Boolean(authStore.getStudent?.id)">
                 <nav>
                     <RouterLink to="/">Home</RouterLink>
                     <RouterLink to="/about">About</RouterLink>
-                    <RouterLink to="/course-list">All courses</RouterLink>
+                    <RouterLink to="/course/list">All courses</RouterLink>
                     <RouterLink to="/dictionary">Dictionary</RouterLink>
                 </nav>
             </div>

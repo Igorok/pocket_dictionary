@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { Unsubscribe } from 'firebase/auth';
 import type { Course, StudentCourse } from '../dto/course';
-import { ref, onMounted } from 'vue';
+import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
+import { getAuthRepository } from '../repositories/AuthFirebase';
 import { getCourseRepository } from '../repositories/CourseFirebase';
-import { getStudentRepository } from '../repositories/StudentFirebase';
 
 type Joined = {
     joined: boolean;
@@ -20,20 +21,17 @@ const error = ref({
 const coursesRefObj: CourseItem[] = [];
 const coursesRef = ref(coursesRefObj);
 
-const studentRepository = getStudentRepository(undefined);
+const authRepository = getAuthRepository(undefined);
 const courseRepository = getCourseRepository(undefined);
 
 let retry = 0;
 const getCoursesData = async (): Promise<CourseItem[]> => {
-    console.log('start getCoursesData');
     retry += 1;
-    if (retry === 5)
-        return [];
+    if (retry === 5) return [];
 
     const courses: CourseItem[] = [];
     try {
-        const student = studentRepository.getCurrentUser();
-        console.log('student getCoursesData', student);
+        const student = authRepository.getCurrentUser();
         if (!student?.id) return [];
 
         const allCourses: Course[] = await courseRepository.getAllCourses();
@@ -50,7 +48,7 @@ const getCoursesData = async (): Promise<CourseItem[]> => {
             let student_course_id = '';
             if (joinedMap.has(course.id)) {
                 joined = true;
-                student_course_id = joinedMap.get(course.id).course_id;
+                student_course_id = joinedMap.get(course.id).id;
             }
             courses.push({
                 ...course,
@@ -58,56 +56,58 @@ const getCoursesData = async (): Promise<CourseItem[]> => {
                 student_course_id
             });
         });
-
-        console.log('end getCoursesData', allCourses);
     } catch (e) {
-        console.log('getCoursesData', e);
         error.value.message = e.message;
     }
     return courses;
 };
 
 const joinCourse = async (course_id: string | undefined) => {
-    console.log(1);
     if (!course_id) return;
 
-    console.log(2);
-    const student = studentRepository.getCurrentUser();
+    const student = authRepository.getCurrentUser();
     if (!student?.id) return;
 
-    console.log(3);
     const course = coursesRef.value.find(({ id }) => id === course_id);
-    if (!course) return;
+    if (!course?.id) return;
 
     const { id, topic, title, type } = course;
-    const joined = {
-        id: '',
+    const joined: StudentCourse = {
         course_id: id,
         student_id: student.id,
         title,
         topic,
         type,
-        updated_at: Date.now()
+        updated_at: Date.now(),
+        words: []
     };
     try {
-        console.log(4);
-        await courseRepository.joinCourse(joined);
+        const newCourse = await courseRepository.joinCourse(joined);
+        course.joined = true;
+        course.student_course_id = newCourse.id || '';
+
         success.value.message = 'Course successfully joined!';
     } catch (e) {
-        console.log('joinCourse error', e);
         error.value.message = e?.message || 'Something wrong!';
     }
 };
 
-onMounted(async () => {
+let onAuthStateListener: Unsubscribe;
+onBeforeMount(async () => {
     coursesRef.value = await getCoursesData();
-    studentRepository.auth.onAuthStateChanged(async (user) => {
-        if (user) {
-            coursesRef.value = await getCoursesData();
+    onAuthStateListener = authRepository.auth.onAuthStateChanged(
+        async (user) => {
+            if (user && !coursesRef.value?.length) {
+                coursesRef.value = await getCoursesData();
+            }
         }
-    });
+    );
 });
-
+onBeforeUnmount(() => {
+    if (onAuthStateListener) {
+        onAuthStateListener();
+    }
+});
 </script>
 
 <template>
@@ -132,17 +132,19 @@ onMounted(async () => {
                     <button
                         v-if="!course.joined"
                         v-on:click="joinCourse(course.id)"
-                        to="/test-words"
                         class="btn btn-green"
                     >
                         Join this course
                     </button>
                     <RouterLink
                         v-else
-                        to="/test-words/course.student_course_id"
+                        :to="{
+                            name: 'course-words-test',
+                            params: { id: course.student_course_id }
+                        }"
                         class="btn btn-green"
-                        >Learn</RouterLink
-                    >
+                        >Learn
+                    </RouterLink>
                     <br />
                 </div>
             </div>

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { getStudentRepository } from '../repositories/StudentFirebase';
-import { useStudentStore } from '../stores/student';
+import { getAuthRepository } from '../repositories/AuthFirebase';
+import { useAuthStore } from '../stores/auth';
 
 const router = useRouter();
-const repository = getStudentRepository(undefined);
-const studentStore = useStudentStore();
+const repository = getAuthRepository(undefined);
+const studentStore = useAuthStore();
 
 let inputEmail = ref('');
 let inputPassword = ref('');

@@ -7,7 +7,7 @@ import {
     signInWithEmailAndPassword
 } from 'firebase/auth';
 
-class StudentRepository {
+class AuthRepository {
     auth: Auth;
 
     constructor(app: FirebaseApp) {
@@ -65,12 +65,12 @@ class StudentRepository {
     }
 }
 
-let repository: StudentRepository;
-export const getStudentRepository = (
+let repository: AuthRepository;
+export const getAuthRepository = (
     app: FirebaseApp | undefined
-): StudentRepository => {
+): AuthRepository => {
     if (!repository && app) {
-        repository = new StudentRepository(app);
+        repository = new AuthRepository(app);
     }
     return repository;
 };

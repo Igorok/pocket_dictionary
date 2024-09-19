@@ -1,12 +1,15 @@
+import { shuffle } from 'lodash';
 import type { Course, StudentCourse, Word, StudentWord } from '../dto/course';
 import type { Firestore } from 'firebase/firestore';
 import {
     collection,
     getDocs,
+    getDoc,
     addDoc,
     query,
     where,
     writeBatch,
+    setDoc,
     doc
 } from 'firebase/firestore';
 
@@ -23,9 +26,39 @@ class CourseRepository {
     async getAllCourses(): Promise<Course[]> {
         return coursesJson;
     }
-    async joinCourse(param: StudentCourse): Promise<any> {}
 
+    async joinCourse(param: StudentCourse): Promise<StudentCourse> {
+        const { course_id, student_id, title, type, topic, updated_at } = param;
 
+        const wordsForTopic: StudentWord[] = [];
+        for (const item of wordsJson) {
+            if (!item.topics.includes(topic)) {
+                continue;
+            }
+            wordsForTopic.push({
+                word: item.word,
+                errors: 0,
+                learned_at: 0
+            });
+        }
+
+        const studentCourse: StudentCourse = {
+            course_id,
+            student_id,
+            title,
+            type,
+            topic,
+            updated_at,
+            words: shuffle(wordsForTopic)
+        };
+        const id = `${course_id}_${student_id}`;
+
+        await setDoc(doc(this.db, 'student_courses', id), studentCourse);
+
+        studentCourse.id = id;
+
+        return studentCourse;
+    }
 
     async getStudentCourses(student_id: string): Promise<StudentCourse[]> {
         const querySnapshot = await getDocs(
@@ -34,8 +67,15 @@ class CourseRepository {
         const courses: StudentCourse[] = [];
         querySnapshot.forEach((doc) => {
             const id = doc.id;
-            const { course_id, student_id, title, type, topic, updated_at } =
-                doc.data();
+            const {
+                course_id,
+                student_id,
+                title,
+                type,
+                topic,
+                updated_at,
+                words
+            } = doc.data();
             courses.push({
                 id,
                 course_id,
@@ -43,72 +83,44 @@ class CourseRepository {
                 title,
                 type,
                 topic,
-                updated_at
+                updated_at,
+                words
             });
         });
         return courses;
     }
 
-    async __joinCourse(param: StudentCourse): Promise<any> {
-        console.log('param', param);
+    async getStudentCourseById(
+        student_course_id: string
+    ): Promise<StudentCourse> {
+        const docRef = doc(this.db, 'student_courses', student_course_id);
+        const docSnap = await getDoc(docRef);
 
-        const qc = query(
-            collection(this.db, 'student_courses'),
-            where('course_id', '==', param.course_id),
-            where('student_id', '==', param.student_id)
-        );
-        const queryCourseSnapshot = await getDocs(qc);
-        if (!queryCourseSnapshot.empty) {
-            throw new Error('Course is already joined!');
+        if (docSnap.exists()) {
+            const {
+                course_id,
+                student_id,
+                title,
+                type,
+                topic,
+                updated_at,
+                words
+            } = docSnap.data();
+
+            return {
+                id: docSnap.id,
+                course_id,
+                student_id,
+                title,
+                type,
+                topic,
+                updated_at,
+                words
+            };
+        } else {
+            throw new Error('No such document!');
         }
-
-        const newCourse = await addDoc(
-            collection(this.db, 'student_courses'),
-            param
-        );
-
-        console.log('newCourse', newCourse);
-
-        const words: StudentWord[] = [];
-        const qw = query(
-            collection(this.db, 'words'),
-            where('topic', '==', param.topic)
-        );
-        const queryWordsSnapshot = await getDocs(qw);
-        queryWordsSnapshot.forEach((doc) => {
-            console.log('doc.data()', doc.data());
-
-            const { word, tr_ru } = doc.data();
-            words.push({
-                student_course_id: newCourse.id,
-                word,
-                tr_ru,
-                errors: 0,
-                learned_at: 0
-            });
-        });
-
-        for (const word of words) {
-            console.log('word', word);
-
-            const collectionRef = collection(this.db, 'student_courses', newCourse.id, 'words');
-            await addDoc(collectionRef, word);
-        }
-
-        console.log('joinCourse finish');
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     async __getAllCourses(): Promise<Course[]> {
         const querySnapshot = await getDocs(collection(this.db, 'courses'));

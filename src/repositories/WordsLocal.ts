@@ -1,8 +1,7 @@
 import words from '../data/merged.json' with { type: 'json' };
 
 class WordsRepository {
-    constructor() {
-    }
+    constructor() {}
 }
 
 let repository: WordsRepository;

@@ -1,3 +1,18 @@
+export type Word = {
+    id?: string;
+    word: string;
+    tr_ru: string;
+    topics: string[];
+    updated_at: number;
+};
+
+export type StudentWord = {
+    id?: string;
+    word: string;
+    errors: number;
+    learned_at: number;
+};
+
 export type Course = {
     id?: string;
     title: string;
@@ -9,23 +24,7 @@ export type Course = {
 type StudentCourseFields = {
     course_id: string;
     student_id: string;
+    words: StudentWord[];
 };
 
 export type StudentCourse = Course & StudentCourseFields;
-
-export type Word = {
-    id?: string,
-    word: string,
-    tr_ru: string,
-    topics: string[],
-    updated_at: number;
-}
-
-export type StudentWord = {
-    id?: string,
-    student_course_id: string,
-    word: string,
-    tr_ru: string,
-    errors: number,
-    learned_at: number,
-};

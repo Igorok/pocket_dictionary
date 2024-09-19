@@ -18,16 +18,6 @@ const router = createRouter({
             component: () => import('../views/AboutView.vue')
         },
         {
-            path: '/course-list',
-            name: 'course-list',
-            component: () => import('../views/CourseListView.vue')
-        },
-        {
-            path: '/dictionary',
-            name: 'dictionary',
-            component: () => import('../views/DictionaryView.vue')
-        },
-        {
             path: '/sign-in',
             name: 'signIn',
             component: () => import('../views/SignInView.vue')
@@ -38,9 +28,20 @@ const router = createRouter({
             component: () => import('../views/SignUpView.vue')
         },
         {
-            path: '/admin',
-            name: 'admin',
-            component: () => import('../views/AdminView.vue')
+            path: '/course/list',
+            name: 'course/list',
+            component: () => import('../views/CourseListView.vue')
+        },
+        {
+            path: '/course/words/test/:id',
+            name: 'course-words-test',
+            component: () => import('../views/CourseWordsTestView.vue')
+        },
+
+        {
+            path: '/dictionary',
+            name: 'dictionary',
+            component: () => import('../views/DictionaryView.vue')
         }
     ]
 });
