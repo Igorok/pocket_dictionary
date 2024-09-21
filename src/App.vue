@@ -46,7 +46,6 @@ onBeforeUnmount(() => {
                     <RouterLink to="/">Home</RouterLink>
                     <RouterLink to="/about">About</RouterLink>
                     <RouterLink to="/course/list">All courses</RouterLink>
-                    <RouterLink to="/dictionary">Dictionary</RouterLink>
                 </nav>
             </div>
             <div v-else>

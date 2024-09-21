@@ -1,15 +1,23 @@
 <script setup lang="ts">
-import type { Course, StudentCourse } from '../dto/course';
+import type {
+    Course,
+    StudentCourse,
+    StudentWord,
+    Word,
+    TestWordsItemOption,
+    TestWordsItem,
+    TestWordsLesson
+} from '../dto/course';
 import { ref, onBeforeMount } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-import { getAuthRepository } from '../repositories/AuthFirebase';
+import { useRoute } from 'vue-router';
 import { getCourseRepository } from '../repositories/CourseFirebase';
+
+const WORDS_IN_LESSON = 10;
+const WORDS_IN_ITEM = 4;
+const CHANGE_TIMEOUT = 2 * 1000;
 
 const courseId: string | string[] = useRoute().params.id;
 
-console.log('courseId', courseId);
-
-const authRepository = getAuthRepository(undefined);
 const courseRepository = getCourseRepository(undefined);
 
 const success = ref({
@@ -18,42 +26,134 @@ const success = ref({
 const error = ref({
     message: ''
 });
+const successCount = ref(0);
+const errorCount = ref(0);
 
-let studentCourse: StudentCourse = {
+let lessonObj: TestWordsLesson = {
     title: '',
-    topic: '',
-    type: '',
-    updated_at: 0,
-    course_id: '',
-    student_id: '',
-    words: []
+    words: [],
+    completed: false
 };
-const studentCourseRef = ref(studentCourse);
+const lessonObjRef = ref(lessonObj);
 
-let retry = 0;
-const getCourseData = async (): Promise<StudentCourse> => {
-    retry += 1;
-    if (retry === 5) return studentCourse;
+let studentCourse: StudentCourse;
+let activeItem = 0;
 
+const getCourseData = async (): Promise<void> => {
     try {
         studentCourse = await courseRepository.getStudentCourseById(
             String(courseId)
         );
+
+        const course: Course | undefined = await courseRepository.getCourseById(
+            studentCourse.course_id
+        );
+        if (!course) return;
+
+        const words = await courseRepository.getAllWords({
+            topic: course.topic
+        });
+        const wordsByWord = words.reduce((acc, wordObj) => {
+            acc.set(wordObj.word, wordObj);
+            return acc;
+        }, new Map());
+
+        lessonObjRef.value.title = course.title;
+
+        const studentWords = studentCourse.words.sort(
+            (a, b) => a.learned_at - b.learned_at
+        );
+
+        let id = WORDS_IN_LESSON * WORDS_IN_ITEM;
+        for (let i = 0; i < WORDS_IN_LESSON; ++i) {
+            const sw = studentWords[i];
+            const options: TestWordsItemOption[] = [];
+            const rId = Math.round(Math.random() * (WORDS_IN_ITEM - 2));
+
+            for (let j = 0; j < WORDS_IN_ITEM - 1; ++j) {
+                const optW = studentWords[++id];
+                options.push({
+                    word: optW.word,
+                    tr_ru: wordsByWord.get(optW.word).tr_ru,
+                    error: false,
+                    success: false
+                });
+                if (j == rId) {
+                    options.push({
+                        word: sw.word,
+                        tr_ru: wordsByWord.get(sw.word).tr_ru,
+                        error: false,
+                        success: false
+                    });
+                }
+            }
+
+            lessonObjRef.value.words.push({
+                word: wordsByWord.get(sw.word),
+                options: options,
+                success: false,
+                completed: false,
+                active: false
+            });
+        }
+
+        lessonObjRef.value.words[activeItem].active = true;
     } catch (e) {
         error.value.message = e.message;
     }
+};
 
-    return studentCourse;
+const updateStudentCourseWords = async () => {
+    if (!studentCourse) return;
+
+    const leardedAt = Date.now();
+    const wordsByWord = lessonObjRef.value.words.reduce((acc, val) => {
+        acc.set(val.word.word, val.success ? 0 : 1);
+        return acc;
+    }, new Map());
+    studentCourse.words.forEach((word) => {
+        if (wordsByWord.has(word.word)) {
+            word.errors += wordsByWord.get(word.word);
+            word.learned_at = leardedAt;
+        }
+    });
+    await courseRepository.updateStudentCourseWords(
+        String(studentCourse.id),
+        studentCourse.words
+    );
+};
+
+const selectCard = (option: TestWordsItemOption) => {
+    if (option.word === lessonObjRef.value.words[activeItem].word.word) {
+        option.success = true;
+        lessonObjRef.value.words[activeItem].success = true;
+        successCount.value += 1;
+    } else {
+        option.error = true;
+        errorCount.value += 1;
+    }
+
+    setTimeout(() => {
+        lessonObjRef.value.words[activeItem].completed = true;
+        lessonObjRef.value.words[activeItem].active = false;
+
+        activeItem += 1;
+        if (activeItem === lessonObjRef.value.words.length) {
+            lessonObjRef.value.completed = true;
+            return updateStudentCourseWords();
+        }
+        lessonObjRef.value.words[activeItem].active = true;
+    }, CHANGE_TIMEOUT);
 };
 
 onBeforeMount(async () => {
-    studentCourseRef.value = await getCourseData();
+    await getCourseData();
 });
 </script>
 
 <template>
     <main>
-        <div class="course-list">
+        <div class="dictionary">
             <div v-if="Boolean(error.message)">
                 <div class="card item-error">
                     <p>{{ error.message }}</p>
@@ -65,8 +165,49 @@ onBeforeMount(async () => {
                 </div>
             </div>
 
-            <h3>Test:</h3>
-            User {{ $route.params.id }}
+            <h1>Dictionary</h1>
+            <h3>{{ lessonObjRef.title }}</h3>
+            <p>
+                <b class="font-success">Success: {{ successCount }}</b>
+                <span>&nbsp;</span>
+                <b class="font-error">Error: {{ errorCount }}</b>
+            </p>
+
+            <div v-if="lessonObjRef.completed">
+                <h3>Lesson is completed</h3>
+
+                <div v-for="item in lessonObjRef.words" :key="item.word.word">
+                    <p
+                        :class="{
+                            'font-success': item.success,
+                            'font-error': !item.success
+                        }"
+                    >
+                        {{ item.word.word }} - {{ item.word.tr_ru }}
+                    </p>
+                </div>
+            </div>
+            <div v-else class="lesson-item">
+                <div v-for="item in lessonObjRef.words" :key="item.word.word">
+                    <div v-if="item.active">
+                        <h3>{{ item.word.tr_ru }}</h3>
+                        <div class="card-wrapper">
+                            <div
+                                class="card"
+                                :class="{
+                                    'alert-success': option.success,
+                                    'alert-error': option.error
+                                }"
+                                v-for="option in item.options"
+                                :key="option.word"
+                                v-on:click="selectCard(option)"
+                            >
+                                {{ option.word }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 </template>

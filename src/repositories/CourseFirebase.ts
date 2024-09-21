@@ -5,10 +5,7 @@ import {
     collection,
     getDocs,
     getDoc,
-    addDoc,
-    query,
-    where,
-    writeBatch,
+    updateDoc,
     setDoc,
     doc
 } from 'firebase/firestore';
@@ -25,6 +22,20 @@ class CourseRepository {
 
     async getAllCourses(): Promise<Course[]> {
         return coursesJson;
+    }
+
+    async getCourseById(id: string): Promise<Course | undefined> {
+        return coursesJson.find((course) => course.id === id);
+    }
+
+    async getAllWords({
+        topic
+    }: {
+        topic: string | undefined;
+    }): Promise<Word[]> {
+        if (!topic) return wordsJson;
+
+        return wordsJson.filter(({ topics }) => topics.includes(topic));
     }
 
     async joinCourse(param: StudentCourse): Promise<StudentCourse> {
@@ -122,21 +133,12 @@ class CourseRepository {
         }
     }
 
-    async __getAllCourses(): Promise<Course[]> {
-        const querySnapshot = await getDocs(collection(this.db, 'courses'));
-        const courses: Course[] = [];
-        querySnapshot.forEach((doc) => {
-            const id = doc.id;
-            const { title, type, topic, updated_at } = doc.data();
-            courses.push({
-                id,
-                title,
-                type,
-                topic,
-                updated_at
-            });
-        });
-        return courses;
+    async updateStudentCourseWords(
+        student_course_id: string,
+        words: StudentWord[]
+    ): Promise<void> {
+        const docRef = doc(this.db, 'student_courses', student_course_id);
+        await updateDoc(docRef, { words });
     }
 }
 

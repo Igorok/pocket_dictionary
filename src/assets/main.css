@@ -200,8 +200,6 @@ main h3 {
 }
 
 /* dictionary */
-.dictionary {
-}
 .dictionary .card-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;

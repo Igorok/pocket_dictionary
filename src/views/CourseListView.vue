@@ -143,7 +143,7 @@ onBeforeUnmount(() => {
                             params: { id: course.student_course_id }
                         }"
                         class="btn btn-green"
-                        >Learn
+                        >Test these words
                     </RouterLink>
                     <br />
                 </div>

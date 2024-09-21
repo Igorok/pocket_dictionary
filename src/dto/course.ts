@@ -3,7 +3,7 @@ export type Word = {
     word: string;
     tr_ru: string;
     topics: string[];
-    updated_at: number;
+    updated_at?: number;
 };
 
 export type StudentWord = {
@@ -28,3 +28,23 @@ type StudentCourseFields = {
 };
 
 export type StudentCourse = Course & StudentCourseFields;
+
+export type TestWordsItemOption = {
+    word: string;
+    tr_ru: string;
+    error: boolean;
+    success: boolean;
+};
+export type TestWordsItem = {
+    word: Word;
+    options: TestWordsItemOption[];
+    success: boolean;
+    completed: boolean;
+    active: boolean;
+};
+
+export type TestWordsLesson = {
+    title: string;
+    words: TestWordsItem[];
+    completed: boolean;
+};
