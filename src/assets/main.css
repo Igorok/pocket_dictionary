@@ -207,6 +207,7 @@ main h3 {
 
 .dictionary .lesson-item .card {
     margin: 10px;
+    cursor: pointer;
 }
 
 .sign-in-wrapper {

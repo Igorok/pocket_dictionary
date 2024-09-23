@@ -99,28 +99,42 @@ const getCourseData = async (): Promise<void> => {
 
         lessonObjRef.value.words[activeItem].active = true;
     } catch (e) {
+        console.log('e', e);
         error.value.message = e.message;
     }
 };
 
 const updateStudentCourseWords = async () => {
-    if (!studentCourse) return;
+    try {
+        if (!studentCourse) return;
 
-    const leardedAt = Date.now();
-    const wordsByWord = lessonObjRef.value.words.reduce((acc, val) => {
-        acc.set(val.word.word, val.success ? 0 : 1);
-        return acc;
-    }, new Map());
-    studentCourse.words.forEach((word) => {
-        if (wordsByWord.has(word.word)) {
-            word.errors += wordsByWord.get(word.word);
-            word.learned_at = leardedAt;
-        }
-    });
-    await courseRepository.updateStudentCourseWords(
-        String(studentCourse.id),
-        studentCourse.words
-    );
+        const leardedAt = Date.now();
+        const wordsByWord = lessonObjRef.value.words.reduce((acc, val) => {
+            acc.set(val.word.word, val.success ? 0 : 1);
+            return acc;
+        }, new Map());
+        studentCourse.words.forEach((word) => {
+            if (wordsByWord.has(word.word)) {
+                word.errors += wordsByWord.get(word.word);
+                word.learned_at = leardedAt;
+            }
+        });
+
+        await Promise.all([
+            courseRepository.updateStudentCourseWords(
+                String(studentCourse.id),
+                studentCourse.words
+            ),
+            courseRepository.updateStudentStats({
+                student_id: studentCourse.student_id,
+                course_id: studentCourse.course_id,
+                error: errorCount.value,
+                success: successCount.value
+            })
+        ]);
+    } catch (e) {
+        error.value.message = e.message;
+    }
 };
 
 const selectCard = (option: TestWordsItemOption) => {

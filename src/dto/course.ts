@@ -13,6 +13,13 @@ export type StudentWord = {
     learned_at: number;
 };
 
+export type StudentWordDb = {
+    id?: string;
+    w: string;
+    e: number;
+    l_at: number;
+};
+
 export type Course = {
     id?: string;
     title: string;

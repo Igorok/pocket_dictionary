@@ -2110,9 +2110,9 @@
         "tr_ru": "баскетбол"
     },
     {
-        "word": "bass1",
+        "word": "bass",
         "topics": ["C1"],
-        "tr_ru": "бас1"
+        "tr_ru": "бас"
     },
     {
         "word": "bat",
@@ -2725,9 +2725,9 @@
         "tr_ru": "граница"
     },
     {
-        "word": "bow1",
+        "word": "bow",
         "topics": ["C1"],
-        "tr_ru": "лук1"
+        "tr_ru": "лук"
     },
     {
         "word": "bowl",
@@ -3130,14 +3130,9 @@
         "tr_ru": "кампус"
     },
     {
-        "word": "can1",
+        "word": "can",
         "topics": ["A1"],
-        "tr_ru": "может1"
-    },
-    {
-        "word": "can2",
-        "topics": ["A2"],
-        "tr_ru": "может2"
+        "tr_ru": "может"
     },
     {
         "word": "canal",
@@ -3905,14 +3900,9 @@
         "tr_ru": "часы"
     },
     {
-        "word": "close1",
+        "word": "close",
         "topics": ["B2"],
-        "tr_ru": "закрыть1"
-    },
-    {
-        "word": "close2",
-        "topics": ["B1"],
-        "tr_ru": "закрыть2"
+        "tr_ru": "закрыть"
     },
     {
         "word": "closed",
@@ -4890,14 +4880,9 @@
         "tr_ru": "претендент"
     },
     {
-        "word": "content1",
+        "word": "content",
         "topics": ["B1"],
-        "tr_ru": "содержание1"
-    },
-    {
-        "word": "content2",
-        "topics": ["C1"],
-        "tr_ru": "содержание2"
+        "tr_ru": "содержание"
     },
     {
         "word": "contention",
@@ -6890,9 +6875,9 @@
         "tr_ru": "в разводе"
     },
     {
-        "word": "do1",
+        "word": "do",
         "topics": ["A1"],
-        "tr_ru": "до1"
+        "tr_ru": "делать"
     },
     {
         "word": "doctor",
@@ -12590,9 +12575,9 @@
         "tr_ru": "лазер"
     },
     {
-        "word": "last1",
+        "word": "last",
         "topics": ["A2"],
-        "tr_ru": "последний1"
+        "tr_ru": "последний"
     },
     {
         "word": "late",
@@ -12675,9 +12660,9 @@
         "tr_ru": "ленивый"
     },
     {
-        "word": "lead1",
+        "word": "lead",
         "topics": ["B1"],
-        "tr_ru": "свинец1"
+        "tr_ru": "вести, свинец"
     },
     {
         "word": "leader",
@@ -12910,14 +12895,9 @@
         "tr_ru": "лицензия"
     },
     {
-        "word": "lie1",
+        "word": "lie",
         "topics": ["A1"],
-        "tr_ru": "ложь1"
-    },
-    {
-        "word": "lie2",
-        "topics": ["B1"],
-        "tr_ru": "ложь2"
+        "tr_ru": "ложь"
     },
     {
         "word": "life",
@@ -13090,14 +13070,9 @@
         "tr_ru": "маленький"
     },
     {
-        "word": "live1",
+        "word": "live",
         "topics": ["A1"],
-        "tr_ru": "жить1"
-    },
-    {
-        "word": "live2",
-        "topics": ["B1"],
-        "tr_ru": "жить2"
+        "tr_ru": "жить"
     },
     {
         "word": "lively",
@@ -13195,9 +13170,9 @@
         "tr_ru": "много времени"
     },
     {
-        "word": "long1",
+        "word": "long",
         "topics": ["A1"],
-        "tr_ru": "длинный1"
+        "tr_ru": "длинный"
     },
     {
         "word": "look",
@@ -14070,9 +14045,9 @@
         "tr_ru": "минута"
     },
     {
-        "word": "minute1",
+        "word": "minute",
         "topics": ["A1"],
-        "tr_ru": "минута1"
+        "tr_ru": "минута"
     },
     {
         "word": "miracle",
@@ -16005,9 +15980,9 @@
         "tr_ru": "пенни"
     },
     {
-        "word": "pension1",
+        "word": "pension",
         "topics": ["B2"],
-        "tr_ru": "пенсия1"
+        "tr_ru": "пенсия"
     },
     {
         "word": "people",
@@ -16425,9 +16400,9 @@
         "tr_ru": "нырять"
     },
     {
-        "word": "plus1",
+        "word": "plus",
         "topics": ["B2"],
-        "tr_ru": "плюс1"
+        "tr_ru": "плюс"
     },
     {
         "word": "pocket",
@@ -18070,9 +18045,9 @@
         "tr_ru": "запись"
     },
     {
-        "word": "recount1",
+        "word": "recount",
         "topics": ["C1"],
-        "tr_ru": "пересчет1"
+        "tr_ru": "пересчет"
     },
     {
         "word": "recover",
@@ -18165,9 +18140,9 @@
         "tr_ru": "отказ"
     },
     {
-        "word": "refuse1",
+        "word": "refuse",
         "topics": ["A2"],
-        "tr_ru": "отказаться1"
+        "tr_ru": "отказаться"
     },
     {
         "word": "regain",
@@ -18890,14 +18865,9 @@
         "tr_ru": "верно"
     },
     {
-        "word": "ring1",
+        "word": "ring",
         "topics": ["A2"],
-        "tr_ru": "кольцо1"
-    },
-    {
-        "word": "ring2",
-        "topics": ["B1"],
-        "tr_ru": "кольцо2"
+        "tr_ru": "кольцо"
     },
     {
         "word": "riot",
@@ -19060,9 +19030,9 @@
         "tr_ru": "рутина"
     },
     {
-        "word": "row1",
+        "word": "row",
         "topics": ["B1"],
-        "tr_ru": "ряд1"
+        "tr_ru": "ряд"
     },
     {
         "word": "royal",
@@ -21980,14 +21950,9 @@
         "tr_ru": "команда"
     },
     {
-        "word": "tear1",
+        "word": "tear",
         "topics": ["B2"],
-        "tr_ru": "слеза1"
-    },
-    {
-        "word": "tear2",
-        "topics": ["B2"],
-        "tr_ru": "слеза2"
+        "tr_ru": "слеза"
     },
     {
         "word": "technical",
@@ -23520,14 +23485,9 @@
         "tr_ru": "использовал"
     },
     {
-        "word": "used1",
+        "word": "used",
         "topics": ["B1"],
-        "tr_ru": "использованный1"
-    },
-    {
-        "word": "used2",
-        "topics": ["B1"],
-        "tr_ru": "использованный2"
+        "tr_ru": "использованный"
     },
     {
         "word": "useful",
@@ -24370,14 +24330,9 @@
         "tr_ru": "победить"
     },
     {
-        "word": "wind1",
+        "word": "wind",
         "topics": ["A2"],
-        "tr_ru": "ветер1"
-    },
-    {
-        "word": "wind2",
-        "topics": ["B2"],
-        "tr_ru": "ветер2"
+        "tr_ru": "ветер"
     },
     {
         "word": "window",

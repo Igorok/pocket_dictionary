@@ -1,5 +1,11 @@
 import { shuffle } from 'lodash';
-import type { Course, StudentCourse, Word, StudentWord } from '../dto/course';
+import type {
+    Course,
+    StudentCourse,
+    Word,
+    StudentWord,
+    StudentWordDb
+} from '../dto/course';
 import type { Firestore } from 'firebase/firestore';
 import {
     collection,
@@ -7,7 +13,9 @@ import {
     getDoc,
     updateDoc,
     setDoc,
-    doc
+    doc,
+    where,
+    query
 } from 'firebase/firestore';
 
 import coursesJson from '../data/courses.json' with { type: 'json' };
@@ -41,15 +49,15 @@ class CourseRepository {
     async joinCourse(param: StudentCourse): Promise<StudentCourse> {
         const { course_id, student_id, title, type, topic, updated_at } = param;
 
-        const wordsForTopic: StudentWord[] = [];
+        const wordsForTopic: StudentWordDb[] = [];
         for (const item of wordsJson) {
             if (!item.topics.includes(topic)) {
                 continue;
             }
             wordsForTopic.push({
-                word: item.word,
-                errors: 0,
-                learned_at: 0
+                w: item.word,
+                e: 0,
+                l_at: 0
             });
         }
 
@@ -67,14 +75,24 @@ class CourseRepository {
         await setDoc(doc(this.db, 'student_courses', id), studentCourse);
 
         studentCourse.id = id;
+        studentCourse.words = wordsForTopic.map(({ w, e, l_at }) => {
+            return {
+                word: w,
+                errors: e,
+                learned_at: l_at
+            };
+        });
 
         return studentCourse;
     }
 
     async getStudentCourses(student_id: string): Promise<StudentCourse[]> {
-        const querySnapshot = await getDocs(
-            collection(this.db, 'student_courses')
+        const q = query(
+            collection(this.db, 'student_courses'),
+            where('student_id', '==', student_id)
         );
+
+        const querySnapshot = await getDocs(q);
         const courses: StudentCourse[] = [];
         querySnapshot.forEach((doc) => {
             const id = doc.id;
@@ -87,6 +105,7 @@ class CourseRepository {
                 updated_at,
                 words
             } = doc.data();
+
             courses.push({
                 id,
                 course_id,
@@ -95,7 +114,13 @@ class CourseRepository {
                 type,
                 topic,
                 updated_at,
-                words
+                words: words.map(({ w, e, l_at }) => {
+                    return {
+                        word: w,
+                        errors: e,
+                        learned_at: l_at
+                    };
+                })
             });
         });
         return courses;
@@ -126,7 +151,13 @@ class CourseRepository {
                 type,
                 topic,
                 updated_at,
-                words
+                words: words.map(({ w, e, l_at }) => {
+                    return {
+                        word: w,
+                        errors: e,
+                        learned_at: l_at
+                    };
+                })
             };
         } else {
             throw new Error('No such document!');
@@ -137,8 +168,54 @@ class CourseRepository {
         student_course_id: string,
         words: StudentWord[]
     ): Promise<void> {
+        const dbWords: StudentWordDb = words.map(
+            ({ word, errors, learned_at }) => ({
+                w: word,
+                e: errors,
+                l_at: learned_at
+            })
+        );
         const docRef = doc(this.db, 'student_courses', student_course_id);
-        await updateDoc(docRef, { words });
+        await updateDoc(docRef, { words: dbWords });
+    }
+
+    async updateStudentStats({
+        student_id,
+        course_id,
+        success,
+        error
+    }: {
+        student_id: string;
+        course_id: string;
+        success: number;
+        error: number;
+    }): Promise<void> {
+        const docRef = doc(this.db, 'student_stats', student_id);
+        const docSnap = await getDoc(docRef);
+        let byDay;
+
+        if (docSnap.exists()) {
+            const { byDay: dbByDay } = docSnap.data();
+            byDay = dbByDay;
+        }
+
+        const today = new Date().toLocaleDateString('en-EN');
+        byDay[today] = byDay[today] || {};
+        byDay[today][course_id] = byDay[today][course_id] || {
+            e: 0,
+            s: 0
+        };
+        byDay[today][course_id].e += error;
+        byDay[today][course_id].s += success;
+
+        if (docSnap.exists()) {
+            await updateDoc(docRef, { byDay });
+        } else {
+            await setDoc(doc(this.db, 'student_stats', student_id), {
+                byDay,
+                student_id
+            });
+        }
     }
 }
 
