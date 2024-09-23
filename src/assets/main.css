@@ -149,6 +149,7 @@ label {
 header {
     line-height: 1.5;
     padding: 10px;
+    background-color: var(--color-white);
 }
 header h1 {
     text-align: center;

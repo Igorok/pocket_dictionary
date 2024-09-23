@@ -41,9 +41,19 @@ class CourseRepository {
     }: {
         topic: string | undefined;
     }): Promise<Word[]> {
-        if (!topic) return wordsJson;
+        if (!topic) {
+            return wordsJson.map((word) => ({
+                ...word,
+                id: word.id.toString()
+            }));
+        }
 
-        return wordsJson.filter(({ topics }) => topics.includes(topic));
+        return wordsJson
+            .filter(({ topics }) => topics.includes(topic))
+            .map((word) => ({
+                ...word,
+                id: word.id.toString()
+            }));
     }
 
     async joinCourse(param: StudentCourse): Promise<StudentCourse> {
@@ -55,13 +65,15 @@ class CourseRepository {
                 continue;
             }
             wordsForTopic.push({
-                w: item.word,
+                id: item.id.toString(),
                 e: 0,
                 l_at: 0
             });
         }
 
+        const id = `${course_id}_${student_id}`;
         const studentCourse: StudentCourse = {
+            id,
             course_id,
             student_id,
             title,
@@ -70,14 +82,12 @@ class CourseRepository {
             updated_at,
             words: shuffle(wordsForTopic)
         };
-        const id = `${course_id}_${student_id}`;
 
         await setDoc(doc(this.db, 'student_courses', id), studentCourse);
 
-        studentCourse.id = id;
-        studentCourse.words = wordsForTopic.map(({ w, e, l_at }) => {
+        studentCourse.words = wordsForTopic.map(({ id, e, l_at }) => {
             return {
-                word: w,
+                id,
                 errors: e,
                 learned_at: l_at
             };
@@ -114,9 +124,9 @@ class CourseRepository {
                 type,
                 topic,
                 updated_at,
-                words: words.map(({ w, e, l_at }) => {
+                words: words.map(({ id, e, l_at }) => {
                     return {
-                        word: w,
+                        id,
                         errors: e,
                         learned_at: l_at
                     };
@@ -151,9 +161,9 @@ class CourseRepository {
                 type,
                 topic,
                 updated_at,
-                words: words.map(({ w, e, l_at }) => {
+                words: words.map(({ id, e, l_at }) => {
                     return {
-                        word: w,
+                        id,
                         errors: e,
                         learned_at: l_at
                     };
@@ -168,9 +178,9 @@ class CourseRepository {
         student_course_id: string,
         words: StudentWord[]
     ): Promise<void> {
-        const dbWords: StudentWordDb = words.map(
-            ({ word, errors, learned_at }) => ({
-                w: word,
+        const dbWords: StudentWordDb[] = words.map(
+            ({ id, errors, learned_at }) => ({
+                id,
                 e: errors,
                 l_at: learned_at
             })
@@ -192,12 +202,13 @@ class CourseRepository {
     }): Promise<void> {
         const docRef = doc(this.db, 'student_stats', student_id);
         const docSnap = await getDoc(docRef);
-        let byDay;
+        let byDay = {};
 
         if (docSnap.exists()) {
             const { byDay: dbByDay } = docSnap.data();
             byDay = dbByDay;
         }
+        console.log('byDay', byDay);
 
         const today = new Date().toLocaleDateString('en-EN');
         byDay[today] = byDay[today] || {};
@@ -209,7 +220,7 @@ class CourseRepository {
         byDay[today][course_id].s += success;
 
         if (docSnap.exists()) {
-            await updateDoc(docRef, { byDay });
+            await updateDoc(docRef, { byDay, student_id });
         } else {
             await setDoc(doc(this.db, 'student_stats', student_id), {
                 byDay,

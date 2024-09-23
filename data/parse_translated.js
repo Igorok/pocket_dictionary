@@ -9,11 +9,13 @@ const rl = readlinePromises.createInterface({
 let id = 0;
 const wordsList = [];
 rl.on('line', (line) => {
+    const [w, tr_ru] = line.split(',');
     const { word, topic } = parsed[id];
     wordsList.push({
+        id,
         word,
-        topics: [topic],
-        tr_ru: line.trim(),
+        topics: [topic[0]],
+        tr_ru: tr_ru.trim(),
     });
     id += 1;
 }).on('close', async () => {

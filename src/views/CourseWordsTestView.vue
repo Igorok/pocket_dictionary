@@ -53,8 +53,8 @@ const getCourseData = async (): Promise<void> => {
         const words = await courseRepository.getAllWords({
             topic: course.topic
         });
-        const wordsByWord = words.reduce((acc, wordObj) => {
-            acc.set(wordObj.word, wordObj);
+        const wordsById = words.reduce((acc, wordObj) => {
+            acc.set(wordObj.id, wordObj);
             return acc;
         }, new Map());
 
@@ -73,15 +73,17 @@ const getCourseData = async (): Promise<void> => {
             for (let j = 0; j < WORDS_IN_ITEM - 1; ++j) {
                 const optW = studentWords[++id];
                 options.push({
-                    word: optW.word,
-                    tr_ru: wordsByWord.get(optW.word).tr_ru,
+                    id: optW.id,
+                    word: wordsById.get(optW.id).word,
+                    tr_ru: wordsById.get(optW.id).tr_ru,
                     error: false,
                     success: false
                 });
                 if (j == rId) {
                     options.push({
-                        word: sw.word,
-                        tr_ru: wordsByWord.get(sw.word).tr_ru,
+                        id: sw.id,
+                        word: wordsById.get(sw.id).word,
+                        tr_ru: wordsById.get(sw.id).tr_ru,
                         error: false,
                         success: false
                     });
@@ -89,7 +91,7 @@ const getCourseData = async (): Promise<void> => {
             }
 
             lessonObjRef.value.words.push({
-                word: wordsByWord.get(sw.word),
+                word: wordsById.get(sw.id),
                 options: options,
                 success: false,
                 completed: false,
@@ -109,13 +111,13 @@ const updateStudentCourseWords = async () => {
         if (!studentCourse) return;
 
         const leardedAt = Date.now();
-        const wordsByWord = lessonObjRef.value.words.reduce((acc, val) => {
-            acc.set(val.word.word, val.success ? 0 : 1);
+        const wordsById = lessonObjRef.value.words.reduce((acc, val) => {
+            acc.set(val.word.id, val.success ? 0 : 1);
             return acc;
         }, new Map());
         studentCourse.words.forEach((word) => {
-            if (wordsByWord.has(word.word)) {
-                word.errors += wordsByWord.get(word.word);
+            if (wordsById.has(word.id)) {
+                word.errors += wordsById.get(word.id);
                 word.learned_at = leardedAt;
             }
         });

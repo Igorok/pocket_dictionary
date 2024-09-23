@@ -7,15 +7,13 @@ export type Word = {
 };
 
 export type StudentWord = {
-    id?: string;
-    word: string;
+    id: string;
     errors: number;
     learned_at: number;
 };
 
 export type StudentWordDb = {
-    id?: string;
-    w: string;
+    id: string;
     e: number;
     l_at: number;
 };
@@ -37,6 +35,7 @@ type StudentCourseFields = {
 export type StudentCourse = Course & StudentCourseFields;
 
 export type TestWordsItemOption = {
+    id: string;
     word: string;
     tr_ru: string;
     error: boolean;

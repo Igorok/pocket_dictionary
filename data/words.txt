@@ -787,8 +787,7 @@ domestic adj. B2
 dominate v. B2
 donate v. B1
 door n. A1
-double adj., det., pron., v. A2,
-adv. B1
+double adj., det., pron., v. A2, adv. B1
 doubt n., v. B1
 down adv., prep. A1
 download v., n. A2
@@ -1525,8 +1524,7 @@ lift v., n. A2
 light (from the sun/a lamp) n.,adj. A1, v. A2
 light (not heavy) adj. A2
 like (similar) prep. A1
-like (find sb/sth pleasant) v. A1,
-n. B1
+like (find sb/sth pleasant) v. A1, n. B1
 likely adj. A2
 limit n., v. B1
 limited adj. B2
@@ -4598,7 +4596,7 @@ secular adj. C1
 seeker n. B2
 seemingly adv. C1
 segment n. C1
-seizev. C1
+seize v. C1
 seldom adv. C1
 selective adj.C1
 seminar n. B2
@@ -4624,10 +4622,12 @@ shocking adj. B2
 shoot n. C1
 shore n. B2
 shortage n. B2
-shortly adv. B2 short-term adj. B2
+shortly adv. B2
+short-term adj. B2
 shrink v. C1
 shrug v. C1
-sibling n. B2 sigh v., n. C1
+sibling n. B2
+sigh v., n. C1
 signature n. B2
 significance n. B2
 simulate v. C1
