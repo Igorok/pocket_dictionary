@@ -39,24 +39,39 @@ const lessonObjRef = ref(lessonObj);
 let studentCourse: StudentCourse;
 let activeItem = 0;
 
-const getCourseData = async (): Promise<void> => {
+const getLessonData = async (): Promise<void> => {
     try {
         studentCourse = await courseRepository.getStudentCourseById(
             String(courseId)
         );
 
-        const course: Course | undefined = await courseRepository.getCourseById(
-            studentCourse.course_id
-        );
-        if (!course) return;
+        const courses: Course[] = courseRepository.getAllCourses();
 
-        const words = await courseRepository.getAllWords({
-            topic: course.topic
+        let course: Course;
+        let otherTopics: String[] = [];
+        courses.forEach((c: Course) => {
+            if (c.id === studentCourse.course_id) {
+                course = c;
+            } else if (otherTopics.length < WORDS_IN_ITEM - 1) {
+                otherTopics.push(c.topic);
+            }
         });
-        const wordsById = words.reduce((acc, wordObj) => {
-            acc.set(wordObj.id, wordObj);
-            return acc;
-        }, new Map());
+
+        // group words
+        const words = courseRepository.getAllWords({});
+        const wordsById = new Map();
+        const wordsByTopic = new Map();
+        words.forEach((word) => {
+            word.topics.forEach((topic) => {
+                if (topic === studentCourse.topic) {
+                    wordsById.set(word.id, word);
+                }
+                if (!wordsByTopic.has(topic)) {
+                    wordsByTopic.set(topic, []);
+                }
+                wordsByTopic.get(topic).push(word);
+            });
+        });
 
         lessonObjRef.value.title = course.title;
 
@@ -71,11 +86,15 @@ const getCourseData = async (): Promise<void> => {
             const rId = Math.round(Math.random() * (WORDS_IN_ITEM - 2));
 
             for (let j = 0; j < WORDS_IN_ITEM - 1; ++j) {
-                const optW = studentWords[++id];
+                const topic = otherTopics[j];
+                const otherWords = wordsByTopic.get(topic);
+                const optId = Math.floor(Math.random() * otherWords.length);
+                const optW = otherWords[optId];
+
                 options.push({
                     id: optW.id,
-                    word: wordsById.get(optW.id).word,
-                    tr_ru: wordsById.get(optW.id).tr_ru,
+                    word: optW.word,
+                    tr_ru: optW.tr_ru,
                     error: false,
                     success: false
                 });
@@ -163,7 +182,7 @@ const selectCard = (option: TestWordsItemOption) => {
 };
 
 onBeforeMount(async () => {
-    await getCourseData();
+    await getLessonData();
 });
 </script>
 

@@ -34,7 +34,7 @@ const getCoursesData = async (): Promise<CourseItem[]> => {
         const student = authRepository.getCurrentUser();
         if (!student?.id) return [];
 
-        const allCourses: Course[] = await courseRepository.getAllCourses();
+        const allCourses: Course[] = courseRepository.getAllCourses();
         const joinedCourses: StudentCourse[] =
             await courseRepository.getStudentCourses(student.id);
 

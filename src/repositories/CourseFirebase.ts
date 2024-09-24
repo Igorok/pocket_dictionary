@@ -28,19 +28,15 @@ class CourseRepository {
         this.db = db;
     }
 
-    async getAllCourses(): Promise<Course[]> {
+    getAllCourses(): Course[] {
         return coursesJson;
     }
 
-    async getCourseById(id: string): Promise<Course | undefined> {
+    getCourseById(id: string): Course | undefined {
         return coursesJson.find((course) => course.id === id);
     }
 
-    async getAllWords({
-        topic
-    }: {
-        topic: string | undefined;
-    }): Promise<Word[]> {
+    getAllWords({ topic }: { topic?: string }): Word[] {
         if (!topic) {
             return wordsJson.map((word) => ({
                 ...word,
@@ -189,7 +185,7 @@ class CourseRepository {
         await updateDoc(docRef, { words: dbWords });
     }
 
-    async getUserStats(student_id: string) {
+    async getStudentStats(student_id: string) {
         const q = query(
             collection(this.db, 'student_stats'),
             where('student_id', '==', student_id)
@@ -221,10 +217,8 @@ class CourseRepository {
         success: number;
         error: number;
     }): Promise<void> {
-        const userStats = await this.getUserStats(student_id);
+        const userStats = await this.getStudentStats(student_id);
         const { byDay } = userStats;
-
-        console.log('userStats', userStats);
 
         const today = new Date().toLocaleDateString('en-EN');
         byDay[today] = byDay[today] || {};
