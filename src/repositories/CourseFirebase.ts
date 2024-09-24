@@ -189,6 +189,27 @@ class CourseRepository {
         await updateDoc(docRef, { words: dbWords });
     }
 
+    async getUserStats(student_id: string) {
+        const q = query(
+            collection(this.db, 'student_stats'),
+            where('student_id', '==', student_id)
+        );
+
+        let stats = {
+            id: student_id,
+            student_id,
+            byDay: {}
+        };
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            const { byDay } = doc.data();
+            stats.id = doc.id;
+            stats.byDay = byDay;
+            return;
+        });
+        return stats;
+    }
+
     async updateStudentStats({
         student_id,
         course_id,
@@ -200,15 +221,10 @@ class CourseRepository {
         success: number;
         error: number;
     }): Promise<void> {
-        const docRef = doc(this.db, 'student_stats', student_id);
-        const docSnap = await getDoc(docRef);
-        let byDay = {};
+        const userStats = await this.getUserStats(student_id);
+        const { byDay } = userStats;
 
-        if (docSnap.exists()) {
-            const { byDay: dbByDay } = docSnap.data();
-            byDay = dbByDay;
-        }
-        console.log('byDay', byDay);
+        console.log('userStats', userStats);
 
         const today = new Date().toLocaleDateString('en-EN');
         byDay[today] = byDay[today] || {};
@@ -219,14 +235,10 @@ class CourseRepository {
         byDay[today][course_id].e += error;
         byDay[today][course_id].s += success;
 
-        if (docSnap.exists()) {
-            await updateDoc(docRef, { byDay, student_id });
-        } else {
-            await setDoc(doc(this.db, 'student_stats', student_id), {
-                byDay,
-                student_id
-            });
-        }
+        await setDoc(doc(this.db, 'student_stats', student_id), {
+            byDay,
+            student_id
+        });
     }
 }
 
