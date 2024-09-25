@@ -136,16 +136,27 @@ onBeforeUnmount(() => {
                     >
                         Join this course
                     </button>
-                    <RouterLink
-                        v-else
-                        :to="{
-                            name: 'course-words-test',
-                            params: { id: course.student_course_id }
-                        }"
-                        class="btn btn-green"
-                        >Test these words
-                    </RouterLink>
-                    <br />
+                    <div v-else>
+                        <RouterLink
+                            :to="{
+                                name: 'course-words-test',
+                                params: { id: course.student_course_id }
+                            }"
+                            class="btn btn-green"
+                            >Test these words
+                        </RouterLink>
+                        <br />
+
+                        <RouterLink
+                            :to="{
+                                name: 'course-words-write',
+                                params: { id: course.student_course_id }
+                            }"
+                            class="btn btn-green"
+                            >Write these words
+                        </RouterLink>
+                        <br />
+                    </div>
                 </div>
             </div>
         </div>

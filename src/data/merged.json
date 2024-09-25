@@ -8863,15 +8863,15 @@
     },
     {
         "id": 1477,
-        "word": "last1 (final)",
+        "word": "last (final)",
         "topics": ["t1"],
-        "tr_ru": "последний1 (финальный)"
+        "tr_ru": "последний (финальный)"
     },
     {
         "id": 1478,
-        "word": "last1 (taking time)",
+        "word": "last (taking time)",
         "topics": ["t1"],
-        "tr_ru": "последний1 (требует времени)"
+        "tr_ru": "последний (требует времени)"
     },
     {
         "id": 1479,
@@ -8941,9 +8941,9 @@
     },
     {
         "id": 1490,
-        "word": "to lead1",
+        "word": "to lead",
         "topics": ["d1"],
-        "tr_ru": "вести1"
+        "tr_ru": "вести"
     },
     {
         "id": 1491,
@@ -9103,15 +9103,15 @@
     },
     {
         "id": 1517,
-        "word": "to lie1",
+        "word": "to lie",
         "topics": ["e1"],
-        "tr_ru": "лгать1"
+        "tr_ru": "лгать"
     },
     {
         "id": 1518,
-        "word": "lie2 (tell a lie)",
+        "word": "lie (tell a lie)",
         "topics": ["e2"],
-        "tr_ru": "ложь2 (сказать неправду)"
+        "tr_ru": "ложь (сказать неправду)"
     },
     {
         "id": 1519,
@@ -9235,9 +9235,9 @@
     },
     {
         "id": 1539,
-        "word": "to live1",
+        "word": "to live",
         "topics": ["e1"],
-        "tr_ru": "жить1"
+        "tr_ru": "жить"
     },
     {
         "id": 1540,

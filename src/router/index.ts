@@ -41,6 +41,11 @@ const router = createRouter({
             path: '/course/words/test/:id',
             name: 'course-words-test',
             component: () => import('../views/CourseWordsTestView.vue')
+        },
+        {
+            path: '/course/words/write/:id',
+            name: 'course-words-write',
+            component: () => import('../views/CourseWordsWriteView.vue')
         }
     ]
 });

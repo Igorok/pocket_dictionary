@@ -120,7 +120,6 @@ const getLessonData = async (): Promise<void> => {
 
         lessonObjRef.value.words[activeItem].active = true;
     } catch (e) {
-        console.log('e', e);
         error.value.message = e.message;
     }
 };
@@ -200,8 +199,7 @@ onBeforeMount(async () => {
                 </div>
             </div>
 
-            <h1>Dictionary</h1>
-            <h3>{{ lessonObjRef.title }}</h3>
+            <h3>Test: {{ lessonObjRef.title }}</h3>
             <p>
                 <b class="font-success">Success: {{ successCount }}</b>
                 <span>&nbsp;</span>
