@@ -24,9 +24,11 @@ const signIn = async () => {
         studentStore.login(student);
         error.value.message = '';
 
-        router.push({ name: 'home' });
+        router.push({ name: 'about' });
     } catch (e) {
-        error.value.message = e.message;
+        if (e instanceof Error) {
+            error.value.message = e.message;
+        }
     }
 };
 </script>

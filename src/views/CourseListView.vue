@@ -57,7 +57,9 @@ const getCoursesData = async (): Promise<CourseItem[]> => {
             });
         });
     } catch (e) {
-        error.value.message = e.message;
+        if (e instanceof Error) {
+            error.value.message = e.message;
+        }
     }
     return courses;
 };
@@ -88,7 +90,9 @@ const joinCourse = async (course_id: string | undefined) => {
 
         success.value.message = 'Course successfully joined!';
     } catch (e) {
-        error.value.message = e?.message || 'Something wrong!';
+        if (e instanceof Error) {
+            error.value.message = e.message;
+        }
     }
 };
 

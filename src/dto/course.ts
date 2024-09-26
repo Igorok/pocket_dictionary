@@ -1,5 +1,5 @@
 export type Word = {
-    id?: string;
+    id: string;
     word: string;
     tr_ru: string;
     topics: string[];
@@ -19,20 +19,34 @@ export type StudentWordDb = {
 };
 
 export type Course = {
-    id?: string;
+    id: string;
     title: string;
     topic: string;
     type: string;
     updated_at: number;
 };
 
-type StudentCourseFields = {
+export type StudentCourse = {
+    id?: string;
+    title: string;
+    topic: string;
+    type: string;
+    updated_at: number;
     course_id: string;
     student_id: string;
     words: StudentWord[];
 };
 
-export type StudentCourse = Course & StudentCourseFields;
+export type StudentCourseDb = {
+    id?: string;
+    title: string;
+    topic: string;
+    type: string;
+    updated_at: number;
+    course_id: string;
+    student_id: string;
+    words: StudentWordDb[];
+};
 
 export type TestWordsItemOption = {
     id: string;

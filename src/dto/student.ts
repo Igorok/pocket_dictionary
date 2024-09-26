@@ -3,14 +3,30 @@ export type Student = {
     email: string;
 };
 
-type StatsItem = {
-    date: string;
-    course_id: string;
-    success: number;
-    errors: number;
-};
-
 export type StudentStats = {
     student_id: string;
-    by_days: string;
+    byDay: {
+        [k: string]: {
+            [k: string]: {
+                e: number,
+                s: number,
+            },
+        },
+    };
+};
+
+export type ProgressItem = {
+    topic: string,
+    title: string,
+    error: number,
+    success: number,
+    total: number,
+};
+
+export type StudentProgressData = {
+    date: string,
+    error: number,
+    success: number,
+    total: number,
+    progress: ProgressItem[]
 };

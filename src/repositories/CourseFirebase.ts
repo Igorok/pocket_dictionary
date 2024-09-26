@@ -2,10 +2,11 @@ import { shuffle } from 'lodash';
 import type {
     Course,
     StudentCourse,
-    Word,
     StudentWord,
-    StudentWordDb
+    StudentWordDb,
+    StudentCourseDb,
 } from '../dto/course';
+import type { StudentStats } from '../dto/student';
 import type { Firestore } from 'firebase/firestore';
 import {
     collection,
@@ -36,22 +37,6 @@ class CourseRepository {
         return coursesJson.find((course) => course.id === id);
     }
 
-    getAllWords({ topic }: { topic?: string }): Word[] {
-        if (!topic) {
-            return wordsJson.map((word) => ({
-                ...word,
-                id: word.id.toString()
-            }));
-        }
-
-        return wordsJson
-            .filter(({ topics }) => topics.includes(topic))
-            .map((word) => ({
-                ...word,
-                id: word.id.toString()
-            }));
-    }
-
     async joinCourse(param: StudentCourse): Promise<StudentCourse> {
         const { course_id, student_id, title, type, topic, updated_at } = param;
 
@@ -68,7 +53,7 @@ class CourseRepository {
         }
 
         const id = `${course_id}_${student_id}`;
-        const studentCourse: StudentCourse = {
+        const studentCourse: StudentCourseDb = {
             id,
             course_id,
             student_id,
@@ -81,15 +66,22 @@ class CourseRepository {
 
         await setDoc(doc(this.db, 'student_courses', id), studentCourse);
 
-        studentCourse.words = wordsForTopic.map(({ id, e, l_at }) => {
-            return {
-                id,
-                errors: e,
-                learned_at: l_at
-            };
-        });
-
-        return studentCourse;
+        return {
+            id,
+            course_id,
+            student_id,
+            title,
+            type,
+            topic,
+            updated_at,
+            words: wordsForTopic.map(({ id, e, l_at }) => {
+                return {
+                    id,
+                    errors: e,
+                    learned_at: l_at
+                };
+            }),
+        };
     }
 
     async getStudentCourses(student_id: string): Promise<StudentCourse[]> {
@@ -120,7 +112,7 @@ class CourseRepository {
                 type,
                 topic,
                 updated_at,
-                words: words.map(({ id, e, l_at }) => {
+                words: words.map(({ id, e, l_at }: StudentWordDb) => {
                     return {
                         id,
                         errors: e,
@@ -157,7 +149,7 @@ class CourseRepository {
                 type,
                 topic,
                 updated_at,
-                words: words.map(({ id, e, l_at }) => {
+                words: words.map(({ id, e, l_at }: StudentWordDb) => {
                     return {
                         id,
                         errors: e,
@@ -185,21 +177,19 @@ class CourseRepository {
         await updateDoc(docRef, { words: dbWords });
     }
 
-    async getStudentStats(student_id: string) {
+    async getStudentStats(student_id: string): Promise<StudentStats> {
         const q = query(
             collection(this.db, 'student_stats'),
             where('student_id', '==', student_id)
         );
 
-        let stats = {
-            id: student_id,
+        let stats: StudentStats = {
             student_id,
             byDay: {}
         };
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             const { byDay } = doc.data();
-            stats.id = doc.id;
             stats.byDay = byDay;
             return;
         });
@@ -217,7 +207,7 @@ class CourseRepository {
         success: number;
         error: number;
     }): Promise<void> {
-        const userStats = await this.getStudentStats(student_id);
+        const userStats: StudentStats = await this.getStudentStats(student_id);
         const { byDay } = userStats;
 
         const today = new Date().toLocaleDateString('en-EN');

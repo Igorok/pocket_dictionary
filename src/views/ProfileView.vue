@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Unsubscribe } from 'firebase/auth';
 import type { Course } from '../dto/course';
+import type { StudentProgressData, Student } from '../dto/student';
 import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
 import { getAuthRepository } from '../repositories/AuthFirebase';
 import { getCourseRepository } from '../repositories/CourseFirebase';
@@ -11,8 +12,13 @@ const courseRepository = getCourseRepository(undefined);
 const error = ref({
     message: ''
 });
-const statsRef = ref([]);
-const userRef = ref({});
+const statsData: StudentProgressData[] = [];
+const stundetData: Student = {
+    id: '',
+    email: '',
+};
+const statsRef = ref(statsData);
+const userRef = ref(stundetData);
 
 let retry = 0;
 const getProfileData = async (): Promise<void> => {
@@ -27,18 +33,13 @@ const getProfileData = async (): Promise<void> => {
 
         const allCourses: Course[] = courseRepository.getAllCourses();
         const courseByTopic = allCourses.reduce((acc, val) => {
-            console.log('val', val);
             acc.set(val.topic, val);
             return acc;
         }, new Map());
         const stats = await courseRepository.getStudentStats(student.id);
 
-        console.log('stats', stats);
-
         Object.entries(stats.byDay).forEach(([dt, courseStast]) => {
-            console.log(dt, courseStast);
-
-            const info = {
+            const info: StudentProgressData = {
                 date: dt,
                 error: 0,
                 success: 0,
@@ -63,8 +64,9 @@ const getProfileData = async (): Promise<void> => {
             statsRef.value.push(info);
         });
     } catch (e) {
-        console.log('e', e);
-        error.value.message = e.message;
+        if (e instanceof Error) {
+            error.value.message = e.message;
+        }
     }
 };
 
@@ -106,7 +108,7 @@ onBeforeUnmount(() => {
                 <div
                     class="stats-item"
                     v-for="progress in stats.progress"
-                    :key="stats.topic"
+                    :key="progress.topic"
                 >
                     <p class="font-warning">{{ progress.title }}</p>
                     <p class="font-success">Total: {{ progress.total }}</p>

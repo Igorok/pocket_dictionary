@@ -2,14 +2,12 @@
 import type {
     Course,
     StudentCourse,
-    StudentWord,
-    Word,
     TestWordsItemOption,
-    TestWordsItem,
     TestWordsLesson
 } from '../dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
+import { getWordsRepository } from '../repositories/WordsLocal';
 import { getCourseRepository } from '../repositories/CourseFirebase';
 
 const WORDS_IN_LESSON = 10;
@@ -18,6 +16,7 @@ const CHANGE_TIMEOUT = 2 * 1000;
 
 const courseId: string | string[] = useRoute().params.id;
 
+const wordsRepository = getWordsRepository();
 const courseRepository = getCourseRepository(undefined);
 
 const success = ref({
@@ -47,7 +46,7 @@ const getLessonData = async (): Promise<void> => {
 
         const courses: Course[] = courseRepository.getAllCourses();
 
-        let course: Course;
+        let course: Course|undefined|any = undefined;
         let otherTopics: String[] = [];
         courses.forEach((c: Course) => {
             if (c.id === studentCourse.course_id) {
@@ -56,9 +55,10 @@ const getLessonData = async (): Promise<void> => {
                 otherTopics.push(c.topic);
             }
         });
+        if (!course) return;
 
         // group words
-        const words = courseRepository.getAllWords({});
+        const words = wordsRepository.getAllWords({});
         const wordsById = new Map();
         const wordsByTopic = new Map();
         words.forEach((word) => {
@@ -120,7 +120,9 @@ const getLessonData = async (): Promise<void> => {
 
         lessonObjRef.value.words[activeItem].active = true;
     } catch (e) {
-        error.value.message = e.message;
+        if (e instanceof Error) {
+            error.value.message = e.message;
+        }
     }
 };
 
@@ -153,7 +155,9 @@ const updateStudentCourseWords = async () => {
             })
         ]);
     } catch (e) {
-        error.value.message = e.message;
+        if (e instanceof Error) {
+            error.value.message = e.message;
+        }
     }
 };
 

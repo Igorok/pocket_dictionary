@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import type { Course, StudentCourse } from '../dto/course';
+import type { LessonWriteData } from '../dto/lesson';
 import { cloneDeep } from 'lodash';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
+import { getWordsRepository } from '../repositories/WordsLocal';
 import { getCourseRepository } from '../repositories/CourseFirebase';
 
 const WORDS_IN_LESSON = 10;
 
 const courseId: string | string[] = useRoute().params.id;
 
+const wordsRepository = getWordsRepository();
 const courseRepository = getCourseRepository(undefined);
 
 const success = ref({
@@ -20,16 +23,7 @@ const error = ref({
 const successCount = ref(0);
 const errorCount = ref(0);
 
-type LessonWriteWord = {
-    id: string;
-    word: string;
-    tr_ru: string;
-    error: boolean;
-    success: boolean;
-    active: false;
-};
-
-let lessonObj = {
+let lessonObj: LessonWriteData = {
     title: '',
     word: '',
     tr_ru: '',
@@ -59,12 +53,15 @@ const getLessonData = async (): Promise<void> => {
                 return acc;
             }, new Map());
 
-        const course: Course = courseRepository.getCourseById(
+        const course: Course|undefined = courseRepository.getCourseById(
             studentCourse.course_id
         );
+        if (!course) {
+            throw new Error('Course not found!');
+        }
         lessonObjRef.value.title = course.title;
 
-        const words = courseRepository.getAllWords({ topic: course.topic });
+        const words = wordsRepository.getAllWords({ topic: course.topic });
         lessonObjRef.value.words = words
             .filter(({ id }) => studentWordsById.has(id))
             .map(({ id, word, tr_ru }) => ({
@@ -78,7 +75,9 @@ const getLessonData = async (): Promise<void> => {
 
         lessonObjRef.value.words[0].active = true;
     } catch (e) {
-        error.value.message = e.message;
+        if (e instanceof Error) {
+            error.value.message = e.message;
+        }
     }
 };
 
@@ -111,7 +110,9 @@ const updateStudentCourseWords = async () => {
             })
         ]);
     } catch (e) {
-        error.value.message = e.message;
+        if (e instanceof Error) {
+            error.value.message = e.message;
+        }
     }
 };
 
