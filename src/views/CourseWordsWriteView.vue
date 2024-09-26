@@ -258,6 +258,7 @@ onBeforeMount(async () => {
                                 <br />
 
                                 <button class="btn btn-green">Apply</button>
+                                <br />
                             </form>
                         </div>
                     </div>
