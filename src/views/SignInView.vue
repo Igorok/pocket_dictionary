@@ -33,8 +33,8 @@ const signIn = async () => {
 
 <template>
     <main>
-        <div class="sign-in-wrapper">
-            <div class="sign-in-container">
+        <div class="center-wrapper">
+            <div class="center-container">
                 <div v-if="Boolean(error.message)">
                     <div class="card item-error">
                         <h3>Error</h3>

@@ -178,79 +178,88 @@ onBeforeMount(async () => {
 
 <template>
     <main>
-        <div class="dictionary">
-            <div v-if="Boolean(error.message)">
-                <div class="card item-error">
-                    <p>{{ error.message }}</p>
+        <div class="center-wrapper">
+            <div class="center-container">
+                <div v-if="Boolean(error.message)">
+                    <div class="card item-error">
+                        <p>{{ error.message }}</p>
+                    </div>
                 </div>
-            </div>
-            <div v-if="Boolean(success.message)">
-                <div class="card item-success">
-                    <p>{{ success.message }}</p>
+                <div v-if="Boolean(success.message)">
+                    <div class="card item-success">
+                        <p>{{ success.message }}</p>
+                    </div>
                 </div>
-            </div>
 
-            <h3>Write {{ lessonObjRef.title }}</h3>
-            <p>
-                <b class="font-success">Success: {{ successCount }}</b>
-                <span>&nbsp;</span>
-                <b class="font-error">Error: {{ errorCount }}</b>
-            </p>
+                <h3>Write {{ lessonObjRef.title }}</h3>
+                <p>
+                    <b class="font-success">Success: {{ successCount }}</b>
+                    <span>&nbsp;</span>
+                    <b class="font-error">Error: {{ errorCount }}</b>
+                </p>
 
-            <div v-if="lessonObjRef.completed">
-                <h3>Lesson is completed</h3>
+                <div v-if="lessonObjRef.completed">
+                    <h3>Lesson is completed</h3>
 
-                <div v-for="item in lessonObjRef.words" :key="item.id">
-                    <p
-                        :class="{
-                            'font-success': item.success,
-                            'font-error': item.error
-                        }"
-                    >
-                        {{ item.word }} - {{ item.tr_ru }}
-                    </p>
-                </div>
-            </div>
-            <div v-else class="lesson-item">
-                <div v-for="item in lessonObjRef.words" :key="item.id">
-                    <div v-if="item.active">
-                        <h3
+                    <div v-for="item in lessonObjRef.words" :key="item.id">
+                        <p
                             :class="{
+                                'font-success': item.success,
                                 'font-error': item.error
                             }"
                         >
-                            <span v-if="lessonObj.write"
-                                >{{ item.word }} -
-                            </span>
-                            {{ item.tr_ru }}
-                        </h3>
-                        <form @submit.prevent="applyWord">
-                            <input
-                                type="text"
-                                class="input-text"
-                                id="write_1"
-                                v-model="lessonObjRef.write_1"
-                                required
-                            />
-                            <input
-                                v-if="lessonObj.write"
-                                type="text"
-                                class="input-text"
-                                id="write_2"
-                                v-model="lessonObjRef.write_2"
-                                required
-                            />
-                            <input
-                                v-if="lessonObj.write"
-                                type="text"
-                                class="input-text"
-                                id="write_3"
-                                v-model="lessonObjRef.write_3"
-                                required
-                            />
+                            {{ item.word }} - {{ item.tr_ru }}
+                        </p>
+                    </div>
+                </div>
+                <div v-else class="lesson-item">
+                    <div v-for="item in lessonObjRef.words" :key="item.id">
+                        <div v-if="item.active">
+                            <h3
+                                :class="{
+                                    'font-error': item.error
+                                }"
+                            >
+                                <span v-if="lessonObj.write"
+                                    >{{ item.word }} -
+                                </span>
+                                {{ item.tr_ru }}
+                            </h3>
+                            <br />
+                            <form @submit.prevent="applyWord">
+                                <input
+                                    type="text"
+                                    class="input-text"
+                                    id="write_1"
+                                    v-model="lessonObjRef.write_1"
+                                    autocomplete="off"
+                                    required
+                                />
+                                <br />
+                                <input
+                                    v-if="lessonObj.write"
+                                    type="text"
+                                    class="input-text"
+                                    id="write_2"
+                                    v-model="lessonObjRef.write_2"
+                                    autocomplete="off"
+                                    required
+                                />
+                                <br />
+                                <input
+                                    v-if="lessonObj.write"
+                                    type="text"
+                                    class="input-text"
+                                    id="write_3"
+                                    v-model="lessonObjRef.write_3"
+                                    autocomplete="off"
+                                    required
+                                />
+                                <br />
 
-                            <button class="btn btn-green">Apply</button>
-                        </form>
+                                <button class="btn btn-green">Apply</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

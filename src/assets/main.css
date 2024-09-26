@@ -211,7 +211,7 @@ main h3 {
     cursor: pointer;
 }
 
-.sign-in-wrapper {
+.center-wrapper {
     margin-top: 3rem;
     display: flex;
     align-items: center;
@@ -219,13 +219,13 @@ main h3 {
     justify-content: center;
 }
 
-.sign-in-wrapper .sign-in-container {
+.center-wrapper .center-container {
     width: 50%;
 }
-.sign-in-wrapper .input-text {
+.center-wrapper .input-text {
     width: 100%;
 }
-.sign-in-wrapper .btn {
+.center-wrapper .btn {
     display: block;
     width: 100%;
 }
