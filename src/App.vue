@@ -42,6 +42,7 @@ onBeforeUnmount(() => {
             <div v-if="Boolean(authStore.getStudent?.id)">
                 <nav>
                     <RouterLink to="/">About</RouterLink>
+                    <RouterLink to="/youtube-links">Youtube links</RouterLink>
                     <RouterLink to="/profile">Profile</RouterLink>
                     <RouterLink to="/course/list">All courses</RouterLink>
                 </nav>

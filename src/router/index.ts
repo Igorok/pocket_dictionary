@@ -27,6 +27,11 @@ const router = createRouter({
             component: () => import('../views/ProfileView.vue')
         },
         {
+            path: '/youtube-links',
+            name: 'youtube-links',
+            component: () => import('../views/YoutubeLinksView.vue')
+        },
+        {
             path: '/course/list',
             name: 'course/list',
             component: () => import('../views/CourseListView.vue')
