@@ -38,6 +38,7 @@ const getProfileData = async (): Promise<void> => {
         }, new Map());
         const stats = await courseRepository.getStudentStats(student.id);
 
+        const userStats: StudentProgressData[] = [];
         Object.entries(stats.byDay).forEach(([dt, courseStast]) => {
             const info: StudentProgressData = {
                 date: dt,
@@ -59,8 +60,9 @@ const getProfileData = async (): Promise<void> => {
                     total: e + s
                 });
             });
-            statsRef.value.push(info);
+            userStats.push(info);
         });
+        statsRef.value = userStats.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
     } catch (e) {
         if (e instanceof Error) {
             error.value.message = e.message;
