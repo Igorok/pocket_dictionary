@@ -11,7 +11,6 @@ const authStore = useAuthStore();
 
 const user = authRepository.getCurrentUser();
 if (user) {
-    console.log('user', user);
     authStore.login(user);
 }
 
@@ -19,7 +18,6 @@ let onAuthStateListener: Unsubscribe;
 onBeforeMount(async () => {
     onAuthStateListener = authRepository.auth.onAuthStateChanged((updated) => {
         if (updated && !user) {
-            console.log('onAuthStateChanged updated', updated);
             authStore.login({
                 email: updated.email || '',
                 id: updated.uid

@@ -225,7 +225,7 @@ main h3 {
 .center-wrapper .input-text {
     width: 100%;
 }
-.center-wrapper .btn {
+.center-wrapper button.btn {
     display: block;
     width: 100%;
 }
@@ -256,6 +256,8 @@ main h3 {
 .stats-row .stats-item {
     margin: 10px 20px;
 }
+
+
 
 @media (hover: hover) {
     a:hover {
@@ -300,6 +302,15 @@ main h3 {
 
     .center-wrapper .center-container {
         width: 50%;
+    }
+
+    /* vocabulary */
+    .vocabulary-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .vocabulary-wrapper .vocabulary-container {
+        width: 30%;
     }
 }
 

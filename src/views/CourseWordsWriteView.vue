@@ -118,14 +118,20 @@ const updateStudentCourseWords = async () => {
 
 const applyWord = () => {
     if (lessonObjRef.value.write) {
-        const word = lessonObjRef.value.words[activeItem].word.toLowerCase();
-        const write = [
+        let word: string = lessonObjRef.value.words[activeItem].word;
+        const parentheses: number = word.indexOf('(');
+        if (parentheses !== -1) {
+            word = word.slice(0, parentheses);
+        }
+        word = word.trim().toLowerCase();
+
+        const write: string[] = [
             lessonObjRef.value.write_1.toLocaleLowerCase().trim(),
             lessonObjRef.value.write_2.toLocaleLowerCase().trim(),
             lessonObjRef.value.write_3.toLocaleLowerCase().trim()
         ];
 
-        if (write.some((wr) => !word.includes(wr))) {
+        if (write.some((wr) => word !== wr)) {
             lessonObjRef.value.words[activeItem].error = true;
             return;
         }
@@ -149,11 +155,16 @@ const applyWord = () => {
         return;
     }
 
-    const word = lessonObjRef.value.words[activeItem].word.toLowerCase();
-    const write = lessonObjRef.value.write_1.toLocaleLowerCase().trim();
+    let word: string = lessonObjRef.value.words[activeItem].word;
+    const parentheses: number = word.indexOf('(');
+    if (parentheses !== -1) {
+        word = word.slice(0, parentheses);
+    }
+    word = word.trim().toLowerCase();
+    const write: string = lessonObjRef.value.write_1.toLocaleLowerCase().trim();
 
     lessonObjRef.value.words[activeItem].active = false;
-    if (!word.includes(write)) {
+    if (word !== write) {
         lessonObjRef.value.words[activeItem].error = true;
         errorCount.value += 1;
     } else {
@@ -201,6 +212,26 @@ onBeforeMount(async () => {
 
                 <div v-if="lessonObjRef.completed">
                     <h3>Lesson is completed</h3>
+
+                    <RouterLink
+                        :to="{
+                            name: 'course-words-test',
+                            params: { id: courseId }
+                        }"
+                        class="btn btn-green"
+                        >Continue testing
+                    </RouterLink>
+                    &nbsp;
+                    <RouterLink
+                        :to="{
+                            name: 'course-words-write',
+                            params: { id: courseId }
+                        }"
+                        class="btn btn-green"
+                        >Continue writing
+                    </RouterLink>
+                    <br />
+                    <br />
 
                     <div v-for="item in lessonObjRef.words" :key="item.id">
                         <p

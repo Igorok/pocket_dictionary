@@ -2240,7 +2240,7 @@
     {
         "id": 373,
         "word": "can",
-        "topics": ["n2"],
+        "topics": ["A1"],
         "tr_ru": "может"
     },
     {
@@ -2833,14 +2833,14 @@
     },
     {
         "id": 472,
-        "word": "to close1",
-        "topics": ["e1"],
-        "tr_ru": "закрыть1"
+        "word": "to close",
+        "topics": ["A1"],
+        "tr_ru": "закрыть"
     },
     {
         "id": 473,
         "word": "close",
-        "topics": ["e2"],
+        "topics": ["A1"],
         "tr_ru": "закрывать"
     },
     {
@@ -3416,7 +3416,7 @@
     {
         "id": 569,
         "word": "content",
-        "topics": ["t2"],
+        "topics": ["A1"],
         "tr_ru": "содержание"
     },
     {
@@ -4669,9 +4669,9 @@
     },
     {
         "id": 778,
-        "word": "to do1",
-        "topics": ["o1"],
-        "tr_ru": "делать1"
+        "word": "to do",
+        "topics": ["A1"],
+        "tr_ru": "делать"
     },
     {
         "id": 779,
@@ -5943,7 +5943,7 @@
         "id": 990,
         "word": "false",
         "topics": ["A1"],
-        "tr_ru": "FALSE"
+        "tr_ru": "Ложь"
     },
     {
         "id": 991,
@@ -8864,13 +8864,13 @@
     {
         "id": 1477,
         "word": "last (final)",
-        "topics": ["t1"],
+        "topics": ["A1"],
         "tr_ru": "последний (финальный)"
     },
     {
         "id": 1478,
         "word": "last (taking time)",
-        "topics": ["t1"],
+        "topics": ["A1"],
         "tr_ru": "последний (требует времени)"
     },
     {
@@ -8942,7 +8942,7 @@
     {
         "id": 1490,
         "word": "to lead",
-        "topics": ["d1"],
+        "topics": ["A1"],
         "tr_ru": "вести"
     },
     {
@@ -9104,13 +9104,13 @@
     {
         "id": 1517,
         "word": "to lie",
-        "topics": ["e1"],
+        "topics": ["A1"],
         "tr_ru": "лгать"
     },
     {
         "id": 1518,
         "word": "lie (tell a lie)",
-        "topics": ["e2"],
+        "topics": ["A1"],
         "tr_ru": "ложь (сказать неправду)"
     },
     {
@@ -9236,13 +9236,13 @@
     {
         "id": 1539,
         "word": "to live",
-        "topics": ["e1"],
+        "topics": ["A1"],
         "tr_ru": "жить"
     },
     {
         "id": 1540,
         "word": "live",
-        "topics": ["e2"],
+        "topics": ["A1"],
         "tr_ru": "жить"
     },
     {
@@ -9314,7 +9314,7 @@
     {
         "id": 1552,
         "word": "long",
-        "topics": ["g1"],
+        "topics": ["A1"],
         "tr_ru": "длинный"
     },
     {
@@ -9932,7 +9932,7 @@
     {
         "id": 1655,
         "word": "minute",
-        "topics": ["e1"],
+        "topics": ["A1"],
         "tr_ru": "минута"
     },
     {
@@ -11384,7 +11384,7 @@
     {
         "id": 1897,
         "word": "pension",
-        "topics": ["n1"],
+        "topics": ["A1"],
         "tr_ru": "пенсия"
     },
     {
@@ -11762,7 +11762,7 @@
     {
         "id": 1960,
         "word": "plus",
-        "topics": ["s1"],
+        "topics": ["A1"],
         "tr_ru": "плюс"
     },
     {
@@ -12973,9 +12973,9 @@
     },
     {
         "id": 2162,
-        "word": "to refuse1",
-        "topics": ["e1"],
-        "tr_ru": "отказаться1"
+        "word": "to refuse",
+        "topics": ["A1"],
+        "tr_ru": "отказаться"
     },
     {
         "id": 2163,
@@ -13454,14 +13454,14 @@
     {
         "id": 2242,
         "word": "ring",
-        "topics": ["g1"],
+        "topics": ["A1"],
         "tr_ru": "кольцо"
     },
     {
         "id": 2243,
-        "word": "to ring2",
-        "topics": ["g2"],
-        "tr_ru": "звонить2"
+        "word": "to ring",
+        "topics": ["A1"],
+        "tr_ru": "звонить"
     },
     {
         "id": 2244,
@@ -13574,7 +13574,7 @@
     {
         "id": 2262,
         "word": "row",
-        "topics": ["w1"],
+        "topics": ["A1"],
         "tr_ru": "ряд"
     },
     {
@@ -13909,15 +13909,15 @@
     },
     {
         "id": 2318,
-        "word": "second1 (next after the first)",
-        "topics": ["d1"],
-        "tr_ru": "второй1 (следующий после первого)"
+        "word": "second (next after the first)",
+        "topics": ["A1"],
+        "tr_ru": "второй (следующий после первого)"
     },
     {
         "id": 2319,
-        "word": "second1 (unit of time)",
-        "topics": ["d1"],
-        "tr_ru": "секунда1 (единица времени)"
+        "word": "second (unit of time)",
+        "topics": ["A1"],
+        "tr_ru": "секунда (единица времени)"
     },
     {
         "id": 2320,
@@ -15871,14 +15871,14 @@
     },
     {
         "id": 2645,
-        "word": "to tear1",
-        "topics": ["r1"],
-        "tr_ru": "рвать1"
+        "word": "to tear",
+        "topics": ["A1"],
+        "tr_ru": "рвать"
     },
     {
         "id": 2646,
         "word": "tear",
-        "topics": ["r2"],
+        "topics": ["A1"],
         "tr_ru": "рвать"
     },
     {
@@ -17012,7 +17012,7 @@
     {
         "id": 2835,
         "word": "used",
-        "topics": ["d2"],
+        "topics": ["A1"],
         "tr_ru": "использовал"
     },
     {
@@ -17648,14 +17648,14 @@
     {
         "id": 2941,
         "word": "wind",
-        "topics": ["d1"],
+        "topics": ["A1"],
         "tr_ru": "ветер"
     },
     {
         "id": 2942,
-        "word": "to wind2",
-        "topics": ["d2"],
-        "tr_ru": "к ветру2"
+        "word": "to wind",
+        "topics": ["A1"],
+        "tr_ru": "к ветру"
     },
     {
         "id": 2943,
@@ -18992,7 +18992,7 @@
     {
         "id": 3165,
         "word": "bass",
-        "topics": ["s1"],
+        "topics": ["A1"],
         "tr_ru": "бас"
     },
     {
@@ -19237,9 +19237,9 @@
     },
     {
         "id": 3206,
-        "word": "to bow1",
-        "topics": ["w1"],
-        "tr_ru": "кланяться1"
+        "word": "to bow",
+        "topics": ["A1"],
+        "tr_ru": "кланяться"
     },
     {
         "id": 3207,
@@ -24938,7 +24938,7 @@
     {
         "id": 4156,
         "word": "minute ",
-        "topics": [" 2"],
+        "topics": ["A1"],
         "tr_ru": "минута"
     },
     {
@@ -26797,9 +26797,9 @@
     },
     {
         "id": 4466,
-        "word": "to recount1",
-        "topics": ["t1"],
-        "tr_ru": "пересчитывать1"
+        "word": "to recount",
+        "topics": ["A1"],
+        "tr_ru": "пересчитывать"
     },
     {
         "id": 4467,

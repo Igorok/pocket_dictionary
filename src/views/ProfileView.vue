@@ -47,8 +47,6 @@ const getProfileData = async (): Promise<void> => {
                 progress: []
             };
             Object.entries(courseStast).forEach(([topic, { e, s }]) => {
-                console.log(topic, { e, s });
-
                 const course = courseByTopic.get(topic);
                 info.error += e;
                 info.success += s;

@@ -10,9 +10,9 @@ import { useRoute } from 'vue-router';
 import { getWordsRepository } from '../repositories/WordsLocal';
 import { getCourseRepository } from '../repositories/CourseFirebase';
 
-const WORDS_IN_LESSON = 10;
+const WORDS_IN_LESSON = 50;
 const WORDS_IN_ITEM = 4;
-const CHANGE_TIMEOUT = 2 * 1000;
+const CHANGE_TIMEOUT = 1000;
 
 const courseId: string | string[] = useRoute().params.id;
 
@@ -212,7 +212,25 @@ onBeforeMount(async () => {
 
             <div v-if="lessonObjRef.completed">
                 <h3>Lesson is completed</h3>
-
+                <RouterLink
+                    :to="{
+                        name: 'course-words-test',
+                        params: { id: courseId }
+                    }"
+                    class="btn btn-green"
+                    >Continue testing
+                </RouterLink>
+                &nbsp;
+                <RouterLink
+                    :to="{
+                        name: 'course-words-write',
+                        params: { id: courseId }
+                    }"
+                    class="btn btn-green"
+                    >Continue writing
+                </RouterLink>
+                <br />
+                <br />
                 <div v-for="item in lessonObjRef.words" :key="item.word.word">
                     <p
                         :class="{
