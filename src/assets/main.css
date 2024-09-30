@@ -139,6 +139,32 @@ label {
     border-color: var(--color-orange);
 }
 
+/* table */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
+}
+table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+}
+table tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+table tr td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
 #app {
     /* max-width: 1280px; */
     /* margin: 0 auto; */
@@ -240,8 +266,8 @@ main h3 {
 .course-list .card-wrapper .card {
     margin: 10px;
 }
-
-.course-list .card-wrapper .card a.btn {
+.course-list .card-wrapper .card .btn {
+    margin-bottom: 10px;
     display: block;
     text-align: center;
 }

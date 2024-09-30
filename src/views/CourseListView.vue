@@ -18,23 +18,33 @@ const error = ref({
     message: ''
 });
 
-const coursesRefObj: CourseItem[] = [];
-const coursesRef = ref(coursesRefObj);
+const coursesWordsRefObj: CourseItem[] = [];
+const coursesVerbsRefObj: CourseItem = {
+    id: '',
+    title: '',
+    topic: '',
+    type: '',
+    updated_at: 0,
+    joined: false,
+    student_course_id: '',
+};
+
+const coursesWordsRef = ref(coursesWordsRefObj);
+const coursesVerbsRef = ref(coursesVerbsRefObj);
 
 const authRepository = getAuthRepository(undefined);
 const courseRepository = getCourseRepository(undefined);
 
 let retry = 0;
-const getCoursesData = async (): Promise<CourseItem[]> => {
+const getCoursesData = async (): Promise<void> => {
     retry += 1;
-    if (retry === 5) return [];
+    if (retry === 5) return;
 
-    const courses: CourseItem[] = [];
     try {
         const student = authRepository.getCurrentUser();
-        if (!student?.id) return [];
+        if (!student?.id) return;
 
-        const allCourses: Course[] = courseRepository.getAllCourses();
+        const allCourses: Course[] = courseRepository.getCourses({});
         const joinedCourses: StudentCourse[] =
             await courseRepository.getStudentCourses(student.id);
 
@@ -50,18 +60,27 @@ const getCoursesData = async (): Promise<CourseItem[]> => {
                 joined = true;
                 student_course_id = joinedMap.get(course.id).id;
             }
-            courses.push({
-                ...course,
-                joined,
-                student_course_id
-            });
+            if (course.type === 'irregular_verbs') {
+                coursesVerbsRef.value = {
+                    ...course,
+                    joined,
+                    student_course_id
+                }
+            }
+            if (course.type === 'words') {
+                coursesWordsRef.value.push({
+                    ...course,
+                    joined,
+                    student_course_id
+                });
+            }
+
         });
     } catch (e) {
         if (e instanceof Error) {
             error.value.message = e.message;
         }
     }
-    return courses;
 };
 
 const joinCourse = async (course_id: string | undefined) => {
@@ -70,7 +89,7 @@ const joinCourse = async (course_id: string | undefined) => {
     const student = authRepository.getCurrentUser();
     if (!student?.id) return;
 
-    const course = coursesRef.value.find(({ id }) => id === course_id);
+    const course = coursesWordsRef.value.find(({ id }) => id === course_id);
     if (!course?.id) return;
 
     const { id, topic, title, type } = course;
@@ -98,11 +117,11 @@ const joinCourse = async (course_id: string | undefined) => {
 
 let onAuthStateListener: Unsubscribe;
 onBeforeMount(async () => {
-    coursesRef.value = await getCoursesData();
+    await getCoursesData();
     onAuthStateListener = authRepository.auth.onAuthStateChanged(
         async (user) => {
-            if (user && !coursesRef.value?.length) {
-                coursesRef.value = await getCoursesData();
+            if (user && !coursesWordsRef.value?.length) {
+                await getCoursesData();
             }
         }
     );
@@ -130,9 +149,17 @@ onBeforeUnmount(() => {
 
             <h3>Words:</h3>
             <div class="card-wrapper">
-                <div v-for="course in coursesRef" :key="course.id" class="card">
+                <div v-for="course in coursesWordsRef" :key="course.id" class="card">
                     {{ course.title }}
                     <br /><br />
+                    <RouterLink
+                        :to="{
+                            name: 'course-words-read',
+                            params: { id: course.id }
+                        }"
+                        class="btn btn-green"
+                        >Read these words
+                    </RouterLink>
                     <button
                         v-if="!course.joined"
                         v-on:click="joinCourse(course.id)"
@@ -149,8 +176,6 @@ onBeforeUnmount(() => {
                             class="btn btn-green"
                             >Test these words
                         </RouterLink>
-                        <br />
-
                         <RouterLink
                             :to="{
                                 name: 'course-words-write',
@@ -159,8 +184,40 @@ onBeforeUnmount(() => {
                             class="btn btn-green"
                             >Write these words
                         </RouterLink>
-                        <br />
                     </div>
+                </div>
+            </div>
+
+            <h3>Irregular Verbs:</h3>
+            <div class="card-wrapper">
+                <div class="card" v-if="Boolean(coursesVerbsRef.id)">
+                    {{ coursesVerbsRef.title }}
+                    <br /><br />
+                    <RouterLink
+                        :to="{
+                            name: 'course-verbs-read',
+                            params: { id: coursesVerbsRef.id }
+                        }"
+                        class="btn btn-green"
+                        >Read these words
+                    </RouterLink>
+                    <!-- <button
+                        v-if="!coursesVerbsRef.joined"
+                        v-on:click="joinCourse(coursesVerbsRef.id)"
+                        class="btn btn-green"
+                    >
+                        Join this course
+                    </button>
+                    <div v-else>
+                        <RouterLink
+                            :to="{
+                                name: 'course-verbs-write',
+                                params: { id: coursesVerbsRef.student_course_id }
+                            }"
+                            class="btn btn-green"
+                            >Write these words
+                        </RouterLink>
+                    </div> -->
                 </div>
             </div>
         </div>

@@ -44,7 +44,7 @@ const getLessonData = async (): Promise<void> => {
             String(courseId)
         );
 
-        const courses: Course[] = courseRepository.getAllCourses();
+        const courses: Course[] = courseRepository.getCourses({ type: 'words' });
 
         let course: Course|undefined|any = undefined;
         let otherTopics: String[] = [];

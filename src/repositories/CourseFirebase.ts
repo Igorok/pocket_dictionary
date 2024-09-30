@@ -29,7 +29,10 @@ class CourseRepository {
         this.db = db;
     }
 
-    getAllCourses(): Course[] {
+    getCourses({ type}: { type?: string }): Course[] {
+        if (type) {
+            return coursesJson.filter((course) => course.type === type)
+        }
         return coursesJson;
     }
 
@@ -228,7 +231,7 @@ class CourseRepository {
 
 let repository: CourseRepository;
 export const getCourseRepository = (
-    db: Firestore | undefined
+    db?: Firestore
 ): CourseRepository => {
     if (!repository && db) {
         repository = new CourseRepository(db);

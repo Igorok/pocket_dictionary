@@ -33,5 +33,12 @@
         "type": "words",
         "topic": "C1",
         "updated_at": 0
+    },
+    {
+        "id": "irr_verbs",
+        "title": "Irregular verbs",
+        "type": "irregular_verbs",
+        "topic": "irr_verbs",
+        "updated_at": 0
     }
 ]

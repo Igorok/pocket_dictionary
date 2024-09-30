@@ -45,7 +45,22 @@ const router = createRouter({
             path: '/course/words/write/:id',
             name: 'course-words-write',
             component: () => import('../views/CourseWordsWriteView.vue')
-        }
+        },
+        {
+            path: '/course/words/read/:id',
+            name: 'course-words-read',
+            component: () => import('../views/CourseWordsReadView.vue')
+        },
+        {
+            path: '/course/verbs/read/:id',
+            name: 'course-verbs-read',
+            component: () => import('../views/CourseVerbsReadView.vue')
+        },
+        {
+            path: '/course/verbs/write/:id',
+            name: 'course-verbs-write',
+            component: () => import('../views/CourseVerbsWriteView.vue')
+        },
     ]
 });
 

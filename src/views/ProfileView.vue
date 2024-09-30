@@ -31,7 +31,7 @@ const getProfileData = async (): Promise<void> => {
 
         userRef.value = student;
 
-        const allCourses: Course[] = courseRepository.getAllCourses();
+        const allCourses: Course[] = courseRepository.getCourses({});
         const courseByTopic = allCourses.reduce((acc, val) => {
             acc.set(val.topic, val);
             return acc;

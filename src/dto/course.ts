@@ -68,3 +68,11 @@ export type TestWordsLesson = {
     words: TestWordsItem[];
     completed: boolean;
 };
+
+export type IrregularVerb = {
+    id: string;
+    base_form: string;
+    past_simple: string;
+    past_participle: string;
+    tr_ru: string;
+};
