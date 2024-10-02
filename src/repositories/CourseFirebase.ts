@@ -21,6 +21,7 @@ import {
 
 import coursesJson from '../data/courses.json' with { type: 'json' };
 import wordsJson from '../data/merged.json' with { type: 'json' };
+import verbsJson from '../data/verbs.json' with { type: 'json' };
 
 class CourseRepository {
     db: Firestore;
@@ -44,15 +45,25 @@ class CourseRepository {
         const { course_id, student_id, title, type, topic, updated_at } = param;
 
         const wordsForTopic: StudentWordDb[] = [];
-        for (const item of wordsJson) {
-            if (!item.topics.includes(topic)) {
-                continue;
+        if (course_id === 'irr_verbs') {
+            for (const item of verbsJson) {
+                wordsForTopic.push({
+                    id: item.id.toString(),
+                    e: 0,
+                    l_at: 0
+                });
             }
-            wordsForTopic.push({
-                id: item.id.toString(),
-                e: 0,
-                l_at: 0
-            });
+        } else {
+            for (const item of wordsJson) {
+                if (!item.topics.includes(topic)) {
+                    continue;
+                }
+                wordsForTopic.push({
+                    id: item.id.toString(),
+                    e: 0,
+                    l_at: 0
+                });
+            }
         }
 
         const id = `${course_id}_${student_id}`;

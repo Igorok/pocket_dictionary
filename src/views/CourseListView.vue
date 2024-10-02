@@ -89,7 +89,10 @@ const joinCourse = async (course_id: string | undefined) => {
     const student = authRepository.getCurrentUser();
     if (!student?.id) return;
 
-    const course = coursesWordsRef.value.find(({ id }) => id === course_id);
+    let course = coursesWordsRef.value.find(({ id }) => id === course_id);
+    if (course_id === coursesVerbsRef.value.id) {
+        course = coursesVerbsRef.value;
+    }
     if (!course?.id) return;
 
     const { id, topic, title, type } = course;
@@ -201,7 +204,7 @@ onBeforeUnmount(() => {
                         class="btn btn-green"
                         >Read these words
                     </RouterLink>
-                    <!-- <button
+                    <button
                         v-if="!coursesVerbsRef.joined"
                         v-on:click="joinCourse(coursesVerbsRef.id)"
                         class="btn btn-green"
@@ -217,7 +220,7 @@ onBeforeUnmount(() => {
                             class="btn btn-green"
                             >Write these words
                         </RouterLink>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>

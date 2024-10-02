@@ -45,14 +45,6 @@ const getLessonData = async (): Promise<void> => {
         studentCourse = await courseRepository.getStudentCourseById(
             String(courseId)
         );
-        const studentWordsById = cloneDeep(studentCourse.words)
-            .sort((a, b) => a.learned_at - b.learned_at)
-            .slice(0, WORDS_IN_LESSON)
-            .reduce((acc, word) => {
-                acc.set(word.id, word);
-                return acc;
-            }, new Map());
-
         const course: Course|undefined = courseRepository.getCourseById(
             studentCourse.course_id
         );
@@ -62,16 +54,25 @@ const getLessonData = async (): Promise<void> => {
         lessonObjRef.value.title = course.title;
 
         const words = wordsRepository.getAllWords({ topic: course.topic });
-        lessonObjRef.value.words = words
-            .filter(({ id }) => studentWordsById.has(id))
-            .map(({ id, word, tr_ru }) => ({
-                id,
-                word,
-                tr_ru,
-                error: false,
-                success: false,
-                active: false
-            }));
+        const wordsById = words.reduce((acc, word) => {
+            acc.set(word.id, word);
+            return acc;
+        }, new Map())
+
+        lessonObjRef.value.words = cloneDeep(studentCourse.words)
+            .sort((a, b) => a.learned_at - b.learned_at)
+            .slice(0, WORDS_IN_LESSON)
+            .map(({ id}) => {
+                const { word, tr_ru } = wordsById.get(id);
+                return {
+                    id,
+                    word,
+                    tr_ru,
+                    error: false,
+                    success: false,
+                    active: false
+                };
+            });
 
         lessonObjRef.value.words[0].active = true;
     } catch (e) {
