@@ -220,32 +220,26 @@ onBeforeMount(async () => {
                 >Read verbs
             </RouterLink>
             <br />
-            <table>
-                <thead>
-                    <tr>
-                        <th>Base form</th>
-                        <th>Past simple</th>
-                        <th>Past participle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        v-for="item in lessonObjRef.verbs"
-                        :key="item.id"
-                        :class="{'font-success': item.success, 'font-error': item.error}"
-                    >
-                        <td>
-                            {{ item.base_form }}
-                        </td>
-                        <td>
-                            {{ item.past_simple }}
-                        </td>
-                        <td>
-                            {{ item.past_participle }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div class="verbs-write-container">
+                <div class="flex-row" >
+                    <p class="flex-item">Base form</p>
+                    <p class="flex-item">Past simple</p>
+                    <p class="flex-item">Past participle</p>
+                </div>
+                <!-- body -->
+                <div
+                    v-for="item in lessonObjRef.verbs"
+                    :key="item.id"
+                    :class="{'font-success': item.success, 'font-error': item.error}"
+                    class="flex-row"
+                >
+                    <p class="flex-item">{{ item.base_form }}</p>
+                    <p class="flex-item">{{ item.past_simple }}</p>
+                    <p class="flex-item">{{ item.past_participle }}</p>
+                </div>
+            </div>
+
         </div>
         <!-- else -->
         <div v-else class="lesson-item">
@@ -257,54 +251,58 @@ onBeforeMount(async () => {
                     <br />
 
                     <form @submit.prevent="applyVerb">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Base form</th>
-                                    <th>Past simple</th>
-                                    <th>Past participle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-if="lessonObj.write">
-                                    <td>{{ item.base_form }}</td>
-                                    <td>{{ item.past_simple }}</td>
-                                    <td>{{ item.past_participle }}</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input
-                                            type="text"
-                                            class="input-text"
-                                            id="write_base_form"
-                                            v-model="lessonObjRef.write_base_form"
-                                            autocomplete="off"
-                                            required
-                                        />
-                                    </td>
-                                    <td>
-                                        <input
-                                            type="text"
-                                            class="input-text"
-                                            id="write_past_simple"
-                                            v-model="lessonObjRef.write_past_simple"
-                                            autocomplete="off"
-                                            required
-                                        />
-                                    </td>
-                                    <td>
-                                        <input
-                                            type="text"
-                                            class="input-text"
-                                            id="write_past_participle"
-                                            v-model="lessonObjRef.write_past_participle"
-                                            autocomplete="off"
-                                            required
-                                        />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="verbs-write-container">
+                            <!-- head -->
+                            <div class="flex-row" >
+                                <p class="flex-item">Base form</p>
+                                <p class="flex-item">Past simple</p>
+                                <p class="flex-item">Past participle</p>
+                            </div>
+                            <!-- description -->
+                            <div
+                                v-if="lessonObj.write"
+                                class="flex-row"
+                            >
+                                <p class="flex-item">{{ item.base_form }}</p>
+                                <p class="flex-item">{{ item.past_simple }}</p>
+                                <p class="flex-item">{{ item.past_participle }}</p>
+                            </div>
+                            <!-- input -->
+                            <div class="flex-row" >
+                                <div class="flex-item">
+                                    <input
+                                        type="text"
+                                        class="input-text"
+                                        id="write_base_form"
+                                        v-model="lessonObjRef.write_base_form"
+                                        autocomplete="off"
+                                        required
+                                    />
+                                </div>
+                                <div class="flex-item">
+                                    <input
+                                        type="text"
+                                        class="input-text"
+                                        id="write_past_simple"
+                                        v-model="lessonObjRef.write_past_simple"
+                                        autocomplete="off"
+                                        required
+                                    />
+                                </div>
+                                <div class="flex-item">
+                                    <input
+                                        type="text"
+                                        class="input-text"
+                                        id="write_past_participle"
+                                        v-model="lessonObjRef.write_past_participle"
+                                        autocomplete="off"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
                         <button class="btn btn-green">Apply</button>
                         <br />
                     </form>

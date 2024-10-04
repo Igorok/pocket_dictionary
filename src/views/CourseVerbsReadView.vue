@@ -30,24 +30,21 @@ onBeforeMount(async () => {
     <main>
         <h3 class="font-success">{{titleRef}}:</h3>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Base form</th>
-                    <th>Past simple</th>
-                    <th>Past participle</th>
-                    <th>Translate</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in verbsRef" :key="item.id">
-                    <td>{{ item.base_form }}</td>
-                    <td>{{ item.past_simple }}</td>
-                    <td>{{ item.past_participle }}</td>
-                    <td>{{ item.tr_ru }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="verbs-wrapper">
+            <div class="flex-row" >
+                <p class="flex-item">Base form</p>
+                <p class="flex-item">Past simple</p>
+                <p class="flex-item">Past participle</p>
+                <p class="flex-item">Translate</p>
+            </div>
+
+            <div class="flex-row" v-for="item in verbsRef" :key="item.id">
+                <p class="flex-item">{{ item.base_form }}</p>
+                <p class="flex-item">{{ item.past_simple }}</p>
+                <p class="flex-item">{{ item.past_participle }}</p>
+                <p class="flex-item">{{ item.tr_ru }}</p>
+            </div>
+        </div>
 
     </main>
 </template>

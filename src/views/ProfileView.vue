@@ -97,25 +97,32 @@ onBeforeUnmount(() => {
         </div>
         <h3>{{ userRef.email }}</h3>
 
-        <div class="stats-wraper">
-            <div class="stats-row" v-for="stats in statsRef" :key="stats.date">
-                <div class="stats-item">
-                    <p class="font-warning">Date: {{ stats.date }}</p>
-                    <p class="font-success">Total: {{ stats.total }}</p>
-                    <p>Success: {{ stats.success }}</p>
-                    <p>Errors: {{ stats.error }}</p>
-                </div>
-                <div
-                    class="stats-item"
-                    v-for="progress in stats.progress"
-                    :key="progress.topic"
-                >
-                    <p class="font-warning">{{ progress.title }}</p>
-                    <p class="font-success">Total: {{ progress.total }}</p>
-                    <p>Success: {{ progress.success }}</p>
-                    <p>Errors: {{ progress.error }}</p>
+        <div class="stats-wrapper">
+            <div v-for="stats in statsRef" :key="stats.date">
+                <p>
+                    <span class="font-info">Date: {{ stats.date }}</span>
+                    &nbsp;
+                    <span class="font-warning">Total: {{ stats.total }}</span>
+                    &nbsp;
+                    <span class="font-success">Success: {{ stats.success }}</span>
+                    &nbsp;
+                    <span class="font-error">Errors: {{ stats.error }}</span>
+                </p>
+                <!-- body -->
+                <div class="flex-row" >
+                    <div
+                        class="flex-item"
+                        v-for="progress in stats.progress"
+                        :key="progress.topic"
+                    >
+                        <p class="font-warning">{{ progress.title }}</p>
+                        <p class="font-success">Total: {{ progress.total }}</p>
+                        <p>Success: {{ progress.success }}</p>
+                        <p>Errors: {{ progress.error }}</p>
+                    </div>
                 </div>
             </div>
+
         </div>
     </main>
 </template>
