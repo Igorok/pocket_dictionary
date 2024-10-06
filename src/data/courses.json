@@ -40,5 +40,12 @@
         "type": "irregular_verbs",
         "topic": "irr_verbs",
         "updated_at": 0
+    },
+    {
+        "id": "en_tenses",
+        "title": "English Tenses",
+        "type": "en_tenses",
+        "topic": "en_tenses",
+        "updated_at": 0
     }
 ]
