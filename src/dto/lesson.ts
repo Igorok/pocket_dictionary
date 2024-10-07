@@ -41,3 +41,21 @@ export type LessonWriteVerbData = {
     verbs: LessonWriteVerb[],
     completed: boolean
 };
+
+export type LessonWriteSentece = {
+    id: string;
+    tense_id: string;
+    tense: string;
+    sentence: string;
+    tr_ru: string;
+    error: boolean;
+    success: boolean;
+    active: boolean;
+};
+
+export type LessonWriteTenseData = {
+    title: string,
+    write_sentence: string,
+    sentences: LessonWriteSentece[],
+    completed: boolean
+};

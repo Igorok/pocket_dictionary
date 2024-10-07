@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { IrregularVerb } from '../dto/course';
+import type { TenseDescription } from '../dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getWordsRepository } from '../repositories/WordsLocal';
+import { getTensesRepository } from '../repositories/TensesLocal';
 import { getCourseRepository } from '../repositories/CourseFirebase';
 
 const courseId: string | string[] = useRoute().params.id;
 
-const wordsRepository = getWordsRepository();
+const tensesRepository = getTensesRepository();
 const courseRepository = getCourseRepository();
 
-const verbs: IrregularVerb[] = [];
-const verbsRef = ref(verbs);
+const descriptions: TenseDescription[] = [];
+const descriptionsRef = ref(descriptions);
 const titleRef = ref('');
 
 const getWordsData = () => {
@@ -19,7 +19,7 @@ const getWordsData = () => {
     if (!course) return;
 
     titleRef.value = course?.title;
-    verbsRef.value = wordsRepository.getVerbs();
+    descriptionsRef.value = tensesRepository.getDescriptions();
 };
 onBeforeMount(async () => {
     getWordsData();
@@ -30,20 +30,12 @@ onBeforeMount(async () => {
     <main>
         <h3 class="font-success">{{titleRef}}:</h3>
 
-        <div class="verbs-wrapper">
-            <div class="flex-row" >
-                <p class="flex-item">Base form</p>
-                <p class="flex-item">Past simple</p>
-                <p class="flex-item">Past participle</p>
-                <p class="flex-item">Translate</p>
+        <div v-for="item in descriptionsRef" :key="item.id">
+            <h4>{{item.title}}</h4>
+            <div v-for="example in item.description">
+                <p>{{example}}</p>
             </div>
-
-            <div class="flex-row" v-for="item in verbsRef" :key="item.id">
-                <p class="flex-item">{{ item.base_form }}</p>
-                <p class="flex-item">{{ item.past_simple }}</p>
-                <p class="flex-item">{{ item.past_participle }}</p>
-                <p class="flex-item">{{ item.tr_ru }}</p>
-            </div>
+            <br />
         </div>
 
     </main>

@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import type { Course, StudentCourse } from '../dto/course';
-import type { LessonWriteVerbData } from '../dto/lesson';
-import { cloneDeep } from 'lodash';
+import type { Course, StudentCourse, TenseSentence, TenseDescription } from '../dto/course';
+import type { LessonWriteTenseData } from '../dto/lesson';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getWordsRepository } from '../repositories/WordsLocal';
+import { getTensesRepository } from '../repositories/TensesLocal';
 import { getCourseRepository } from '../repositories/CourseFirebase';
 
 const WORDS_IN_LESSON = 5;
 
 const courseId: string | string[] = useRoute().params.id;
 
-const wordsRepository = getWordsRepository();
+const tensesRepository = getTensesRepository();
 const courseRepository = getCourseRepository(undefined);
 
 const success = ref({
@@ -23,14 +22,10 @@ const error = ref({
 const successCount = ref(0);
 const errorCount = ref(0);
 
-let lessonObj: LessonWriteVerbData = {
+let lessonObj: LessonWriteTenseData = {
     title: '',
-    write_base_form: '',
-    write_past_simple: '',
-    write_past_participle: '',
-    write: true,
-    check: false,
-    verbs: [],
+    write_sentence: '',
+    sentences: [],
     completed: false
 };
 
@@ -53,30 +48,40 @@ const getLessonData = async (): Promise<void> => {
         }
         lessonObjRef.value.title = course.title;
 
-        const verbs = wordsRepository.getVerbs();
-        const verbsById = verbs.reduce((acc, verb) => {
-            acc.set(verb.id, verb);
+        const sentences = tensesRepository.getSentences({});
+        const descriptions = tensesRepository.getDescriptions();
+        const descriptionById: Map<string, TenseDescription> = descriptions.reduce((acc, item) => {
+            acc.set(item.id, item);
+            return acc;
+        }, new Map());
+        const sentencesById: Map<string, TenseSentence> = sentences.reduce((acc, item) => {
+            acc.set(item.id, item);
             return acc;
         }, new Map());
 
-        lessonObjRef.value.verbs = studentCourse.words
+        studentCourse.words
             .sort((a, b) => a.learned_at - b.learned_at)
             .slice(0, WORDS_IN_LESSON)
-            .map(({ id }) => {
-                const { base_form, past_simple, past_participle, tr_ru } = verbsById.get(id);
-                return {
+            .forEach(({ id }) => {
+                const sentenceObj = sentencesById.get(id);
+                if (! sentenceObj) return;
+
+                const { tense_id, sentence, tr_ru } = sentenceObj;
+                const description = descriptionById.get(tense_id);
+
+                lessonObjRef.value.sentences.push({
                     id,
-                    base_form,
-                    past_simple,
-                    past_participle,
+                    tense_id,
+                    tense: description?.title || '',
+                    sentence,
                     tr_ru,
                     error: false,
                     success: false,
                     active: false,
-                }
+                });
             });
 
-        lessonObjRef.value.verbs[0].active = true;
+        lessonObjRef.value.sentences[0].active = true;
     } catch (e) {
         if (e instanceof Error) {
             error.value.message = e.message;
@@ -89,14 +94,14 @@ const updateStudentCourseWords = async () => {
         if (!studentCourse) return;
 
         const leardedAt = Date.now();
-        const verbsById = lessonObjRef.value.verbs.reduce((acc, val) => {
+        const sentenceById = lessonObjRef.value.sentences.reduce((acc, val) => {
             acc.set(val.id, val.success ? 0 : 1);
             return acc;
         }, new Map());
-        studentCourse.words.forEach((verb) => {
-            if (verbsById.has(verb.id)) {
-                verb.errors += verbsById.get(verb.id);
-                verb.learned_at = leardedAt;
+        studentCourse.words.forEach((item) => {
+            if (sentenceById.has(item.id)) {
+                item.errors += sentenceById.get(item.id);
+                item.learned_at = leardedAt;
             }
         });
 
@@ -119,67 +124,28 @@ const updateStudentCourseWords = async () => {
     }
 };
 
-const applyVerb = async () => {
-    const verbs: string[] = [
-        lessonObjRef.value.verbs[activeItem].base_form.trim().toLowerCase(),
-        lessonObjRef.value.verbs[activeItem].past_simple.trim().toLowerCase(),
-        lessonObjRef.value.verbs[activeItem].past_participle.trim().toLowerCase(),
-    ];
-    const writen: string[] = [
-        lessonObjRef.value.write_base_form.toLocaleLowerCase().trim(),
-        lessonObjRef.value.write_past_simple.toLocaleLowerCase().trim(),
-        lessonObjRef.value.write_past_participle.toLocaleLowerCase().trim()
-    ];
+const applySentence = async () => {
+    const sentence: string = lessonObjRef.value.sentences[activeItem].sentence.replace('.', '').replace(',', '').trim().toLowerCase();
+    const writen: string = lessonObjRef.value.write_sentence.replace('.', '').replace(',', '').trim().toLocaleLowerCase();
 
-    if (lessonObjRef.value.write) {
-        for (let i = 0; i < verbs.length; ++i) {
-            if (verbs[i] !== writen[i]) {
-                lessonObjRef.value.verbs[activeItem].error = true;
-                return;
-            }
-        }
-
-        lessonObjRef.value.verbs[activeItem].error = false;
-        lessonObjRef.value.verbs[activeItem].active = false;
-
-        lessonObjRef.value.write_base_form = '';
-        lessonObjRef.value.write_past_simple = '';
-        lessonObjRef.value.write_past_participle = '';
-
-        activeItem += 1;
-
-        if (activeItem === WORDS_IN_LESSON) {
-            lessonObjRef.value.write = false;
-            lessonObjRef.value.check = true;
-            activeItem = 0;
-        }
-
-        lessonObjRef.value.verbs[activeItem].active = true;
+    lessonObjRef.value.sentences[activeItem].active = false;
+    if (sentence !== writen) {
+        lessonObjRef.value.sentences[activeItem].error = true;
+        errorCount.value += 1;
     } else {
-        lessonObjRef.value.verbs[activeItem].active = false;
-        for (let i = 0; i < verbs.length; ++i) {
-            if (verbs[i] !== writen[i]) {
-                lessonObjRef.value.verbs[activeItem].error = true;
-                errorCount.value += 1;
-            }
-        }
-        if (!lessonObjRef.value.verbs[activeItem].error) {
-            lessonObjRef.value.verbs[activeItem].success = true;
-            successCount.value += 1;
-        }
+        lessonObjRef.value.sentences[activeItem].success = true;
+        successCount.value += 1;
+    }
 
-        lessonObjRef.value.write_base_form = '';
-        lessonObjRef.value.write_past_simple = '';
-        lessonObjRef.value.write_past_participle = '';
+    lessonObjRef.value.write_sentence = '';
 
-        activeItem += 1;
+    activeItem += 1;
 
-        if (activeItem === WORDS_IN_LESSON) {
-            lessonObjRef.value.completed = true;
-            await updateStudentCourseWords();
-        } else {
-            lessonObjRef.value.verbs[activeItem].active = true;
-        }
+    if (activeItem === WORDS_IN_LESSON) {
+        lessonObjRef.value.completed = true;
+        await updateStudentCourseWords();
+    } else {
+        lessonObjRef.value.sentences[activeItem].active = true;
     }
 };
 
@@ -213,93 +179,44 @@ onBeforeMount(async () => {
             <h3>Lesson is completed</h3>
             <RouterLink
                 :to="{
-                    name: 'course-verbs-read',
-                    params: { id: 'irr_verbs' }
+                    name: 'course-tenses-read',
+                    params: { id: 'en_tenses' }
                 }"
                 class="btn btn-green"
-                >Read verbs
+                >Read it
             </RouterLink>
             <br />
 
-            <div class="verbs-write-container">
-                <div class="flex-row" >
-                    <p class="flex-item">Base form</p>
-                    <p class="flex-item">Past simple</p>
-                    <p class="flex-item">Past participle</p>
-                </div>
-                <!-- body -->
-                <div
-                    v-for="item in lessonObjRef.verbs"
-                    :key="item.id"
-                    :class="{'font-success': item.success, 'font-error': item.error}"
-                    class="flex-row"
-                >
-                    <p class="flex-item">{{ item.base_form }}</p>
-                    <p class="flex-item">{{ item.past_simple }}</p>
-                    <p class="flex-item">{{ item.past_participle }}</p>
-                </div>
+            <div
+                v-for="item in lessonObjRef.sentences"
+                :key="item.id"
+                :class="{'font-success': item.success, 'font-error': item.error}"
+            >
+                <p>{{ item.tr_ru }} ({{ item.tense }})</p>
+                <p>{{ item.sentence }}</p>
+                <br />
             </div>
 
         </div>
         <!-- else -->
         <div v-else class="lesson-item">
-            <div v-for="item in lessonObjRef.verbs" :key="item.id">
+            <div v-for="item in lessonObjRef.sentences" :key="item.id">
                 <div v-if="item.active">
-                    <h3 :class="{'font-error': item.error}">
-                        {{ item.tr_ru }}
-                    </h3>
+                    <h4 :class="{'font-error': item.error}">
+                        {{ item.tr_ru }} ({{ item.tense }})
+                    </h4>
                     <br />
 
-                    <form @submit.prevent="applyVerb">
-                        <div class="verbs-write-container">
-                            <!-- head -->
-                            <div class="flex-row" >
-                                <p class="flex-item">Base form</p>
-                                <p class="flex-item">Past simple</p>
-                                <p class="flex-item">Past participle</p>
-                            </div>
-                            <!-- description -->
-                            <div
-                                v-if="lessonObj.write"
-                                class="flex-row"
-                            >
-                                <p class="flex-item">{{ item.base_form }}</p>
-                                <p class="flex-item">{{ item.past_simple }}</p>
-                                <p class="flex-item">{{ item.past_participle }}</p>
-                            </div>
-                            <!-- input -->
-                            <div class="flex-row" >
-                                <div class="flex-item">
-                                    <input
-                                        type="text"
-                                        class="input-text"
-                                        id="write_base_form"
-                                        v-model="lessonObjRef.write_base_form"
-                                        autocomplete="off"
-                                        required
-                                    />
-                                </div>
-                                <div class="flex-item">
-                                    <input
-                                        type="text"
-                                        class="input-text"
-                                        id="write_past_simple"
-                                        v-model="lessonObjRef.write_past_simple"
-                                        autocomplete="off"
-                                        required
-                                    />
-                                </div>
-                                <div class="flex-item">
-                                    <input
-                                        type="text"
-                                        class="input-text"
-                                        id="write_past_participle"
-                                        v-model="lessonObjRef.write_past_participle"
-                                        autocomplete="off"
-                                        required
-                                    />
-                                </div>
-                            </div>
+                    <form @submit.prevent="applySentence">
+                        <div>
+                            <textarea
+                                type="text"
+                                class="input-text"
+                                id="write_sentence"
+                                v-model="lessonObjRef.write_sentence"
+                                autocomplete="off"
+                                required
+                            />
                         </div>
 
                         <br />

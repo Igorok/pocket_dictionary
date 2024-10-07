@@ -64,12 +64,12 @@ const router = createRouter({
         {
             path: '/course/tenses/read/:id',
             name: 'course-tenses-read',
-            component: () => import('../views/CourseVerbsReadView.vue')
+            component: () => import('../views/CourseTensesReadView.vue')
         },
         {
             path: '/course/tenses/write/:id',
             name: 'course-tenses-write',
-            component: () => import('../views/CourseVerbsWriteView.vue')
+            component: () => import('../views/CourseTensesWriteView.vue')
         },
     ]
 });

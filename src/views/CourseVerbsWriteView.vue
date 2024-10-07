@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import type { Course, StudentCourse } from '../dto/course';
 import type { LessonWriteVerbData } from '../dto/lesson';
-import { cloneDeep } from 'lodash';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getWordsRepository } from '../repositories/WordsLocal';
+import { getVerbsRepository } from '../repositories/VerbsLocal';
 import { getCourseRepository } from '../repositories/CourseFirebase';
 
 const WORDS_IN_LESSON = 5;
 
 const courseId: string | string[] = useRoute().params.id;
 
-const wordsRepository = getWordsRepository();
+const verbsRepository = getVerbsRepository();
 const courseRepository = getCourseRepository(undefined);
 
 const success = ref({
@@ -53,7 +52,7 @@ const getLessonData = async (): Promise<void> => {
         }
         lessonObjRef.value.title = course.title;
 
-        const verbs = wordsRepository.getVerbs();
+        const verbs = verbsRepository.getVerbs();
         const verbsById = verbs.reduce((acc, verb) => {
             acc.set(verb.id, verb);
             return acc;

@@ -1,0 +1,1682 @@
+[
+    {
+        "id": 0,
+        "tense_id": "1",
+        "sentence": "She walks to school every day.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 1,
+        "tense_id": "1",
+        "sentence": "He plays soccer on weekends.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 2,
+        "tense_id": "1",
+        "sentence": "They eat breakfast together in the morning.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 3,
+        "tense_id": "1",
+        "sentence": "The sun rises in the east.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 4,
+        "tense_id": "1",
+        "sentence": "I read a book before bed.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 5,
+        "tense_id": "1",
+        "sentence": "You always help your friends.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 6,
+        "tense_id": "1",
+        "sentence": "The train leaves at 6 PM.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 7,
+        "tense_id": "1",
+        "sentence": "We enjoy hiking in the mountains.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 8,
+        "tense_id": "1",
+        "sentence": "She studies English every afternoon.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 9,
+        "tense_id": "1",
+        "sentence": "He likes to watch movies on Fridays.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 10,
+        "tense_id": "1",
+        "sentence": "Birds sing in the spring.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 11,
+        "tense_id": "1",
+        "sentence": "It rains a lot in the fall.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 12,
+        "tense_id": "1",
+        "sentence": "My brother works at a grocery store.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 13,
+        "tense_id": "1",
+        "sentence": "The baby sleeps through the night.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 14,
+        "tense_id": "1",
+        "sentence": "Cats chase mice.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 15,
+        "tense_id": "1",
+        "sentence": "We often visit our grandparents.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 16,
+        "tense_id": "1",
+        "sentence": "You travel to different countries for work.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 17,
+        "tense_id": "1",
+        "sentence": "The library opens at 9 AM.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 18,
+        "tense_id": "1",
+        "sentence": "I drink coffee in the morning.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 19,
+        "tense_id": "1",
+        "sentence": "They celebrate their birthdays in July.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 20,
+        "tense_id": "2",
+        "sentence": "She is walking to school right now.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 21,
+        "tense_id": "2",
+        "sentence": "He is playing soccer with his friends.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 22,
+        "tense_id": "2",
+        "sentence": "They are eating dinner at the moment.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 23,
+        "tense_id": "2",
+        "sentence": "The sun is shining brightly today.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 24,
+        "tense_id": "2",
+        "sentence": "I am reading a fascinating book.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 25,
+        "tense_id": "2",
+        "sentence": "You are always helping your classmates.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 26,
+        "tense_id": "2",
+        "sentence": "The train is arriving at the station.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 27,
+        "tense_id": "2",
+        "sentence": "We are enjoying our vacation this week.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 28,
+        "tense_id": "2",
+        "sentence": "She is studying for her exams.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 29,
+        "tense_id": "2",
+        "sentence": "He is watching a movie right now.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 30,
+        "tense_id": "2",
+        "sentence": "The kids are playing in the park.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 31,
+        "tense_id": "2",
+        "sentence": "It is raining outside.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 32,
+        "tense_id": "2",
+        "sentence": "My brother is working on a new project.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 33,
+        "tense_id": "2",
+        "sentence": "The baby is sleeping peacefully.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 34,
+        "tense_id": "2",
+        "sentence": "Cats are chasing butterflies in the garden.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 35,
+        "tense_id": "2",
+        "sentence": "We are visiting our friends this weekend.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 36,
+        "tense_id": "2",
+        "sentence": "You are traveling to Paris next month.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 37,
+        "tense_id": "2",
+        "sentence": "The library is closing early today.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 38,
+        "tense_id": "2",
+        "sentence": "I am drinking my morning coffee.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 39,
+        "tense_id": "2",
+        "sentence": "They are celebrating their anniversary tonight.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 40,
+        "tense_id": "3",
+        "sentence": "She has visited France twice.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 41,
+        "tense_id": "3",
+        "sentence": "He has finished his homework.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 42,
+        "tense_id": "3",
+        "sentence": "They have eaten lunch already.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 43,
+        "tense_id": "3",
+        "sentence": "I have read that book before.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 44,
+        "tense_id": "3",
+        "sentence": "You have seen that movie many times.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 45,
+        "tense_id": "3",
+        "sentence": "We have traveled to several countries.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 46,
+        "tense_id": "3",
+        "sentence": "The team has won three championships.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 47,
+        "tense_id": "3",
+        "sentence": "She has learned to play the guitar.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 48,
+        "tense_id": "3",
+        "sentence": "He has just arrived at the airport.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 49,
+        "tense_id": "3",
+        "sentence": "They have started a new project.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 50,
+        "tense_id": "3",
+        "sentence": "I have lived in this city for five years.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 51,
+        "tense_id": "3",
+        "sentence": "You have completed the assignment.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 52,
+        "tense_id": "3",
+        "sentence": "We have made dinner plans for tonight.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 53,
+        "tense_id": "3",
+        "sentence": "She has forgotten her keys again.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 54,
+        "tense_id": "3",
+        "sentence": "He has never been to a concert.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 55,
+        "tense_id": "3",
+        "sentence": "They have cleaned the house.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 56,
+        "tense_id": "3",
+        "sentence": "I have bought a new car.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 57,
+        "tense_id": "3",
+        "sentence": "You have improved your English skills.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 58,
+        "tense_id": "3",
+        "sentence": "We have enjoyed the concert so far.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 59,
+        "tense_id": "3",
+        "sentence": "The children have grown so much this year.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 60,
+        "tense_id": "4",
+        "sentence": "She has been studying for her exams all week.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 61,
+        "tense_id": "4",
+        "sentence": "He has been playing soccer since morning.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 62,
+        "tense_id": "4",
+        "sentence": "They have been working on the project for several months.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 63,
+        "tense_id": "4",
+        "sentence": "I have been reading this book for two hours.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 64,
+        "tense_id": "4",
+        "sentence": "You have been helping your friend with his homework.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 65,
+        "tense_id": "4",
+        "sentence": "We have been waiting for the bus for 30 minutes.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 66,
+        "tense_id": "4",
+        "sentence": "The kids have been playing outside all afternoon.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 67,
+        "tense_id": "4",
+        "sentence": "She has been practicing the piano daily.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 68,
+        "tense_id": "4",
+        "sentence": "He has been watching that series since last month.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 69,
+        "tense_id": "4",
+        "sentence": "They have been trying to fix the car all day.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 70,
+        "tense_id": "4",
+        "sentence": "I have been learning Spanish for a year.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 71,
+        "tense_id": "4",
+        "sentence": "You have been exercising regularly lately.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 72,
+        "tense_id": "4",
+        "sentence": "We have been discussing the proposal for an hour.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 73,
+        "tense_id": "4",
+        "sentence": "She has been cooking dinner for her family.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 74,
+        "tense_id": "4",
+        "sentence": "He has been writing a novel since last summer.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 75,
+        "tense_id": "4",
+        "sentence": "They have been cleaning the house for the past hour.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 76,
+        "tense_id": "4",
+        "sentence": "I have been thinking about the issue a lot.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 77,
+        "tense_id": "4",
+        "sentence": "You have been traveling a lot this year.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 78,
+        "tense_id": "4",
+        "sentence": "We have been enjoying our time together.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 79,
+        "tense_id": "4",
+        "sentence": "The team has been training hard for the competition.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 80,
+        "tense_id": "5",
+        "sentence": "She walked to school yesterday.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 81,
+        "tense_id": "5",
+        "sentence": "He played soccer last weekend.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 82,
+        "tense_id": "5",
+        "sentence": "They ate dinner at a new restaurant.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 83,
+        "tense_id": "5",
+        "sentence": "I read that book last month.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 84,
+        "tense_id": "5",
+        "sentence": "You saw that movie last night.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 85,
+        "tense_id": "5",
+        "sentence": "We traveled to Italy last summer.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 86,
+        "tense_id": "5",
+        "sentence": "The team won the championship.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 87,
+        "tense_id": "5",
+        "sentence": "She studied hard for the exam.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 88,
+        "tense_id": "5",
+        "sentence": "He watched a documentary on TV.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 89,
+        "tense_id": "5",
+        "sentence": "They cleaned the house on Saturday.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 90,
+        "tense_id": "5",
+        "sentence": "I visited my grandparents last week.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 91,
+        "tense_id": "5",
+        "sentence": "You finished your project on time.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 92,
+        "tense_id": "5",
+        "sentence": "We went to the beach for vacation.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 93,
+        "tense_id": "5",
+        "sentence": "She wrote a letter to her friend.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 94,
+        "tense_id": "5",
+        "sentence": "He bought a new bike.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 95,
+        "tense_id": "5",
+        "sentence": "They celebrated their anniversary in April.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 96,
+        "tense_id": "5",
+        "sentence": "I slept well last night.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 97,
+        "tense_id": "5",
+        "sentence": "You cooked a delicious dinner.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 98,
+        "tense_id": "5",
+        "sentence": "We enjoyed the concert last Friday.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 99,
+        "tense_id": "5",
+        "sentence": "The children played in the park all day.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 100,
+        "tense_id": "6",
+        "sentence": "She was walking to school when it started to rain.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 101,
+        "tense_id": "6",
+        "sentence": "He was playing soccer when he got injured.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 102,
+        "tense_id": "6",
+        "sentence": "They were eating dinner when the power went out.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 103,
+        "tense_id": "6",
+        "sentence": "I was reading a book while waiting for my friend.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 104,
+        "tense_id": "6",
+        "sentence": "You were watching TV during the storm.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 105,
+        "tense_id": "6",
+        "sentence": "We were traveling through Europe last summer.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 106,
+        "tense_id": "6",
+        "sentence": "The team was practicing for the big game.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 107,
+        "tense_id": "6",
+        "sentence": "She was studying for her exams all night.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 108,
+        "tense_id": "6",
+        "sentence": "He was working on his project when I called.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 109,
+        "tense_id": "6",
+        "sentence": "They were cleaning the house all day.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 110,
+        "tense_id": "6",
+        "sentence": "I was cooking dinner while listening to music.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 111,
+        "tense_id": "6",
+        "sentence": "You were driving when the accident happened.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 112,
+        "tense_id": "6",
+        "sentence": "We were enjoying our vacation when it started to rain.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 113,
+        "tense_id": "6",
+        "sentence": "She was writing an email at that moment.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 114,
+        "tense_id": "6",
+        "sentence": "He was fixing the car when I arrived.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 115,
+        "tense_id": "6",
+        "sentence": "They were playing video games in the living room.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 116,
+        "tense_id": "6",
+        "sentence": "I was trying to solve a puzzle.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 117,
+        "tense_id": "6",
+        "sentence": "You were sleeping when I knocked on the door.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 118,
+        "tense_id": "6",
+        "sentence": "We were discussing plans for the weekend.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 119,
+        "tense_id": "6",
+        "sentence": "The children were playing outside when it got dark.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 120,
+        "tense_id": "7",
+        "sentence": "She had walked to school before it started to rain.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 121,
+        "tense_id": "7",
+        "sentence": "He had played soccer for years before he got injured.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 122,
+        "tense_id": "7",
+        "sentence": "They had eaten dinner before the guests arrived.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 123,
+        "tense_id": "7",
+        "sentence": "I had read that book before the movie came out.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 124,
+        "tense_id": "7",
+        "sentence": "You had seen that movie before it was nominated for an award.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 125,
+        "tense_id": "7",
+        "sentence": "We had traveled to Italy before the pandemic began.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 126,
+        "tense_id": "7",
+        "sentence": "The team had won three championships by the time I joined.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 127,
+        "tense_id": "7",
+        "sentence": "She had studied hard for the exam, so she passed with flying colors.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 128,
+        "tense_id": "7",
+        "sentence": "He had finished his project before the deadline.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 129,
+        "tense_id": "7",
+        "sentence": "They had cleaned the house before their friends visited.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 130,
+        "tense_id": "7",
+        "sentence": "I had visited my grandparents before they moved away.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 131,
+        "tense_id": "7",
+        "sentence": "You had completed your work before the meeting started.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 132,
+        "tense_id": "7",
+        "sentence": "We had enjoyed the concert before the rain began.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 133,
+        "tense_id": "7",
+        "sentence": "She had written a letter to her friend before she left.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 134,
+        "tense_id": "7",
+        "sentence": "He had bought a new car before his old one broke down.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 135,
+        "tense_id": "7",
+        "sentence": "They had celebrated their anniversary before going on a trip.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 136,
+        "tense_id": "7",
+        "sentence": "I had slept well the night before the big day.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 137,
+        "tense_id": "7",
+        "sentence": "You had cooked dinner before they arrived.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 138,
+        "tense_id": "7",
+        "sentence": "We had discussed our plans before the presentation.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 139,
+        "tense_id": "7",
+        "sentence": "The children had played outside before it got dark.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 140,
+        "tense_id": "8",
+        "sentence": "She had been walking to school for an hour before it started to rain.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 141,
+        "tense_id": "8",
+        "sentence": "He had been playing soccer for two hours when he got injured.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 142,
+        "tense_id": "8",
+        "sentence": "They had been eating dinner when the power went out.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 143,
+        "tense_id": "8",
+        "sentence": "I had been reading that book before I fell asleep.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 144,
+        "tense_id": "8",
+        "sentence": "You had been watching TV for a while when the phone rang.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 145,
+        "tense_id": "8",
+        "sentence": "We had been traveling for days before we reached our destination.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 146,
+        "tense_id": "8",
+        "sentence": "The team had been practicing for weeks before the championship.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 147,
+        "tense_id": "8",
+        "sentence": "She had been studying all night and was exhausted.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 148,
+        "tense_id": "8",
+        "sentence": "He had been working on his project for months before the deadline.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 149,
+        "tense_id": "8",
+        "sentence": "They had been cleaning the house for hours before the guests arrived.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 150,
+        "tense_id": "8",
+        "sentence": "I had been visiting my grandparents regularly before they moved.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 151,
+        "tense_id": "8",
+        "sentence": "You had been exercising consistently, so you felt strong.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 152,
+        "tense_id": "8",
+        "sentence": "We had been discussing our plans for a long time before making a decision.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 153,
+        "tense_id": "8",
+        "sentence": "She had been writing her novel for years before she published it.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 154,
+        "tense_id": "8",
+        "sentence": "He had been fixing the car when I arrived.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 155,
+        "tense_id": "8",
+        "sentence": "They had been waiting for the bus for over an hour.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 156,
+        "tense_id": "8",
+        "sentence": "I had been thinking about the issue before we talked about it.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 157,
+        "tense_id": "8",
+        "sentence": "You had been playing video games all day when I called.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 158,
+        "tense_id": "8",
+        "sentence": "We had been enjoying the concert until it started to rain.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 159,
+        "tense_id": "8",
+        "sentence": "The children had been playing outside for hours before dinner.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 160,
+        "tense_id": "9",
+        "sentence": "She will walk to school tomorrow.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 161,
+        "tense_id": "9",
+        "sentence": "He will play soccer next weekend.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 162,
+        "tense_id": "9",
+        "sentence": "They will eat dinner at a restaurant tonight.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 163,
+        "tense_id": "9",
+        "sentence": "I will read that book next month.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 164,
+        "tense_id": "9",
+        "sentence": "You will see that movie next week.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 165,
+        "tense_id": "9",
+        "sentence": "We will travel to Italy this summer.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 166,
+        "tense_id": "9",
+        "sentence": "The team will win the championship.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 167,
+        "tense_id": "9",
+        "sentence": "She will study for her exams next week.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 168,
+        "tense_id": "9",
+        "sentence": "He will watch a documentary this evening.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 169,
+        "tense_id": "9",
+        "sentence": "They will clean the house on Saturday.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 170,
+        "tense_id": "9",
+        "sentence": "I will visit my grandparents next week.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 171,
+        "tense_id": "9",
+        "sentence": "You will finish your project on time.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 172,
+        "tense_id": "9",
+        "sentence": "We will go to the beach this weekend.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 173,
+        "tense_id": "9",
+        "sentence": "She will write a letter to her friend.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 174,
+        "tense_id": "9",
+        "sentence": "He will buy a new bike next month.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 175,
+        "tense_id": "9",
+        "sentence": "They will celebrate their anniversary in April.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 176,
+        "tense_id": "9",
+        "sentence": "I will sleep early tonight.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 177,
+        "tense_id": "9",
+        "sentence": "You will cook dinner for your family.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 178,
+        "tense_id": "9",
+        "sentence": "We will enjoy the concert next Friday.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 179,
+        "tense_id": "9",
+        "sentence": "The children will play in the park tomorrow.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 180,
+        "tense_id": "10",
+        "sentence": "She will be walking to school at 8 AM tomorrow.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 181,
+        "tense_id": "10",
+        "sentence": "He will be playing soccer when you arrive.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 182,
+        "tense_id": "10",
+        "sentence": "They will be eating dinner at 7 PM tonight.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 183,
+        "tense_id": "10",
+        "sentence": "I will be reading a book during the flight.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 184,
+        "tense_id": "10",
+        "sentence": "You will be seeing that movie next weekend.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 185,
+        "tense_id": "10",
+        "sentence": "We will be traveling to Italy this summer.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 186,
+        "tense_id": "10",
+        "sentence": "The team will be practicing for the championship all week.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 187,
+        "tense_id": "10",
+        "sentence": "She will be studying for her exams all night.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 188,
+        "tense_id": "10",
+        "sentence": "He will be working on his project at that time.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 189,
+        "tense_id": "10",
+        "sentence": "They will be cleaning the house when the guests arrive.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 190,
+        "tense_id": "10",
+        "sentence": "I will be visiting my grandparents next Sunday.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 191,
+        "tense_id": "10",
+        "sentence": "You will be finishing your report by the deadline.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 192,
+        "tense_id": "10",
+        "sentence": "We will be going to the beach tomorrow afternoon.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 193,
+        "tense_id": "10",
+        "sentence": "She will be writing a letter while waiting for her flight.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 194,
+        "tense_id": "10",
+        "sentence": "He will be buying groceries later today.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 195,
+        "tense_id": "10",
+        "sentence": "They will be celebrating their anniversary next month.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 196,
+        "tense_id": "10",
+        "sentence": "I will be sleeping during the meeting.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 197,
+        "tense_id": "10",
+        "sentence": "You will be cooking dinner for your family tonight.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 198,
+        "tense_id": "10",
+        "sentence": "We will be enjoying the concert next Friday.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 199,
+        "tense_id": "10",
+        "sentence": "The children will be playing outside when it gets warm.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 200,
+        "tense_id": "11",
+        "sentence": "She will have walked to school by the time the bell rings.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 201,
+        "tense_id": "11",
+        "sentence": "He will have played soccer for ten years by next season.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 202,
+        "tense_id": "11",
+        "sentence": "They will have eaten dinner before the movie starts.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 203,
+        "tense_id": "11",
+        "sentence": "I will have read that book by the end of the month.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 204,
+        "tense_id": "11",
+        "sentence": "You will have seen that movie before it leaves theaters.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 205,
+        "tense_id": "11",
+        "sentence": "We will have traveled to five countries by the end of the year.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 206,
+        "tense_id": "11",
+        "sentence": "The team will have won three championships by next summer.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 207,
+        "tense_id": "11",
+        "sentence": "She will have studied for her exams by the time they arrive.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 208,
+        "tense_id": "11",
+        "sentence": "He will have finished his project before the deadline.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 209,
+        "tense_id": "11",
+        "sentence": "They will have cleaned the house before the guests come.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 210,
+        "tense_id": "11",
+        "sentence": "I will have visited my grandparents twice this year.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 211,
+        "tense_id": "11",
+        "sentence": "You will have completed your work by the time we meet.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 212,
+        "tense_id": "11",
+        "sentence": "We will have gone to the beach five times this summer.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 213,
+        "tense_id": "11",
+        "sentence": "She will have written her report before the presentation.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 214,
+        "tense_id": "11",
+        "sentence": "He will have bought a new car by next month.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 215,
+        "tense_id": "11",
+        "sentence": "They will have celebrated their anniversary by then.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 216,
+        "tense_id": "11",
+        "sentence": "I will have slept for eight hours by morning.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 217,
+        "tense_id": "11",
+        "sentence": "You will have cooked dinner before they arrive.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 218,
+        "tense_id": "11",
+        "sentence": "We will have enjoyed the concert by the time we leave.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 219,
+        "tense_id": "11",
+        "sentence": "The children will have played outside all afternoon.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 220,
+        "tense_id": "12",
+        "sentence": "She will have been walking to school for 30 minutes by the time you call her.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 221,
+        "tense_id": "12",
+        "sentence": "He will have been playing soccer for two hours by the time the match ends.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 222,
+        "tense_id": "12",
+        "sentence": "They will have been eating dinner for an hour when we arrive.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 223,
+        "tense_id": "12",
+        "sentence": "I will have been reading that book for a month by the time I finish it.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 224,
+        "tense_id": "12",
+        "sentence": "You will have been studying for your exams for weeks before they start.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 225,
+        "tense_id": "12",
+        "sentence": "We will have been traveling for three days by the time we reach our destination.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 226,
+        "tense_id": "12",
+        "sentence": "The team will have been practicing for the championship for months.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 227,
+        "tense_id": "12",
+        "sentence": "She will have been studying all night by the time the test begins.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 228,
+        "tense_id": "12",
+        "sentence": "He will have been working on his project for a year when it's completed.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 229,
+        "tense_id": "12",
+        "sentence": "They will have been cleaning the house for hours when the guests arrive.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 230,
+        "tense_id": "12",
+        "sentence": "I will have been visiting my grandparents every month for two years by next spring.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 231,
+        "tense_id": "12",
+        "sentence": "You will have been exercising regularly for six months by then.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 232,
+        "tense_id": "12",
+        "sentence": "We will have been discussing our plans for a long time by the end of the meeting.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 233,
+        "tense_id": "12",
+        "sentence": "She will have been writing her novel for over a year by the time it's published.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 234,
+        "tense_id": "12",
+        "sentence": "He will have been fixing the car for a while when I check on him.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 235,
+        "tense_id": "12",
+        "sentence": "They will have been waiting for the bus for 45 minutes by the time it arrives.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 236,
+        "tense_id": "12",
+        "sentence": "I will have been thinking about the project for days before presenting it.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 237,
+        "tense_id": "12",
+        "sentence": "You will have been playing video games for hours when I come over.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 238,
+        "tense_id": "12",
+        "sentence": "We will have been enjoying the concert for two hours by the time it ends.",
+        "tr_ru": "",
+        "words": []
+    },
+    {
+        "id": 239,
+        "tense_id": "12",
+        "sentence": "The children will have been playing outside all afternoon before dinner.",
+        "tr_ru": "",
+        "words": []
+    }
+]

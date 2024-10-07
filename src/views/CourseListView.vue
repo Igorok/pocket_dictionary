@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { Unsubscribe } from 'firebase/auth';
-import type { Course, StudentCourse } from '../dto/course';
+import type { Course, StudentCourse, StudentWordDb, StudentCourseDb } from '../dto/course';
 import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
 import { getAuthRepository } from '../repositories/AuthFirebase';
 import { getCourseRepository } from '../repositories/CourseFirebase';
+import { getWordsRepository } from '../repositories/WordsLocal';
+import { getVerbsRepository } from '../repositories/VerbsLocal';
+import { getTensesRepository } from '../repositories/TensesLocal';
 
 type Joined = {
     joined: boolean;
@@ -26,6 +29,9 @@ const coursesOthersRef = ref(coursesOthersRefObj);
 
 const authRepository = getAuthRepository(undefined);
 const courseRepository = getCourseRepository(undefined);
+const wordsRepository = getWordsRepository();
+const verbsRepository = getVerbsRepository();
+const tensesRepository = getTensesRepository();
 
 let retry = 0;
 const getCoursesData = async (): Promise<void> => {
@@ -88,7 +94,7 @@ const joinCourse = async (course_id: string | undefined) => {
     if (!course?.id) return;
 
     const { id, topic, title, type } = course;
-    const joined: StudentCourse = {
+    const joined: StudentCourseDb = {
         course_id: id,
         student_id: student.id,
         title,
@@ -97,6 +103,34 @@ const joinCourse = async (course_id: string | undefined) => {
         updated_at: Date.now(),
         words: []
     };
+
+    if (course.type === 'verbs') {
+        for (const item of verbsRepository.getVerbs()) {
+            joined.words.push({
+                id: item.id,
+                e: 0,
+                l_at: 0
+            });
+        }
+    }  else if (course.type === 'tenses') {
+        for (const item of tensesRepository.getSentences({})) {
+            joined.words.push({
+                id: item.id,
+                e: 0,
+                l_at: 0
+            });
+        }
+    } else {
+        for (const item of wordsRepository.getAllWords({ topic })) {
+            joined.words.push({
+                id: item.id,
+                e: 0,
+                l_at: 0
+            });
+        }
+    }
+
+
     try {
         const newCourse = await courseRepository.joinCourse(joined);
         course.joined = true;
@@ -196,7 +230,7 @@ onBeforeUnmount(() => {
                             params: { id: course.id }
                         }"
                         class="btn btn-green"
-                        >Read these words
+                        >Read it
                     </RouterLink>
                     <button
                         v-if="!course.joined"
@@ -212,7 +246,7 @@ onBeforeUnmount(() => {
                                 params: { id: course.student_course_id }
                             }"
                             class="btn btn-green"
-                            >Write these words
+                            >Write it
                         </RouterLink>
                     </div>
                 </div>

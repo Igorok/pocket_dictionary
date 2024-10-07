@@ -76,3 +76,17 @@ export type IrregularVerb = {
     past_participle: string;
     tr_ru: string;
 };
+
+export type TenseDescription = {
+    id: string;
+    tense: string;
+    title: string;
+    description: string[];
+};
+export type TenseSentence = {
+    id: string;
+    tense_id: string;
+    sentence: string;
+    tr_ru: string;
+    words: string[];
+};

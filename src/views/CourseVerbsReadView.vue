@@ -2,12 +2,12 @@
 import type { IrregularVerb } from '../dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getWordsRepository } from '../repositories/WordsLocal';
+import { getVerbsRepository } from '../repositories/VerbsLocal';
 import { getCourseRepository } from '../repositories/CourseFirebase';
 
 const courseId: string | string[] = useRoute().params.id;
 
-const wordsRepository = getWordsRepository();
+const verbsRepository = getVerbsRepository();
 const courseRepository = getCourseRepository();
 
 const verbs: IrregularVerb[] = [];
@@ -19,7 +19,7 @@ const getWordsData = () => {
     if (!course) return;
 
     titleRef.value = course?.title;
-    verbsRef.value = wordsRepository.getVerbs();
+    verbsRef.value = verbsRepository.getVerbs();
 };
 onBeforeMount(async () => {
     getWordsData();

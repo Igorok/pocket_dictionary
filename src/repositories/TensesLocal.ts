@@ -1,36 +1,23 @@
-import type { Word, IrregularVerb } from '../dto/course';
-import wordsJson from '../data/merged.json' with { type: 'json' };
-import verbsJson from '../data/verbs.json' with { type: 'json' };
+import type { TenseDescription, TenseSentence } from '../dto/course';
+import tensesJson from '../data/english_tenses.json' with { type: 'json' };
 
-class WordsRepository {
-    getAllWords({ topic }: { topic?: string }): Word[] {
-        if (!topic) {
-            return wordsJson.map((word) => ({
-                ...word,
-                id: word.id.toString()
-            }));
-        }
-
-        return wordsJson
-            .filter(({ topics }) => topics.includes(topic))
-            .map((word) => ({
-                ...word,
-                id: word.id.toString()
-            }));
+class TensesRepository {
+    getDescriptions(): TenseDescription[] {
+        return tensesJson.description;
     }
 
-    getVerbs(): IrregularVerb[] {
-        return verbsJson.map((verb) => ({
-            ...verb,
-            id: verb.id.toString()
-        }));
+    getSentences({ tense_id }: { tense_id?: string }): TenseSentence[] {
+        if (!tense_id) {
+            return tensesJson.sentences;
+        }
+        return tensesJson.sentences.filter((sentence) => sentence.tense_id === tense_id);
     }
 }
 
-let repository: WordsRepository;
-export const getWordsRepository = (): WordsRepository => {
+let repository: TensesRepository;
+export const getTensesRepository = (): TensesRepository => {
     if (!repository) {
-        repository = new WordsRepository();
+        repository = new TensesRepository();
     }
     return repository;
 };
