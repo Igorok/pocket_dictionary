@@ -61,6 +61,16 @@ const router = createRouter({
             name: 'course-verbs-write',
             component: () => import('../views/CourseVerbsWriteView.vue')
         },
+        {
+            path: '/course/tenses/read/:id',
+            name: 'course-tenses-read',
+            component: () => import('../views/CourseVerbsReadView.vue')
+        },
+        {
+            path: '/course/tenses/write/:id',
+            name: 'course-tenses-write',
+            component: () => import('../views/CourseVerbsWriteView.vue')
+        },
     ]
 });
 

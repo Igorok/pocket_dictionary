@@ -100,9 +100,11 @@ onBeforeUnmount(() => {
         <div class="stats-wrapper">
             <div v-for="stats in statsRef" :key="stats.date">
                 <p>
-                    <span class="font-info">Date: {{ stats.date }}</span>
-                    &nbsp;
-                    <span class="font-warning">Total: {{ stats.total }}</span>
+                    <span class="font-info">
+                        Date: {{ stats.date }}
+                        &nbsp;
+                        Total: {{ stats.total }}
+                    </span>
                     &nbsp;
                     <span class="font-success">Success: {{ stats.success }}</span>
                     &nbsp;
@@ -115,8 +117,8 @@ onBeforeUnmount(() => {
                         v-for="progress in stats.progress"
                         :key="progress.topic"
                     >
-                        <p class="font-warning">{{ progress.title }}</p>
-                        <p class="font-success">Total: {{ progress.total }}</p>
+                        <p>{{ progress.title }}</p>
+                        <p>Total: {{ progress.total }}</p>
                         <p>Success: {{ progress.success }}</p>
                         <p>Errors: {{ progress.error }}</p>
                     </div>

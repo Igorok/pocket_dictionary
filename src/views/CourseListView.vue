@@ -19,18 +19,10 @@ const error = ref({
 });
 
 const coursesWordsRefObj: CourseItem[] = [];
-const coursesVerbsRefObj: CourseItem = {
-    id: '',
-    title: '',
-    topic: '',
-    type: '',
-    updated_at: 0,
-    joined: false,
-    student_course_id: '',
-};
+const coursesOthersRefObj: CourseItem[] = [];
 
 const coursesWordsRef = ref(coursesWordsRefObj);
-const coursesVerbsRef = ref(coursesVerbsRefObj);
+const coursesOthersRef = ref(coursesOthersRefObj);
 
 const authRepository = getAuthRepository(undefined);
 const courseRepository = getCourseRepository(undefined);
@@ -60,15 +52,15 @@ const getCoursesData = async (): Promise<void> => {
                 joined = true;
                 student_course_id = joinedMap.get(course.id).id;
             }
-            if (course.type === 'irregular_verbs') {
-                coursesVerbsRef.value = {
+
+            if (course.type === 'words') {
+                coursesWordsRef.value.push({
                     ...course,
                     joined,
                     student_course_id
-                }
-            }
-            if (course.type === 'words') {
-                coursesWordsRef.value.push({
+                });
+            } else {
+                coursesOthersRef.value.push({
                     ...course,
                     joined,
                     student_course_id
@@ -90,8 +82,8 @@ const joinCourse = async (course_id: string | undefined) => {
     if (!student?.id) return;
 
     let course = coursesWordsRef.value.find(({ id }) => id === course_id);
-    if (course_id === coursesVerbsRef.value.id) {
-        course = coursesVerbsRef.value;
+    if (!course?.id) {
+        course = coursesOthersRef.value.find(({ id }) => id === course_id);
     }
     if (!course?.id) return;
 
@@ -150,6 +142,7 @@ onBeforeUnmount(() => {
                 </div>
             </div>
 
+            <!-- words -->
             <h3>Words:</h3>
             <div class="card-wrapper">
                 <div v-for="course in coursesWordsRef" :key="course.id" class="card">
@@ -191,22 +184,23 @@ onBeforeUnmount(() => {
                 </div>
             </div>
 
-            <h3>Irregular Verbs:</h3>
+            <!-- others -->
+            <h3>Others:</h3>
             <div class="card-wrapper">
-                <div class="card" v-if="Boolean(coursesVerbsRef.id)">
-                    {{ coursesVerbsRef.title }}
+                <div v-for="course in coursesOthersRef" :key="course.id" class="card">
+                    {{ course.title }}
                     <br /><br />
                     <RouterLink
                         :to="{
-                            name: 'course-verbs-read',
-                            params: { id: coursesVerbsRef.id }
+                            name: `course-${course.type}-read`,
+                            params: { id: course.id }
                         }"
                         class="btn btn-green"
                         >Read these words
                     </RouterLink>
                     <button
-                        v-if="!coursesVerbsRef.joined"
-                        v-on:click="joinCourse(coursesVerbsRef.id)"
+                        v-if="!course.joined"
+                        v-on:click="joinCourse(course.id)"
                         class="btn btn-green"
                     >
                         Join this course
@@ -214,8 +208,8 @@ onBeforeUnmount(() => {
                     <div v-else>
                         <RouterLink
                             :to="{
-                                name: 'course-verbs-write',
-                                params: { id: coursesVerbsRef.student_course_id }
+                                name: `course-${course.type}-write`,
+                                params: { id: course.student_course_id }
                             }"
                             class="btn btn-green"
                             >Write these words

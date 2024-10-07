@@ -37,7 +37,7 @@ onBeforeUnmount(() => {
         <img alt="Logo" class="logo" src="./assets/book.jpeg" />
 
         <div class="wrapper">
-            <h1 class="font-success">Pocket Dictionary</h1>
+            <h3 class="font-success">Pocket Dictionary</h3>
 
             <div v-if="Boolean(authStore.getStudent?.id)">
                 <nav>

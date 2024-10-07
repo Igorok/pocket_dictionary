@@ -37,14 +37,14 @@
     {
         "id": "irr_verbs",
         "title": "Irregular verbs",
-        "type": "irregular_verbs",
+        "type": "verbs",
         "topic": "irr_verbs",
         "updated_at": 0
     },
     {
         "id": "en_tenses",
         "title": "English Tenses",
-        "type": "en_tenses",
+        "type": "tenses",
         "topic": "en_tenses",
         "updated_at": 0
     }
