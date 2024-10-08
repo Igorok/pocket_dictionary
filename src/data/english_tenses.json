@@ -29,7 +29,7 @@
         {
             "id": "3",
             "tense": "present",
-            "title": "Present Perfect Simple",
+            "title": "Present Perfect",
             "description": [
                 "Indicates an action that occurred at an unspecified time before now: She has read five books this month.",
                 "Signal words: just, yet, never, ever, already, so far, up to now, since, for, recently",
@@ -81,7 +81,7 @@
         {
             "id": "7",
             "tense": "past",
-            "title": "Past Perfect Simple",
+            "title": "Past Perfect",
             "description": [
                 "Indicates an action completed before another past action: She had read the book before the meeting.",
                 "Signal words: already, just, never",
@@ -131,7 +131,7 @@
         {
             "id": "11",
             "tense": "future",
-            "title": "Future Perfect Simple",
+            "title": "Future Perfect",
             "description": [
                 "Refers to actions that will be completed before a specified future time: She will have read the book by tomorrow.",
                 "I'll have worked. I won't have worked. Will I have worked?",

@@ -48,14 +48,15 @@ export type LessonWriteSentece = {
     tense: string;
     sentence: string;
     tr_ru: string;
-    error: boolean;
+    error: string;
     success: boolean;
     active: boolean;
 };
 
 export type LessonWriteTenseData = {
-    title: string,
-    write_sentence: string,
-    sentences: LessonWriteSentece[],
-    completed: boolean
+    title: string;
+    write_sentence: string;
+    sentences: LessonWriteSentece[];
+    completed: boolean;
+    check: boolean;
 };

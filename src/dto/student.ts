@@ -16,7 +16,7 @@ export type StudentStats = {
 };
 
 export type ProgressItem = {
-    topic: string,
+    courseId: string,
     title: string,
     error: number,
     success: number,

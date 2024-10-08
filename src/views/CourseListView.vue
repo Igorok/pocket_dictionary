@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Unsubscribe } from 'firebase/auth';
-import type { Course, StudentCourse, StudentWordDb, StudentCourseDb } from '../dto/course';
+import type { Course, StudentCourse, StudentCourseDb } from '../dto/course';
 import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
 import { getAuthRepository } from '../repositories/AuthFirebase';
 import { getCourseRepository } from '../repositories/CourseFirebase';
@@ -113,7 +113,9 @@ const joinCourse = async (course_id: string | undefined) => {
             });
         }
     }  else if (course.type === 'tenses') {
-        for (const item of tensesRepository.getSentences({})) {
+        const descriptions = tensesRepository.getDescriptions({ topic });
+        const tenseIds = descriptions.map(({ id }) => id);
+        for (const item of tensesRepository.getSentences({ tenseIds })) {
             joined.words.push({
                 id: item.id,
                 e: 0,
@@ -230,7 +232,7 @@ onBeforeUnmount(() => {
                             params: { id: course.id }
                         }"
                         class="btn btn-green"
-                        >Read it
+                        >Read this course
                     </RouterLink>
                     <button
                         v-if="!course.joined"
@@ -246,7 +248,7 @@ onBeforeUnmount(() => {
                                 params: { id: course.student_course_id }
                             }"
                             class="btn btn-green"
-                            >Write it
+                            >Write this course
                         </RouterLink>
                     </div>
                 </div>
