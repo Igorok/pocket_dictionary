@@ -193,40 +193,31 @@ header {
     background-color: var(--color-white);
     text-align: center;
 }
-header .logo {
-    margin-top: 20px;
-    width: 85px;
+header .wrapper {
+    padding: 1rem 0;
 }
-
-header nav {
+header .wrapper .logo {
+    width: 45px;
+}
+header .wrapper nav {
     width: 100%;
     text-align: center;
 }
-
-header nav a.router-link-exact-active {
+header .wrapper nav a.router-link-exact-active {
     color: var(--color-text);
 }
-
-header nav a.router-link-exact-active:hover {
+header .wrapper nav a.router-link-exact-active:hover {
     background-color: transparent;
 }
-
-header nav a {
+header .wrapper nav a {
     display: block;
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
     border: none;
 }
-
-header nav a:first-of-type {
+header .wrapper nav a:first-of-type {
     border: 0;
 }
-
-header .menu-toggle {
-    display: block;
-    width: 90%;
-    margin: 0 auto 10px;
-}
-header .menu-hidden {
+header .wrapper .menu-hidden {
     display: none;
 }
 
@@ -234,7 +225,6 @@ header .menu-hidden {
 main {
     background-color: var(--color-light-gray);
     padding: 10px;
-    font-size: 18px;
 }
 
 /* dictionary */
@@ -313,17 +303,18 @@ main {
     header {
         height: 100vh;
     }
-
-    header nav {
-        text-align: left;
+    header .wrapper .logo {
+        width: 85px;
+    }
+    header .wrapper nav {
         font-size: 1rem;
         margin-top: 2rem;
     }
 
-    header .menu-toggle {
+    header .wrapper .menu-toggle {
         display: none;
     }
-    header .menu-hidden {
+    header .wrapper .menu-hidden {
         display: block;
     }
 

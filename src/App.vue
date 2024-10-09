@@ -5,7 +5,7 @@ import { RouterLink, RouterView } from 'vue-router';
 import { getAuthRepository } from './repositories/AuthFirebase';
 import { useAuthStore } from './stores/auth';
 
-const menuHiddenRef = ref(false);
+const menuHiddenRef = ref(true);
 const menuToggle = () => {
     menuHiddenRef.value = !menuHiddenRef.value;
 };
@@ -43,7 +43,7 @@ onBeforeUnmount(() => {
 
             <h3 class="font-success">Pocket Dictionary</h3>
 
-            <button class="menu-toggle btn-green" v-on:click="menuToggle">
+            <button class="btn btn-green menu-toggle" v-on:click="menuToggle">
                 Menu
             </button>
             <div
