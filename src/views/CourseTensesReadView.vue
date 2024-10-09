@@ -18,8 +18,9 @@ const getWordsData = () => {
     const course = courseRepository.getCourseById(String(courseId));
     if (!course) return;
 
+    const { topic } = course;
     titleRef.value = course?.title;
-    descriptionsRef.value = tensesRepository.getDescriptions();
+    descriptionsRef.value = tensesRepository.getDescriptions({ topic });
 };
 onBeforeMount(async () => {
     getWordsData();

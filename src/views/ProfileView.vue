@@ -32,8 +32,8 @@ const getProfileData = async (): Promise<void> => {
         userRef.value = student;
 
         const allCourses: Course[] = courseRepository.getCourses({});
-        const courseByTopic = allCourses.reduce((acc, val) => {
-            acc.set(val.topic, val);
+        const courseById = allCourses.reduce((acc, val) => {
+            acc.set(val.id, val);
             return acc;
         }, new Map());
         const stats = await courseRepository.getStudentStats(student.id);
@@ -47,13 +47,17 @@ const getProfileData = async (): Promise<void> => {
                 total: 0,
                 progress: []
             };
-            Object.entries(courseStast).forEach(([topic, { e, s }]) => {
-                const course = courseByTopic.get(topic);
+            Object.entries(courseStast).forEach(([courseId, { e, s }]) => {
+                const course = courseById.get(courseId);
+                if (!course) {
+                    console.log('courseId', courseId);
+                }
+
                 info.error += e;
                 info.success += s;
                 info.total += e + s;
                 info.progress.push({
-                    topic: course.topic,
+                    courseId: course.courseId,
                     title: course.title,
                     error: e,
                     success: s,
@@ -115,7 +119,7 @@ onBeforeUnmount(() => {
                     <div
                         class="flex-item"
                         v-for="progress in stats.progress"
-                        :key="progress.topic"
+                        :key="progress.courseId"
                     >
                         <p>{{ progress.title }}</p>
                         <p>Total: {{ progress.total }}</p>

@@ -2,15 +2,18 @@ import type { TenseDescription, TenseSentence } from '../dto/course';
 import tensesJson from '../data/english_tenses.json' with { type: 'json' };
 
 class TensesRepository {
-    getDescriptions(): TenseDescription[] {
+    getDescriptions({ topic }: { topic?: string }): TenseDescription[] {
+        if (topic) {
+            return tensesJson.description.filter(({ tense }) => tense === topic);
+        }
         return tensesJson.description;
     }
 
-    getSentences({ tense_id }: { tense_id?: string }): TenseSentence[] {
-        if (!tense_id) {
-            return tensesJson.sentences;
+    getSentences({ tenseIds }: { tenseIds?: string[] }): TenseSentence[] {
+        if (tenseIds?.length) {
+            return tensesJson.sentences.filter((sentence) => tenseIds.includes(sentence.tense_id));
         }
-        return tensesJson.sentences.filter((sentence) => sentence.tense_id === tense_id);
+        return tensesJson.sentences;
     }
 }
 

@@ -42,10 +42,24 @@
         "updated_at": 0
     },
     {
-        "id": "en_tenses",
-        "title": "English Tenses",
+        "id": "pr_tense",
+        "title": "Present tense",
         "type": "tenses",
-        "topic": "en_tenses",
+        "topic": "present",
+        "updated_at": 0
+    },
+    {
+        "id": "ps_tense",
+        "title": "Past tense",
+        "type": "tenses",
+        "topic": "past",
+        "updated_at": 0
+    },
+    {
+        "id": "ft_tenses",
+        "title": "Future tense",
+        "type": "tenses",
+        "topic": "future",
         "updated_at": 0
     }
 ]
