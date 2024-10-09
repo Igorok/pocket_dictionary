@@ -29,15 +29,14 @@ onBeforeMount(async () => {
 
 <template>
     <main>
-        <h3 class="font-success">{{titleRef}}:</h3>
+        <h3 class="font-success">{{ titleRef }}:</h3>
 
         <div v-for="item in descriptionsRef" :key="item.id">
-            <h4>{{item.title}}</h4>
+            <h4>{{ item.title }}</h4>
             <div v-for="example in item.description">
-                <p>{{example}}</p>
+                <p>{{ example }}</p>
             </div>
             <br />
         </div>
-
     </main>
 </template>

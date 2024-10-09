@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import type { Course, StudentCourse, TenseSentence, TenseDescription } from '../dto/course';
+import type {
+    Course,
+    StudentCourse,
+    TenseSentence,
+    TenseDescription
+} from '../dto/course';
 import type { LessonWriteTenseData } from '../dto/lesson';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
@@ -27,7 +32,7 @@ let lessonObj: LessonWriteTenseData = {
     write_sentence: '',
     sentences: [],
     completed: false,
-    check: false,
+    check: false
 };
 
 const lessonObjRef = ref(lessonObj);
@@ -41,7 +46,7 @@ const getLessonData = async (): Promise<void> => {
             String(courseId)
         );
 
-        const course: Course|undefined = courseRepository.getCourseById(
+        const course: Course | undefined = courseRepository.getCourseById(
             studentCourse.course_id
         );
         if (!course) {
@@ -49,24 +54,30 @@ const getLessonData = async (): Promise<void> => {
         }
         lessonObjRef.value.title = course.title;
 
-        const descriptions = tensesRepository.getDescriptions({ topic: course.topic });
+        const descriptions = tensesRepository.getDescriptions({
+            topic: course.topic
+        });
         const tenseIds = descriptions.map(({ id }) => id);
         const sentences = tensesRepository.getSentences({ tenseIds });
-        const descriptionById: Map<string, TenseDescription> = descriptions.reduce((acc, item) => {
-            acc.set(item.id, item);
-            return acc;
-        }, new Map());
-        const sentencesById: Map<string, TenseSentence> = sentences.reduce((acc, item) => {
-            acc.set(item.id, item);
-            return acc;
-        }, new Map());
+        const descriptionById: Map<string, TenseDescription> =
+            descriptions.reduce((acc, item) => {
+                acc.set(item.id, item);
+                return acc;
+            }, new Map());
+        const sentencesById: Map<string, TenseSentence> = sentences.reduce(
+            (acc, item) => {
+                acc.set(item.id, item);
+                return acc;
+            },
+            new Map()
+        );
 
         studentCourse.words
             .sort((a, b) => a.learned_at - b.learned_at)
             .slice(0, WORDS_IN_LESSON)
             .forEach(({ id }) => {
                 const sentenceObj = sentencesById.get(id);
-                if (! sentenceObj) return;
+                if (!sentenceObj) return;
 
                 const { tense_id, sentence, tr_ru } = sentenceObj;
                 const description = descriptionById.get(tense_id);
@@ -79,7 +90,7 @@ const getLessonData = async (): Promise<void> => {
                     tr_ru,
                     error: '',
                     success: false,
-                    active: false,
+                    active: false
                 });
             });
 
@@ -127,11 +138,18 @@ const updateStudentCourseWords = async () => {
 };
 
 const applySentence = async () => {
-    const sentence: string = lessonObjRef.value.sentences[activeItem].sentence.replace(/\,*\.*/g, '').trim().toLowerCase();
-    const writen: string = lessonObjRef.value.write_sentence.replace(/\,*\.*/g, '').trim().toLocaleLowerCase();
+    const sentence: string = lessonObjRef.value.sentences[activeItem].sentence
+        .replace(/\,*\.*/g, '')
+        .trim()
+        .toLowerCase();
+    const writen: string = lessonObjRef.value.write_sentence
+        .replace(/\,*\.*/g, '')
+        .trim()
+        .toLocaleLowerCase();
 
     if (sentence !== writen) {
-        lessonObjRef.value.sentences[activeItem].error = lessonObjRef.value.write_sentence;
+        lessonObjRef.value.sentences[activeItem].error =
+            lessonObjRef.value.write_sentence;
         if (lessonObjRef.value.check) {
             errorCount.value += 1;
         } else {
@@ -206,23 +224,25 @@ onBeforeMount(async () => {
                 <div
                     v-for="item in lessonObjRef.sentences"
                     :key="item.id"
-                    :class="{'font-success': item.success, 'font-error': Boolean(item.error)}"
+                    :class="{
+                        'font-success': item.success,
+                        'font-error': Boolean(item.error)
+                    }"
                 >
                     <p>{{ item.tr_ru }} ({{ item.tense }})</p>
                     <p>{{ item.sentence }}</p>
-                    <p v-if=" Boolean(item.error)">Wrong: {{item.error}}</p>
+                    <p v-if="Boolean(item.error)">Wrong: {{ item.error }}</p>
                     <br />
                 </div>
-
             </div>
             <!-- else -->
             <div v-else class="lesson-item">
                 <div v-for="item in lessonObjRef.sentences" :key="item.id">
                     <div v-if="item.active">
-                        <h4 :class="{'font-error': Boolean(item.error)}">
+                        <h4 :class="{ 'font-error': Boolean(item.error) }">
                             {{ item.tr_ru }} ({{ item.tense }})
                         </h4>
-                        <p v-if="!lessonObjRef.check" >{{ item.sentence }}</p>
+                        <p v-if="!lessonObjRef.check">{{ item.sentence }}</p>
                         <br />
 
                         <form @submit.prevent="applySentence">

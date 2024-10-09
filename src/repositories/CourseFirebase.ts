@@ -4,7 +4,7 @@ import type {
     StudentCourse,
     StudentWord,
     StudentWordDb,
-    StudentCourseDb,
+    StudentCourseDb
 } from '../dto/course';
 import type { StudentStats } from '../dto/student';
 import type { Firestore } from 'firebase/firestore';
@@ -28,9 +28,9 @@ class CourseRepository {
         this.db = db;
     }
 
-    getCourses({ type}: { type?: string }): Course[] {
+    getCourses({ type }: { type?: string }): Course[] {
         if (type) {
-            return coursesJson.filter((course) => course.type === type)
+            return coursesJson.filter((course) => course.type === type);
         }
         return coursesJson;
     }
@@ -40,7 +40,8 @@ class CourseRepository {
     }
 
     async joinCourse(param: StudentCourseDb): Promise<StudentCourse> {
-        const { course_id, student_id, title, type, topic, updated_at, words } = param;
+        const { course_id, student_id, title, type, topic, updated_at, words } =
+            param;
         const id = `${course_id}_${student_id}`;
         const studentCourse: StudentCourseDb = {
             id,
@@ -69,7 +70,7 @@ class CourseRepository {
                     errors: e,
                     learned_at: l_at
                 };
-            }),
+            })
         };
     }
 
@@ -216,9 +217,7 @@ class CourseRepository {
 }
 
 let repository: CourseRepository;
-export const getCourseRepository = (
-    db?: Firestore
-): CourseRepository => {
+export const getCourseRepository = (db?: Firestore): CourseRepository => {
     if (!repository && db) {
         repository = new CourseRepository(db);
     }

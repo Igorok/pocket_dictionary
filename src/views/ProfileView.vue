@@ -15,7 +15,7 @@ const error = ref({
 const statsData: StudentProgressData[] = [];
 const stundetData: Student = {
     id: '',
-    email: '',
+    email: ''
 };
 const statsRef = ref(statsData);
 const userRef = ref(stundetData);
@@ -66,7 +66,9 @@ const getProfileData = async (): Promise<void> => {
             });
             userStats.push(info);
         });
-        statsRef.value = userStats.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+        statsRef.value = userStats.sort(
+            (a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
+        );
     } catch (e) {
         if (e instanceof Error) {
             error.value.message = e.message;
@@ -105,17 +107,17 @@ onBeforeUnmount(() => {
             <div v-for="stats in statsRef" :key="stats.date">
                 <p>
                     <span class="font-info">
-                        Date: {{ stats.date }}
-                        &nbsp;
-                        Total: {{ stats.total }}
+                        Date: {{ stats.date }} &nbsp; Total: {{ stats.total }}
                     </span>
                     &nbsp;
-                    <span class="font-success">Success: {{ stats.success }}</span>
+                    <span class="font-success"
+                        >Success: {{ stats.success }}</span
+                    >
                     &nbsp;
                     <span class="font-error">Errors: {{ stats.error }}</span>
                 </p>
                 <!-- body -->
-                <div class="flex-row" >
+                <div class="flex-row">
                     <div
                         class="flex-item"
                         v-for="progress in stats.progress"
@@ -128,7 +130,6 @@ onBeforeUnmount(() => {
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
 </template>

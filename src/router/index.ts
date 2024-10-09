@@ -70,7 +70,7 @@ const router = createRouter({
             path: '/course/tenses/write/:id',
             name: 'course-tenses-write',
             component: () => import('../views/CourseTensesWriteView.vue')
-        },
+        }
     ]
 });
 

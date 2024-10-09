@@ -8,25 +8,25 @@ export type StudentStats = {
     byDay: {
         [k: string]: {
             [k: string]: {
-                e: number,
-                s: number,
-            },
-        },
+                e: number;
+                s: number;
+            };
+        };
     };
 };
 
 export type ProgressItem = {
-    courseId: string,
-    title: string,
-    error: number,
-    success: number,
-    total: number,
+    courseId: string;
+    title: string;
+    error: number;
+    success: number;
+    total: number;
 };
 
 export type StudentProgressData = {
-    date: string,
-    error: number,
-    success: number,
-    total: number,
-    progress: ProgressItem[]
+    date: string;
+    error: number;
+    success: number;
+    total: number;
+    progress: ProgressItem[];
 };

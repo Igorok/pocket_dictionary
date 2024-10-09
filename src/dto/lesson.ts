@@ -8,16 +8,16 @@ export type LessonWriteWord = {
 };
 
 export type LessonWriteData = {
-    title: string,
-    word: string,
-    tr_ru: string,
-    write_1: string,
-    write_2: string,
-    write_3: string,
-    write: boolean,
-    check: boolean,
-    words: LessonWriteWord[],
-    completed: boolean
+    title: string;
+    word: string;
+    tr_ru: string;
+    write_1: string;
+    write_2: string;
+    write_3: string;
+    write: boolean;
+    check: boolean;
+    words: LessonWriteWord[];
+    completed: boolean;
 };
 
 export type LessonWriteVerb = {
@@ -32,14 +32,14 @@ export type LessonWriteVerb = {
 };
 
 export type LessonWriteVerbData = {
-    title: string,
-    write_base_form: string,
-    write_past_simple: string,
-    write_past_participle: string,
-    write: boolean,
-    check: boolean,
-    verbs: LessonWriteVerb[],
-    completed: boolean
+    title: string;
+    write_base_form: string;
+    write_past_simple: string;
+    write_past_participle: string;
+    write: boolean;
+    check: boolean;
+    verbs: LessonWriteVerb[];
+    completed: boolean;
 };
 
 export type LessonWriteSentece = {

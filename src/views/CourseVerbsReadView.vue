@@ -28,10 +28,10 @@ onBeforeMount(async () => {
 
 <template>
     <main>
-        <h3 class="font-success">{{titleRef}}:</h3>
+        <h3 class="font-success">{{ titleRef }}:</h3>
 
         <div class="verbs-wrapper">
-            <div class="flex-row" >
+            <div class="flex-row">
                 <p class="flex-item">Base form</p>
                 <p class="flex-item">Past simple</p>
                 <p class="flex-item">Past participle</p>
@@ -45,6 +45,5 @@ onBeforeMount(async () => {
                 <p class="flex-item">{{ item.tr_ru }}</p>
             </div>
         </div>
-
     </main>
 </template>

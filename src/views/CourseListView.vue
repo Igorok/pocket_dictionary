@@ -72,7 +72,6 @@ const getCoursesData = async (): Promise<void> => {
                     student_course_id
                 });
             }
-
         });
     } catch (e) {
         if (e instanceof Error) {
@@ -112,7 +111,7 @@ const joinCourse = async (course_id: string | undefined) => {
                 l_at: 0
             });
         }
-    }  else if (course.type === 'tenses') {
+    } else if (course.type === 'tenses') {
         const descriptions = tensesRepository.getDescriptions({ topic });
         const tenseIds = descriptions.map(({ id }) => id);
         for (const item of tensesRepository.getSentences({ tenseIds })) {
@@ -131,7 +130,6 @@ const joinCourse = async (course_id: string | undefined) => {
             });
         }
     }
-
 
     try {
         const newCourse = await courseRepository.joinCourse(joined);
@@ -181,7 +179,11 @@ onBeforeUnmount(() => {
             <!-- words -->
             <h3>Words:</h3>
             <div class="card-wrapper">
-                <div v-for="course in coursesWordsRef" :key="course.id" class="card">
+                <div
+                    v-for="course in coursesWordsRef"
+                    :key="course.id"
+                    class="card"
+                >
                     {{ course.title }}
                     <br /><br />
                     <RouterLink
@@ -223,7 +225,11 @@ onBeforeUnmount(() => {
             <!-- others -->
             <h3>Others:</h3>
             <div class="card-wrapper">
-                <div v-for="course in coursesOthersRef" :key="course.id" class="card">
+                <div
+                    v-for="course in coursesOthersRef"
+                    :key="course.id"
+                    class="card"
+                >
                     {{ course.title }}
                     <br /><br />
                     <RouterLink

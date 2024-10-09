@@ -44,7 +44,7 @@ const getLessonData = async (): Promise<void> => {
             String(courseId)
         );
 
-        const course: Course|undefined = courseRepository.getCourseById(
+        const course: Course | undefined = courseRepository.getCourseById(
             studentCourse.course_id
         );
         if (!course) {
@@ -62,7 +62,8 @@ const getLessonData = async (): Promise<void> => {
             .sort((a, b) => a.learned_at - b.learned_at)
             .slice(0, WORDS_IN_LESSON)
             .map(({ id }) => {
-                const { base_form, past_simple, past_participle, tr_ru } = verbsById.get(id);
+                const { base_form, past_simple, past_participle, tr_ru } =
+                    verbsById.get(id);
                 return {
                     id,
                     base_form,
@@ -71,8 +72,8 @@ const getLessonData = async (): Promise<void> => {
                     tr_ru,
                     error: false,
                     success: false,
-                    active: false,
-                }
+                    active: false
+                };
             });
 
         lessonObjRef.value.verbs[0].active = true;
@@ -122,7 +123,9 @@ const applyVerb = async () => {
     const verbs: string[] = [
         lessonObjRef.value.verbs[activeItem].base_form.trim().toLowerCase(),
         lessonObjRef.value.verbs[activeItem].past_simple.trim().toLowerCase(),
-        lessonObjRef.value.verbs[activeItem].past_participle.trim().toLowerCase(),
+        lessonObjRef.value.verbs[activeItem].past_participle
+            .trim()
+            .toLowerCase()
     ];
     const writen: string[] = [
         lessonObjRef.value.write_base_form.toLocaleLowerCase().trim(),
@@ -221,7 +224,7 @@ onBeforeMount(async () => {
             <br />
 
             <div class="verbs-write-container">
-                <div class="flex-row" >
+                <div class="flex-row">
                     <p class="flex-item">Base form</p>
                     <p class="flex-item">Past simple</p>
                     <p class="flex-item">Past participle</p>
@@ -230,7 +233,10 @@ onBeforeMount(async () => {
                 <div
                     v-for="item in lessonObjRef.verbs"
                     :key="item.id"
-                    :class="{'font-success': item.success, 'font-error': item.error}"
+                    :class="{
+                        'font-success': item.success,
+                        'font-error': item.error
+                    }"
                     class="flex-row"
                 >
                     <p class="flex-item">{{ item.base_form }}</p>
@@ -238,13 +244,12 @@ onBeforeMount(async () => {
                     <p class="flex-item">{{ item.past_participle }}</p>
                 </div>
             </div>
-
         </div>
         <!-- else -->
         <div v-else class="lesson-item">
             <div v-for="item in lessonObjRef.verbs" :key="item.id">
                 <div v-if="item.active">
-                    <h3 :class="{'font-error': item.error}">
+                    <h3 :class="{ 'font-error': item.error }">
                         {{ item.tr_ru }}
                     </h3>
                     <br />
@@ -252,22 +257,21 @@ onBeforeMount(async () => {
                     <form @submit.prevent="applyVerb">
                         <div class="verbs-write-container">
                             <!-- head -->
-                            <div class="flex-row" >
+                            <div class="flex-row">
                                 <p class="flex-item">Base form</p>
                                 <p class="flex-item">Past simple</p>
                                 <p class="flex-item">Past participle</p>
                             </div>
                             <!-- description -->
-                            <div
-                                v-if="lessonObj.write"
-                                class="flex-row"
-                            >
+                            <div v-if="lessonObj.write" class="flex-row">
                                 <p class="flex-item">{{ item.base_form }}</p>
                                 <p class="flex-item">{{ item.past_simple }}</p>
-                                <p class="flex-item">{{ item.past_participle }}</p>
+                                <p class="flex-item">
+                                    {{ item.past_participle }}
+                                </p>
                             </div>
                             <!-- input -->
-                            <div class="flex-row" >
+                            <div class="flex-row">
                                 <div class="flex-item">
                                     <input
                                         type="text"
@@ -293,7 +297,9 @@ onBeforeMount(async () => {
                                         type="text"
                                         class="input-text"
                                         id="write_past_participle"
-                                        v-model="lessonObjRef.write_past_participle"
+                                        v-model="
+                                            lessonObjRef.write_past_participle
+                                        "
                                         autocomplete="off"
                                         required
                                     />

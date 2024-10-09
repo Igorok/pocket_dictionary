@@ -45,7 +45,7 @@ const getLessonData = async (): Promise<void> => {
         studentCourse = await courseRepository.getStudentCourseById(
             String(courseId)
         );
-        const course: Course|undefined = courseRepository.getCourseById(
+        const course: Course | undefined = courseRepository.getCourseById(
             studentCourse.course_id
         );
         if (!course) {
@@ -57,12 +57,12 @@ const getLessonData = async (): Promise<void> => {
         const wordsById = words.reduce((acc, word) => {
             acc.set(word.id, word);
             return acc;
-        }, new Map())
+        }, new Map());
 
         lessonObjRef.value.words = cloneDeep(studentCourse.words)
             .sort((a, b) => a.learned_at - b.learned_at)
             .slice(0, WORDS_IN_LESSON)
-            .map(({ id}) => {
+            .map(({ id }) => {
                 const { word, tr_ru } = wordsById.get(id);
                 return {
                     id,

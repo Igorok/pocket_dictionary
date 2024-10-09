@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type {
-    Word
-} from '../dto/course';
+import type { Word } from '../dto/course';
 import { chunk } from 'lodash';
 import { ref, onBeforeMount } from 'vue';
 import { getWordsRepository } from '../repositories/WordsLocal';
@@ -13,7 +11,7 @@ const wordsRef = ref(words);
 
 const getWordsData = () => {
     let arr: Word[] = wordsRepository.getAllWords({});
-    arr = arr.sort((a, b) => a.word < b.word ? -1 : 1);
+    arr = arr.sort((a, b) => (a.word < b.word ? -1 : 1));
     const chunkSize = Math.ceil(arr.length / 3);
     wordsRef.value = chunk(arr, chunkSize);
 };
@@ -32,6 +30,5 @@ onBeforeMount(async () => {
                 </p>
             </div>
         </div>
-
     </main>
 </template>

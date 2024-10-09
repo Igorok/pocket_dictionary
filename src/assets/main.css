@@ -1,6 +1,5 @@
 @import './base.css';
 
-
 h1 {
     font-size: 2.125rem;
 }
@@ -185,26 +184,23 @@ table tr td {
 }
 
 #app {
-    /* max-width: 1280px; */
-    /* margin: 0 auto; */
     font-weight: normal;
 }
 
 /* header */
 header {
     line-height: 1.5;
-    padding: 10px;
     background-color: var(--color-white);
     text-align: center;
 }
 header .logo {
+    margin-top: 20px;
     width: 85px;
 }
 
 header nav {
     width: 100%;
     text-align: center;
-    margin-top: 2rem;
 }
 
 header nav a.router-link-exact-active {
@@ -216,13 +212,22 @@ header nav a.router-link-exact-active:hover {
 }
 
 header nav a {
-    display: inline-block;
+    display: block;
     padding: 0 1rem;
-    border-left: 1px solid var(--color-border);
+    border: none;
 }
 
 header nav a:first-of-type {
     border: 0;
+}
+
+header .menu-toggle {
+    display: block;
+    width: 90%;
+    margin: 0 auto 10px;
+}
+header .menu-hidden {
+    display: none;
 }
 
 /* main */
@@ -278,29 +283,13 @@ main {
     text-align: center;
 }
 
-/* stats */
 .flex-row {
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
+    border-top: 1px solid var(--color-gray);
+    border-bottom: 1px solid var(--color-light-gray);
 }
 
 .flex-row .flex-item {
     padding: 5px;
-}
-
-/* verbs */
-.verbs-wrapper {}
-.verbs-wrapper .flex-row {
-    width: 100%;
-}
-.verbs-wrapper .flex-row .flex-item {
-    width: 25%;
-    word-wrap: wrap;
-    border-bottom: 1px solid var(--color-gray);
-}
-.verbs-write-container .flex-row .flex-item {
-    width: 30%;
 }
 
 .tenses-write-wrapper .input-text {
@@ -328,14 +317,14 @@ main {
     header nav {
         text-align: left;
         font-size: 1rem;
-
-        padding: 1rem 0;
-        margin-top: 1rem;
+        margin-top: 2rem;
     }
 
-    header nav a {
+    header .menu-toggle {
+        display: none;
+    }
+    header .menu-hidden {
         display: block;
-        border: none;
     }
 
     .center-wrapper .center-container {
@@ -351,8 +340,31 @@ main {
         width: 30%;
     }
 
+    /* stats */
+    .flex-row {
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+    }
+
+    .flex-row .flex-item {
+        padding: 5px;
+    }
+
     .flex-row .flex-item {
         padding: 10px;
+    }
+
+    /* verbs */
+    .verbs-wrapper .flex-row {
+        width: 100%;
+    }
+    .verbs-wrapper .flex-row .flex-item {
+        width: 25%;
+        word-wrap: wrap;
+    }
+    .verbs-write-container .flex-row .flex-item {
+        width: 30%;
     }
 }
 
