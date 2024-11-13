@@ -1047,7 +1047,7 @@
             "id": "127",
             "tense_id": "7",
             "sentence": "She had studied hard for the exam, so she passed with flying colors.",
-            "tr_ru": "Она усердно готовилась к экзамену.",
+            "tr_ru": "Она усердно готовилась к экзамену и сдала его блестяще.",
             "words": []
         },
         {
@@ -1215,7 +1215,7 @@
             "id": "151",
             "tense_id": "8",
             "sentence": "You had been exercising consistently, so you felt strong.",
-            "tr_ru": "Вы постоянно занимались спортом",
+            "tr_ru": "Вы постоянно занимались спортом, поэтому чувствовали себя сильным.",
             "words": []
         },
         {
