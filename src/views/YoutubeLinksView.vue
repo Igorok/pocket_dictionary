@@ -47,8 +47,8 @@
             >
         </p>
         <p>
-            <a href="https://www.youtube.com/@EnglishSpeakingSuccess"
-                >English Speaking Success</a
+            <a href="https://www.youtube.com/@EnglishSpeakingCourses"
+                >English Speaking Course</a
             >
         </p>
         <p>
