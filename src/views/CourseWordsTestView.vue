@@ -163,7 +163,14 @@ const updateStudentCourseWords = async () => {
     }
 };
 
+
+let isSelectionBlocked = false;
 const selectCard = (option: TestWordsItemOption) => {
+    if (isSelectionBlocked) {
+        return;
+    }
+    isSelectionBlocked = true;
+
     if (option.word === lessonObjRef.value.words[activeItem].word.word) {
         option.success = true;
         lessonObjRef.value.words[activeItem].success = true;
@@ -183,6 +190,8 @@ const selectCard = (option: TestWordsItemOption) => {
             return updateStudentCourseWords();
         }
         lessonObjRef.value.words[activeItem].active = true;
+
+        isSelectionBlocked = false;
     }, CHANGE_TIMEOUT);
 };
 

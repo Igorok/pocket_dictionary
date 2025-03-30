@@ -38,19 +38,19 @@ const getProfileData = async (): Promise<void> => {
         }, new Map());
         const stats = await courseRepository.getStudentStats(student.id);
 
-        const userStats: StudentProgressData[] = [];
-        Object.entries(stats.byDay).forEach(([dt, courseStast]) => {
+        const userStats: StudentProgressData[] = stats.days.map(({ day, stats }) => {
             const info: StudentProgressData = {
-                date: dt,
+                date: day,
                 error: 0,
                 success: 0,
                 total: 0,
                 progress: []
             };
-            Object.entries(courseStast).forEach(([courseId, { e, s }]) => {
-                const course = courseById.get(courseId);
+
+            stats.forEach(({ e, s, id }) => {
+                const course = courseById.get(id);
                 if (!course) {
-                    console.log('courseId', courseId);
+                    console.log('courseId', id);
                 }
 
                 info.error += e;
@@ -64,11 +64,11 @@ const getProfileData = async (): Promise<void> => {
                     total: e + s
                 });
             });
-            userStats.push(info);
+
+            return info;
         });
-        statsRef.value = userStats.sort(
-            (a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
-        );
+
+        statsRef.value = userStats;
     } catch (e) {
         if (e instanceof Error) {
             error.value.message = e.message;

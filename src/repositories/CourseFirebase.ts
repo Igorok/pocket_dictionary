@@ -6,7 +6,7 @@ import type {
     StudentWordDb,
     StudentCourseDb
 } from '../dto/course';
-import type { StudentStats } from '../dto/student';
+import type { CourseStats, StudentDailyStats, StudentStats } from '../dto/student';
 import type { Firestore } from 'firebase/firestore';
 import {
     collection,
@@ -175,14 +175,17 @@ class CourseRepository {
 
         let stats: StudentStats = {
             student_id,
-            byDay: {}
+            days: [],
         };
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-            const { byDay } = doc.data();
-            stats.byDay = byDay;
+            const { days = [] } = doc.data();
+            stats.days = days;
             return;
         });
+
+        stats.days = stats.days.sort((a, b) => Date.parse(a.day) - Date.parse(b.day));
+
         return stats;
     }
 
@@ -197,20 +200,43 @@ class CourseRepository {
         success: number;
         error: number;
     }): Promise<void> {
+        const todayKey = new Date().toLocaleDateString('en-EN');
         const userStats: StudentStats = await this.getStudentStats(student_id);
-        const { byDay } = userStats;
+        let { days } = userStats;
+        days= days.slice(days.length - 30);
 
-        const today = new Date().toLocaleDateString('en-EN');
-        byDay[today] = byDay[today] || {};
-        byDay[today][course_id] = byDay[today][course_id] || {
-            e: 0,
-            s: 0
-        };
-        byDay[today][course_id].e += error;
-        byDay[today][course_id].s += success;
+        const todayObj: StudentDailyStats | undefined = days.find(({ day }) => day === todayKey);
+        if (!todayObj) {
+            days.push({
+                day: todayKey,
+                stats: [{
+                    id: course_id,
+                    e: error,
+                    s: success,
+                }],
+            });
 
-        await setDoc(doc(this.db, 'student_stats', student_id), {
-            byDay,
+            return setDoc(doc(this.db, 'student_stats', student_id), {
+                days,
+                student_id
+            });
+        }
+
+        const courseStats: CourseStats | undefined = todayObj.stats.find(({ id }) => id === course_id);
+
+        if (!courseStats) {
+            todayObj.stats.push({
+                id: course_id,
+                e: error,
+                s: success,
+            });
+        } else {
+            courseStats.e += error;
+            courseStats.s += success;
+        }
+
+        return setDoc(doc(this.db, 'student_stats', student_id), {
+            days,
             student_id
         });
     }

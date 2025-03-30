@@ -42,17 +42,17 @@
         "updated_at": 0
     },
     {
-        "id": "pr_tense",
-        "title": "Present tense",
-        "type": "tenses",
-        "topic": "present",
-        "updated_at": 0
-    },
-    {
         "id": "ps_tense",
         "title": "Past tense",
         "type": "tenses",
         "topic": "past",
+        "updated_at": 0
+    },
+    {
+        "id": "pr_tense",
+        "title": "Present tense",
+        "type": "tenses",
+        "topic": "present",
         "updated_at": 0
     },
     {

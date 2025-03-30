@@ -3,16 +3,20 @@ export type Student = {
     email: string;
 };
 
+export type CourseStats = {
+    id: string,
+    e: number;
+    s: number;
+};
+
+export type StudentDailyStats = {
+    day: string,
+    stats: CourseStats[],
+};
+
 export type StudentStats = {
     student_id: string;
-    byDay: {
-        [k: string]: {
-            [k: string]: {
-                e: number;
-                s: number;
-            };
-        };
-    };
+    days: StudentDailyStats[],
 };
 
 export type ProgressItem = {
