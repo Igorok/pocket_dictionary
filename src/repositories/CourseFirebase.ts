@@ -184,7 +184,7 @@ class CourseRepository {
             return;
         });
 
-        stats.days = stats.days.sort((a, b) => Date.parse(a.day) - Date.parse(b.day));
+        stats.days = stats.days.sort((a, b) => Date.parse(b.day) - Date.parse(a.day));
 
         return stats;
     }
