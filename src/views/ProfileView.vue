@@ -123,7 +123,7 @@ onBeforeUnmount(() => {
                         v-for="progress in stats.progress"
                         :key="progress.courseId"
                     >
-                        <p>{{ progress.title }}</p>
+                        <p class="font-info">{{ progress.title }}</p>
                         <p>Total: {{ progress.total }}</p>
                         <p>Success: {{ progress.success }}</p>
                         <p>Errors: {{ progress.error }}</p>
