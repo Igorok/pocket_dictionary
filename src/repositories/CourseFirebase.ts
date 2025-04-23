@@ -203,11 +203,13 @@ class CourseRepository {
         const todayKey = new Date().toLocaleDateString('en-EN');
         const userStats: StudentStats = await this.getStudentStats(student_id);
         let { days } = userStats;
-        days= days.slice(days.length - 30);
+        if (days.length > 30) {
+            days= days.slice(days.length - 30);
+        }
 
         const todayObj: StudentDailyStats | undefined = days.find(({ day }) => day === todayKey);
         if (!todayObj) {
-            days.push({
+            days.unshift({
                 day: todayKey,
                 stats: [{
                     id: course_id,
