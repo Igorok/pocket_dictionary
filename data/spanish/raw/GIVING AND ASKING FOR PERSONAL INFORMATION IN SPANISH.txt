@@ -1,0 +1,41 @@
+¿Cómo?
+¿Cómo estás?
+¿Dónde?
+¿Dónde estás?
+¿Cuándo?
+¿Cuándo es tu cumpleaños?
+¿Cuántos?
+¿Cuántos años tienes?
+¿Cuál?
+¿Cuál es tu número de teléfono?
+¿Quién?
+¿Quién es ella?
+¿Quiénes?
+¿Quiénes son ellos?
+¿Cómo te llamas? (Yo) me llamo Samuel
+¿Cómo te apellidas? (Yo) me apellido Medina
+¿De dónde eres? (Yo) soy de Paraguay
+¿Cuántos años tienes? (Yo) tengo 35 años
+¿A qué te dedicas? (Yo) soy abogada
+¿Dónde trabajas? (Yo) trabajo en un restaurante
+¿Dónde vives? (Yo) vivo en Santiago de Chile
+¿Cuál es tu número de teléfono? Mi número de teléfono es 873 574 1928
+¿Cuál es tu correo electrónico? Mi correo electrónico es lpmorales9@gmail.com
+¿Tienes hijos? Sí, tengo dos hijos / No, no tengo hijos
+¿Eres casado/ Eres casada? Sí, soy casado(a) / No, no soy casado(a)
+¿Cómo se llama tu esposo/esposa? Mi esposo(a) se llama Laura/José…
+¿A qué se dedica tu esposa/esposo? Mi esposo(a) es abogado(a)
+¿De dónde son (ustedes)? (Nosotros) somos de Monterrey
+¿Cuántos años tienen (ustedes)? (Nosotros) tenemos 15 años
+¿Dónde trabajan (ustedes)? (Nosotros) trabajamos en un hotel
+¿Dónde viven (ustedes)? (Nosotros) vivimos en Asunción
+¿Son casados/casadas? Sí, somos casados(as) / No, no somos casados(as)
+¿Quién es él? Él es Javier
+¿Cómo se llama él? Él se llama Ramón
+¿Quién es ella? Ella es Rosa
+¿Cómo se llama ella? Ella se llama Eliana
+¿Quiénes son ellos/ellas? Ellos/Ellas son mis primos(as)
+¿Cómo se llama el esposo de Gabriela? Se llama Gustavo
+¿Cuántos años tiene él/ella? Él/Ella tiene 28 años
+¿De dónde es él/ella? Él/Ella es de Brasil
+¿A qué se dedica él/ella? Él/Ella es artista

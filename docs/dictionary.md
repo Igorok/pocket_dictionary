@@ -11,3 +11,7 @@ The most important words to learn in English.
 4) Translate a table with a google traslate, convert into a csv format
 5) Parse a csv format and merge with data
 
+
+https://spanishwithtati.com/wp-content/uploads/2021/06/Top-1000-Spanish-Words_-A-Complete-List-Free-PDF.pdf
+https://spanish.kwiziq.com/learn/theme
+https://spanishtutoring.com/spanish-vocabulary/

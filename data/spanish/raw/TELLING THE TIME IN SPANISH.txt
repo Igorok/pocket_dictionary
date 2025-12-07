@@ -1,0 +1,33 @@
+1:00 Es la una
+3:00 Son las tres
+10:00 Son las diez
+1:05 Es la una y cinco minutos
+5:30 Son las cinco y media
+11:00 Son las once de la mañana
+7:10 Son las siete y diez
+12:20 Son las doce con veinte
+1:35 Es la una y treinta y cinco
+1:00 Es la una en punto
+3:00 Son las tres en punto
+5:00 Son las cinco en punto
+1:15 Es la una y cuarto
+2:15 Son las dos y cuarto
+7:15 Son las siete y cuarto
+1:30 Es la una y media
+6:30 Son las seis y media
+8:30 Son las ocho y media
+10:40 Son veinte para las once
+2:45 Son cuarto para las tres
+11:55 Son cinco para las doce
+9:00 Son las nueve de la mañana
+9:00 Son las nueve de la noche
+5:00 Son las cinco de la mañana
+5:00 Son las cinco de la tarde
+12:00 Son las doce del mediodía
+12:00 Son las doce de la medianoche
+La reunión empieza a las diez.
+La panadería abre a las siete de la mañana.
+Yo empiezo a trabajar a las ocho.
+3:25 Son las tres veinticinco
+7:17 Son las siete diecisiete
+11:40 Son las once cuarenta

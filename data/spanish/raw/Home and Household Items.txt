@@ -1,0 +1,60 @@
+La casa
+El departamento
+El estudio
+El loft
+El penthouse
+Casa de un piso/una planta
+Casa de dos pisos/plantas
+El primer piso
+El segundo piso
+El tercer piso
+La planta baja
+La planta alta
+El recibidor
+La cocina
+El comedor
+La sala
+El baño
+El medio baño
+La recámara, La habitación
+El jardín
+El patio
+El balcón
+La terraza
+La cochera
+La alberca, La piscina
+La sala
+La mesa
+La silla
+El sofá
+El sillón
+La mesa de centro
+El librero
+El escritorio
+La televisión
+El equipo de música, El estéreo
+La lámpara
+El cojín
+El tapete
+La alacena/El gabinete
+La planta
+La cocina
+El lavavajillas
+El fregadero
+El refrigerador
+El horno
+El microondas
+La recámara
+La cama
+El tocador
+La mesita de noche
+La alfombra
+El baño
+El lavabo
+La alacena/El gabinete
+El espejo
+La tina/bañera
+La regadera, La ducha
+El jabón
+La toalla
+La lavadora

@@ -1,0 +1,31 @@
+Saludos
+Hola
+Buenos días
+Buenas tardes
+Buenas noches
+¿Cómo estás?
+¿Cómo están?
+¿Qué tal?
+¿Cómo te va?
+¿Cómo has estado?
+¿Cómo está (usted)?
+Despedidas
+Adiós
+Nos vemos (pronto)
+Nos vemos el lunes
+Hasta mañana
+Hasta pronto
+Buenas noches
+Que tengas un buen día
+Que tenga (usted) un buen día
+Que tengas un buen fin de semana
+Que tenga (usted) un buen fin de semana
+Hola, Raquel, ¿cómo estás?
+Bien, Juan, ¿y tú? ¿Qué tal?
+Bien también. Gracias.
+¡Hola, Ramón! ¿Cómo has estado?
+¡Hola, Pedro! Muy bien, ¿y tú?
+Bien. Muchas gracias.
+Hola. Buenas tardes, señor García. ¿Cómo está usted?
+Bien. Gracias. ¿Y usted?
+Muy bien. Gracias.

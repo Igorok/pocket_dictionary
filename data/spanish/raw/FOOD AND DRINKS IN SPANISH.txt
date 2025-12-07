@@ -1,0 +1,102 @@
+el desayuno
+la comida, el almuerzo
+la cena
+una botana, un tentempié, un refrigerio
+desayunar
+comer
+cenar
+carne
+pescado
+pollo
+huevo
+pan
+pan tostado
+cereal
+mantequilla
+miel
+yogurt
+crema
+mayonesa
+mostaza
+pasta
+ensalada
+arroz
+sopa
+queso
+jamón
+mermelada
+papa
+lechuga
+zanahoria
+cebolla
+brócoli
+coliflor
+calabacín/calabacita
+apio
+berenjena
+chile
+pimiento
+espinaca
+maíz
+manzana
+naranja
+pera
+plátano
+durazno
+fresa
+piña
+limón
+aguacate
+tomate
+cereza
+ciruela
+mandarina
+mango
+melón
+sandía
+higo
+sal
+pimienta
+ajo
+canela
+albahaca
+orégano
+menta
+hierbabuena
+clavo
+cilantro
+eneldo
+perejil
+romero
+azafrán
+vainilla
+agua
+café
+café con leche
+café negro
+té
+refresco
+jugo de naranja
+jugo de manzana
+limonada
+licuado
+agua mineral
+leche
+cerveza
+vino
+chocolate caliente
+helado
+pastel
+tarta
+caramelos, dulces
+tableta de chocolate
+galletas
+plato
+vaso
+copa
+taza
+servilleta
+hielo
+tenedor
+cuchara
+cuchillo

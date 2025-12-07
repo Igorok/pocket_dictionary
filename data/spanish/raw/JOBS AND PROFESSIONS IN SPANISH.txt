@@ -1,0 +1,55 @@
+Yo soy gerente de hotel
+Yo soy secretaria
+Él es un actor muy bueno
+Profesor / Profesora
+Estudiante
+Abogado / Abogada
+Secretario / Secretaria
+Recepcionista
+Gerente
+Contador / Contadora
+Arquitecto / Arquitecta
+Político / Política
+Ingeniero / Ingeniera
+Oficial de policía
+Constructor / Constructora
+Vendedor / Vendedora
+Plomero / Plomera
+Bombero / Bombera
+Periodista
+Cartero / Cartera
+Cajero / Cajera
+Mecánico / Mecánica
+Taxista
+Médico
+Enfermero / Enfermera
+Dentista
+Veterinario / Veterinaria
+Pintor / Pintora
+Actor / Actriz
+Artista
+Escritor / Escritora
+Músico / Música
+Cantante
+Mesero / Mesera
+Cocinero / Cocinera
+Ama de casa
+Niñero / Niñera
+¿A qué te dedicas?
+¿A qué se dedica (usted)?
+Ellas son estudiantes.
+Pablo es médico.
+Yo soy ingeniero.
+Juan es un abogado muy bueno.
+¿Dónde trabajas?
+¿Dónde trabaja (usted)?
+¿A qué te dedicas?
+Soy abogada, ¿y tú?
+Yo soy actor.
+Qué interesante. ¿Dónde trabajas?
+En el teatro.
+Yo soy enfermera, ¿y tú?
+Yo soy abogado.
+Mi hermano también es abogado.
+¿Ah sí? ¿Dónde trabaja?
+Él trabaja en una oficina en el centro.

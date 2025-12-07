@@ -1,0 +1,59 @@
+La casa
+El departamento
+El edificio
+El hotel
+El hospital
+La escuela
+El parque
+La iglesia
+La catedral
+La fábrica
+La plaza
+El ayuntamiento
+La estación de autobús
+La estación de tren
+El aeropuerto
+La estación de policía
+La estación de bomberos
+La parada de autobús
+El auditorio
+El estadio
+El mercado
+El supermercado
+La tienda de abarrotes
+La farmacia
+La zapatería
+El centro comercial
+La tienda departamental
+La librería
+La papelería
+La florería
+El restaurante
+El bar
+El café
+La cafetería
+La panadería
+El consultorio médico
+El consultorio dental
+El banco
+La oficina de correo
+El estacionamiento
+La gasolinera
+El teatro
+El museo
+La galería de arte
+El gimnasio
+La biblioteca
+La calle
+La cuadra
+La banqueta
+La carretera, La autopista
+El puente
+La torre
+El castillo
+El palacio
+El templo
+¿Hay una panadería en esta calle? Sí. Hay una a dos calles de aquí.
+¿Vives en una casa o en un departamento? Vivo en un departamento.
+El estacionamiento está lleno.
+El palacio es del siglo XVI.
