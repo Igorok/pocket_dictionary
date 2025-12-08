@@ -3,8 +3,8 @@ import type { Course, StudentCourse } from '../dto/course';
 import type { LessonWriteVerbData } from '../dto/lesson';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getVerbsRepository } from '../repositories/VerbsLocal';
-import { getCourseRepository } from '../repositories/CourseFirebase';
+import { getVerbsRepository } from '../dao/VerbsLocal';
+import { getCourseRepository } from '../dao/CourseFirebase';
 
 const WORDS_IN_LESSON = 5;
 

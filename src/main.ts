@@ -5,9 +5,9 @@ import { createPinia } from 'pinia';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { firebaseConfig } from './config/local-config';
-import { getWordsRepository } from './repositories/WordsLocal';
-import { getAuthRepository } from './repositories/AuthFirebase';
-import { getCourseRepository } from './repositories/CourseFirebase';
+import { getWordsRepository } from './dao/WordsLocal';
+import { getAuthRepository } from './dao/AuthFirebase';
+import { getCourseRepository } from './dao/CourseFirebase';
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);

@@ -3,8 +3,8 @@ import type { Unsubscribe } from 'firebase/auth';
 import type { Course } from '../dto/course';
 import type { StudentProgressData, Student } from '../dto/student';
 import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
-import { getAuthRepository } from '../repositories/AuthFirebase';
-import { getCourseRepository } from '../repositories/CourseFirebase';
+import { getAuthRepository } from '../dao/AuthFirebase';
+import { getCourseRepository } from '../dao/CourseFirebase';
 
 const authRepository = getAuthRepository(undefined);
 const courseRepository = getCourseRepository(undefined);

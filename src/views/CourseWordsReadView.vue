@@ -3,8 +3,8 @@ import type { Word } from '../dto/course';
 import { chunk } from 'lodash';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getWordsRepository } from '../repositories/WordsLocal';
-import { getCourseRepository } from '../repositories/CourseFirebase';
+import { getWordsRepository } from '../dao/WordsLocal';
+import { getCourseRepository } from '../dao/CourseFirebase';
 
 const courseId: string | string[] = useRoute().params.id;
 

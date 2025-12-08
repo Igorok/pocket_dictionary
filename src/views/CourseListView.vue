@@ -2,11 +2,11 @@
 import type { Unsubscribe } from 'firebase/auth';
 import type { Course, StudentCourse, StudentCourseDb } from '../dto/course';
 import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
-import { getAuthRepository } from '../repositories/AuthFirebase';
-import { getCourseRepository } from '../repositories/CourseFirebase';
-import { getWordsRepository } from '../repositories/WordsLocal';
-import { getVerbsRepository } from '../repositories/VerbsLocal';
-import { getTensesRepository } from '../repositories/TensesLocal';
+import { getAuthRepository } from '../dao/AuthFirebase';
+import { getCourseRepository } from '../dao/CourseFirebase';
+import { getWordsRepository } from '../dao/WordsLocal';
+import { getVerbsRepository } from '../dao/VerbsLocal';
+import { getTensesRepository } from '../dao/TensesLocal';
 
 type Joined = {
     joined: boolean;

@@ -2,8 +2,8 @@
 import type { IrregularVerb } from '../dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getVerbsRepository } from '../repositories/VerbsLocal';
-import { getCourseRepository } from '../repositories/CourseFirebase';
+import { getVerbsRepository } from '../dao/VerbsLocal';
+import { getCourseRepository } from '../dao/CourseFirebase';
 
 const courseId: string | string[] = useRoute().params.id;
 

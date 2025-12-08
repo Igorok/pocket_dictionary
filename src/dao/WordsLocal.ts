@@ -1,5 +1,5 @@
 import type { Word } from '../dto/course';
-import wordsJson from '../data/merged.json' with { type: 'json' };
+import wordsJson from '../data_local/english/words.json' with { type: 'json' };
 
 class WordsRepository {
     getAllWords({ topic }: { topic?: string }): Word[] {

@@ -7,8 +7,8 @@ import type {
 } from '../dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getWordsRepository } from '../repositories/WordsLocal';
-import { getCourseRepository } from '../repositories/CourseFirebase';
+import { getWordsRepository } from '../dao/WordsLocal';
+import { getCourseRepository } from '../dao/CourseFirebase';
 
 const WORDS_IN_LESSON = 50;
 const WORDS_IN_ITEM = 4;

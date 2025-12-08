@@ -2,7 +2,7 @@
 import type { Unsubscribe } from 'firebase/auth';
 import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
-import { getAuthRepository } from './repositories/AuthFirebase';
+import { getAuthRepository } from './dao/AuthFirebase';
 import { useAuthStore } from './stores/auth';
 
 const menuHiddenRef = ref(true);

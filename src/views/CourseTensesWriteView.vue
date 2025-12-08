@@ -8,8 +8,8 @@ import type {
 import type { LessonWriteTenseData } from '../dto/lesson';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getTensesRepository } from '../repositories/TensesLocal';
-import { getCourseRepository } from '../repositories/CourseFirebase';
+import { getTensesRepository } from '../dao/TensesLocal';
+import { getCourseRepository } from '../dao/CourseFirebase';
 
 const WORDS_IN_LESSON = 3;
 

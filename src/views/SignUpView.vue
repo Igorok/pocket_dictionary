@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { getAuthRepository } from '../repositories/AuthFirebase';
+import { getAuthRepository } from '../dao/AuthFirebase';
 import { useAuthStore } from '../stores/auth';
 
 const router = useRouter();

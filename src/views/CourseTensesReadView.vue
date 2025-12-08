@@ -2,8 +2,8 @@
 import type { TenseDescription } from '../dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getTensesRepository } from '../repositories/TensesLocal';
-import { getCourseRepository } from '../repositories/CourseFirebase';
+import { getTensesRepository } from '../dao/TensesLocal';
+import { getCourseRepository } from '../dao/CourseFirebase';
 
 const courseId: string | string[] = useRoute().params.id;
 

@@ -1,5 +1,5 @@
 import type { TenseDescription, TenseSentence } from '../dto/course';
-import tensesJson from '../data/english_tenses.json' with { type: 'json' };
+import tensesJson from '../data_local/english/tenses.json' with { type: 'json' };
 
 class TensesRepository {
     getDescriptions({ topic }: { topic?: string }): TenseDescription[] {

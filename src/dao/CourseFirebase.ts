@@ -19,7 +19,7 @@ import {
     query
 } from 'firebase/firestore';
 
-import coursesJson from '../data/courses.json' with { type: 'json' };
+import coursesJson from '../data_local/english/courses.json' with { type: 'json' };
 
 const LIMIT: number = 30;
 
