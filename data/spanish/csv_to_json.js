@@ -50,7 +50,7 @@ const convert = async () => {
         words = words.concat(data);
     }
 
-    await writeFile('./merged.json', JSON.stringify(Object.values(merged)), 'utf8');
+    await writeFile('./json/words.json', JSON.stringify(Object.values(merged)), 'utf8');
 };
 
 convert();

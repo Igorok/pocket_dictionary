@@ -1,0 +1,85 @@
+[{
+    "id": "spn_w_1",
+    "title": "CLOTHES AND SHOPPING",
+    "type": "words",
+    "topic": "clothes_and_shopping",
+    "updated_at": 0
+}, {
+    "id": "spn_w_2",
+    "title": "DAILY ROUTINE",
+    "type": "words",
+    "topic": "daily_routine",
+    "updated_at": 0
+}, {
+    "id": "spn_w_3",
+    "title": "EVERYDAY OBJECTS",
+    "type": "words",
+    "topic": "everyday_objects",
+    "updated_at": 0
+}, {
+    "id": "spn_w_4",
+    "title": "FOOD AND DRINKS",
+    "type": "words",
+    "topic": "food_and_drinks",
+    "updated_at": 0
+}, {
+    "id": "spn_w_5",
+    "title": "FREE TIME HOBBIES",
+    "type": "words",
+    "topic": "free_time_hobbies",
+    "updated_at": 0
+}, {
+    "id": "spn_w_6",
+    "title": "GREETINGS",
+    "type": "words",
+    "topic": "greetings",
+    "updated_at": 0
+}, {
+    "id": "spn_w_7",
+    "title": "HOME AND HOUSEHOLD",
+    "type": "words",
+    "topic": "home_and_household",
+    "updated_at": 0
+}, {
+    "id": "spn_w_8",
+    "title": "JOBS AND PROFESSIONS",
+    "type": "words",
+    "topic": "jobs_and_professions",
+    "updated_at": 0
+}, {
+    "id": "spn_w_9",
+    "title": "NUMBERS IN SPANISH",
+    "type": "words",
+    "topic": "numbers_in_spanish",
+    "updated_at": 0
+}, {
+    "id": "spn_w_10",
+    "title": "PERSONAL INFORMATION",
+    "type": "words",
+    "topic": "personal_information",
+    "updated_at": 0
+}, {
+    "id": "spn_w_11",
+    "title": "PLACES AROUND TOWN",
+    "type": "words",
+    "topic": "places_around_town",
+    "updated_at": 0
+}, {
+    "id": "spn_w_12",
+    "title": "TELLING THE TIME",
+    "type": "words",
+    "topic": "telling_the_time",
+    "updated_at": 0
+}, {
+    "id": "spn_w_13",
+    "title": "TIME EXPRESSIONS",
+    "type": "words",
+    "topic": "time_expressions",
+    "updated_at": 0
+}, {
+    "id": "spn_w_14",
+    "title": "USEFUL EXPRESSIONS",
+    "type": "words",
+    "topic": "useful_expressions",
+    "updated_at": 0
+}]
