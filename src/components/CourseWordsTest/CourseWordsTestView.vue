@@ -4,11 +4,11 @@ import type {
     StudentCourse,
     TestWordsItemOption,
     TestWordsLesson
-} from '../dto/course';
+} from '../../dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getWordsRepository } from '../dao/WordsLocal';
-import { getCourseRepository } from '../dao/CourseFirebase';
+import { getWordsRepository } from '../../dao/WordsLocal';
+import { getCourseRepository } from '../../dao/CourseFirebase';
 
 const WORDS_IN_LESSON = 50;
 const WORDS_IN_ITEM = 4;

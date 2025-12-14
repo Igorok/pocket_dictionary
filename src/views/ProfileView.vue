@@ -1,97 +1,72 @@
 <script setup lang="ts">
-import type { Unsubscribe } from 'firebase/auth';
-import type { Course } from '../dto/course';
-import type { StudentProgressData, Student } from '../dto/student';
-import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
-import { getAuthRepository } from '../dao/AuthFirebase';
-import { getCourseRepository } from '../dao/CourseFirebase';
+    import { ref, onBeforeMount } from 'vue';
+    import { useAuthStore } from '../stores/auth';
+    import type { Course } from '../dto/course';
+    import type { StudentProgressData } from '../dto/student';
+    import { getCourseRepository } from '../dao/CourseFirebase';
+    import LanguageView from '../components/language/selector.vue';
 
-const authRepository = getAuthRepository(undefined);
-const courseRepository = getCourseRepository(undefined);
+    const authStore = useAuthStore();
+    const courseRepository = getCourseRepository(undefined);
 
-const error = ref({
-    message: ''
-});
-const statsData: StudentProgressData[] = [];
-const stundetData: Student = {
-    id: '',
-    email: ''
-};
-const statsRef = ref(statsData);
-const userRef = ref(stundetData);
+    const error = ref({
+        message: ''
+    });
+    const statsData: StudentProgressData[] = [];
+    const statsRef = ref(statsData);
+    const userRef = ref(authStore.student);
 
-let retry = 0;
-const getProfileData = async (): Promise<void> => {
-    retry += 1;
-    if (retry === 5) return;
+    const getProfileData = async () => {
+        try {
+            const allCourses: Course[] = courseRepository.getCourses({});
+            const courseById = allCourses.reduce((acc, val) => {
+                acc.set(val.id, val);
+                return acc;
+            }, new Map());
+            const stats = await courseRepository.getStudentStats(userRef.value.id);
 
-    try {
-        const student = authRepository.getCurrentUser();
-        if (!student?.id) return;
+            const userStats: StudentProgressData[] = stats.days.map(({ day, stats }) => {
+                const info: StudentProgressData = {
+                    date: day,
+                    error: 0,
+                    success: 0,
+                    total: 0,
+                    progress: []
+                };
 
-        userRef.value = student;
+                stats.forEach(({ e, s, id }) => {
+                    const course = courseById.get(id);
+                    if (!course) {
+                        console.log('courseId', id);
+                    }
 
-        const allCourses: Course[] = courseRepository.getCourses({});
-        const courseById = allCourses.reduce((acc, val) => {
-            acc.set(val.id, val);
-            return acc;
-        }, new Map());
-        const stats = await courseRepository.getStudentStats(student.id);
-
-        const userStats: StudentProgressData[] = stats.days.map(({ day, stats }) => {
-            const info: StudentProgressData = {
-                date: day,
-                error: 0,
-                success: 0,
-                total: 0,
-                progress: []
-            };
-
-            stats.forEach(({ e, s, id }) => {
-                const course = courseById.get(id);
-                if (!course) {
-                    console.log('courseId', id);
-                }
-
-                info.error += e;
-                info.success += s;
-                info.total += e + s;
-                info.progress.push({
-                    courseId: course.courseId,
-                    title: course.title,
-                    error: e,
-                    success: s,
-                    total: e + s
+                    info.error += e;
+                    info.success += s;
+                    info.total += e + s;
+                    info.progress.push({
+                        courseId: course.courseId,
+                        title: course.title,
+                        error: e,
+                        success: s,
+                        total: e + s
+                    });
                 });
+
+                return info;
             });
 
-            return info;
-        });
-
-        statsRef.value = userStats;
-    } catch (e) {
-        if (e instanceof Error) {
-            error.value.message = e.message;
-        }
-    }
-};
-
-let onAuthStateListener: Unsubscribe;
-onBeforeMount(async () => {
-    await getProfileData();
-    onAuthStateListener = authRepository.auth.onAuthStateChanged(
-        async (user) => {
-            if (user && !userRef.value.id) {
-                await getProfileData();
+            statsRef.value = userStats;
+        } catch (e) {
+            if (e instanceof Error) {
+                error.value.message = e.message;
             }
         }
-    );
-});
-onBeforeUnmount(() => {
-    if (onAuthStateListener) {
-        onAuthStateListener();
-    }
-});
+    };
+
+    onBeforeMount(async () => {
+        getProfileData();
+    });
+
 </script>
 
 <template>
@@ -102,6 +77,9 @@ onBeforeUnmount(() => {
             </div>
         </div>
         <h3>{{ userRef.email }}</h3>
+        <p>
+            <LanguageView />
+        </p>
 
         <div class="stats-wrapper">
             <div v-for="stats in statsRef" :key="stats.date">

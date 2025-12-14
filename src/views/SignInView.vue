@@ -2,11 +2,11 @@
 import type { Student } from '../dto/student';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { getAuthRepository } from '../dao/AuthFirebase';
+import { getAuthDao } from '../dao/AuthFirebase';
 import { useAuthStore } from '../stores/auth';
 
 const router = useRouter();
-const repository = getAuthRepository(undefined);
+const repository = getAuthDao(undefined);
 const studentStore = useAuthStore();
 
 let inputEmail = ref('');

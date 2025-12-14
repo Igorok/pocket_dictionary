@@ -6,14 +6,14 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { firebaseConfig } from './config/local-config';
 import { getWordsRepository } from './dao/WordsLocal';
-import { getAuthRepository } from './dao/AuthFirebase';
+import { getAuthDao } from './dao/AuthFirebase';
 import { getCourseRepository } from './dao/CourseFirebase';
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 getWordsRepository();
 getCourseRepository(db);
-getAuthRepository(firebaseApp);
+getAuthDao(firebaseApp);
 
 import App from './App.vue';
 import router from './router';

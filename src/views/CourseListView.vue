@@ -1,165 +1,153 @@
 <script setup lang="ts">
-import type { Unsubscribe } from 'firebase/auth';
-import type { Course, StudentCourse, StudentCourseDb } from '../dto/course';
-import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
-import { getAuthRepository } from '../dao/AuthFirebase';
-import { getCourseRepository } from '../dao/CourseFirebase';
-import { getWordsRepository } from '../dao/WordsLocal';
-import { getVerbsRepository } from '../dao/VerbsLocal';
-import { getTensesRepository } from '../dao/TensesLocal';
+    import type { Course, StudentCourse, StudentCourseDb } from '../dto/course';
+    import { storeToRefs } from 'pinia';
+    import { ref, onBeforeMount } from 'vue';
+    import { getCourseRepository } from '../dao/CourseFirebase';
+    import { getWordsRepository } from '../dao/WordsLocal';
+    import { getVerbsRepository } from '../dao/VerbsLocal';
+    import { getTensesRepository } from '../dao/TensesLocal';
+    import { useLanguageStore } from '../stores/language';
+    import { useAuthStore } from '../stores/auth';
 
-type Joined = {
-    joined: boolean;
-    student_course_id: string;
-};
-type CourseItem = Course & Joined;
+    const authStore = useAuthStore();
+    const langStore = useLanguageStore();
+    const { language } = storeToRefs(langStore);
 
-const success = ref({
-    message: ''
-});
-const error = ref({
-    message: ''
-});
+    type Joined = {
+        joined: boolean;
+        student_course_id: string;
+    };
+    type CourseItem = Course & Joined;
 
-const coursesWordsRefObj: CourseItem[] = [];
-const coursesOthersRefObj: CourseItem[] = [];
+    const success = ref({
+        message: ''
+    });
+    const error = ref({
+        message: ''
+    });
 
-const coursesWordsRef = ref(coursesWordsRefObj);
-const coursesOthersRef = ref(coursesOthersRefObj);
+    const coursesWordsRefObj: CourseItem[] = [];
+    const coursesOthersRefObj: CourseItem[] = [];
 
-const authRepository = getAuthRepository(undefined);
-const courseRepository = getCourseRepository(undefined);
-const wordsRepository = getWordsRepository();
-const verbsRepository = getVerbsRepository();
-const tensesRepository = getTensesRepository();
+    const coursesWordsRef = ref(coursesWordsRefObj);
+    const coursesOthersRef = ref(coursesOthersRefObj);
 
-let retry = 0;
-const getCoursesData = async (): Promise<void> => {
-    retry += 1;
-    if (retry === 5) return;
+    const courseRepository = getCourseRepository(undefined);
+    const wordsRepository = getWordsRepository();
+    const verbsRepository = getVerbsRepository();
+    const tensesRepository = getTensesRepository();
 
-    try {
-        const student = authRepository.getCurrentUser();
-        if (!student?.id) return;
+    const getCoursesData = async (): Promise<void> => {
+        try {
+            const student = authStore.student;
+            if (!student?.id) return;
 
-        const allCourses: Course[] = courseRepository.getCourses({});
-        const joinedCourses: StudentCourse[] =
-            await courseRepository.getStudentCourses(student.id);
+            const allCourses: Course[] = courseRepository.getCourses({});
+            const joinedCourses: StudentCourse[] =
+                await courseRepository.getStudentCourses(student.id);
 
-        const joinedMap = joinedCourses.reduce((acc, course) => {
-            acc.set(course.course_id, course);
-            return acc;
-        }, new Map());
+            const joinedMap = joinedCourses.reduce((acc, course) => {
+                acc.set(course.course_id, course);
+                return acc;
+            }, new Map());
 
-        allCourses.forEach((course) => {
-            let joined = false;
-            let student_course_id = '';
-            if (joinedMap.has(course.id)) {
-                joined = true;
-                student_course_id = joinedMap.get(course.id).id;
+            allCourses.forEach((course) => {
+                let joined = false;
+                let student_course_id = '';
+                if (joinedMap.has(course.id)) {
+                    joined = true;
+                    student_course_id = joinedMap.get(course.id).id;
+                }
+
+                if (course.type === 'words') {
+                    coursesWordsRef.value.push({
+                        ...course,
+                        joined,
+                        student_course_id
+                    });
+                } else {
+                    coursesOthersRef.value.push({
+                        ...course,
+                        joined,
+                        student_course_id
+                    });
+                }
+            });
+        } catch (e) {
+            if (e instanceof Error) {
+                error.value.message = e.message;
             }
-
-            if (course.type === 'words') {
-                coursesWordsRef.value.push({
-                    ...course,
-                    joined,
-                    student_course_id
-                });
-            } else {
-                coursesOthersRef.value.push({
-                    ...course,
-                    joined,
-                    student_course_id
-                });
-            }
-        });
-    } catch (e) {
-        if (e instanceof Error) {
-            error.value.message = e.message;
         }
-    }
-};
-
-const joinCourse = async (course_id: string | undefined) => {
-    if (!course_id) return;
-
-    const student = authRepository.getCurrentUser();
-    if (!student?.id) return;
-
-    let course = coursesWordsRef.value.find(({ id }) => id === course_id);
-    if (!course?.id) {
-        course = coursesOthersRef.value.find(({ id }) => id === course_id);
-    }
-    if (!course?.id) return;
-
-    const { id, topic, title, type } = course;
-    const joined: StudentCourseDb = {
-        course_id: id,
-        student_id: student.id,
-        title,
-        topic,
-        type,
-        updated_at: Date.now(),
-        words: []
     };
 
-    if (course.type === 'verbs') {
-        for (const item of verbsRepository.getVerbs()) {
-            joined.words.push({
-                id: item.id,
-                e: 0,
-                l_at: 0
-            });
-        }
-    } else if (course.type === 'tenses') {
-        const descriptions = tensesRepository.getDescriptions({ topic });
-        const tenseIds = descriptions.map(({ id }) => id);
-        for (const item of tensesRepository.getSentences({ tenseIds })) {
-            joined.words.push({
-                id: item.id,
-                e: 0,
-                l_at: 0
-            });
-        }
-    } else {
-        for (const item of wordsRepository.getAllWords({ topic })) {
-            joined.words.push({
-                id: item.id,
-                e: 0,
-                l_at: 0
-            });
-        }
-    }
+    const joinCourse = async (course_id: string | undefined) => {
+        if (!course_id) return;
 
-    try {
-        const newCourse = await courseRepository.joinCourse(joined);
-        course.joined = true;
-        course.student_course_id = newCourse.id || '';
+        const student = authStore.student;
+        if (!student?.id) return;
 
-        success.value.message = 'Course successfully joined!';
-    } catch (e) {
-        if (e instanceof Error) {
-            error.value.message = e.message;
+        let course = coursesWordsRef.value.find(({ id }) => id === course_id);
+        if (!course?.id) {
+            course = coursesOthersRef.value.find(({ id }) => id === course_id);
         }
-    }
-};
+        if (!course?.id) return;
 
-let onAuthStateListener: Unsubscribe;
-onBeforeMount(async () => {
-    await getCoursesData();
-    onAuthStateListener = authRepository.auth.onAuthStateChanged(
-        async (user) => {
-            if (user && !coursesWordsRef.value?.length) {
-                await getCoursesData();
+        const { id, topic, title, type } = course;
+        const joined: StudentCourseDb = {
+            course_id: id,
+            student_id: student.id,
+            title,
+            topic,
+            type,
+            updated_at: Date.now(),
+            words: []
+        };
+
+        if (course.type === 'verbs') {
+            for (const item of verbsRepository.getVerbs()) {
+                joined.words.push({
+                    id: item.id,
+                    e: 0,
+                    l_at: 0
+                });
+            }
+        } else if (course.type === 'tenses') {
+            const descriptions = tensesRepository.getDescriptions({ topic });
+            const tenseIds = descriptions.map(({ id }) => id);
+            for (const item of tensesRepository.getSentences({ tenseIds })) {
+                joined.words.push({
+                    id: item.id,
+                    e: 0,
+                    l_at: 0
+                });
+            }
+        } else {
+            for (const item of wordsRepository.getAllWords({ topic })) {
+                joined.words.push({
+                    id: item.id,
+                    e: 0,
+                    l_at: 0
+                });
             }
         }
-    );
-});
-onBeforeUnmount(() => {
-    if (onAuthStateListener) {
-        onAuthStateListener();
-    }
-});
+
+        try {
+            const newCourse = await courseRepository.joinCourse(joined);
+            course.joined = true;
+            course.student_course_id = newCourse.id || '';
+
+            success.value.message = 'Course successfully joined!';
+        } catch (e) {
+            if (e instanceof Error) {
+                error.value.message = e.message;
+            }
+        }
+    };
+
+    onBeforeMount(async () => {
+        getCoursesData();
+    });
+
 </script>
 
 <template>
@@ -175,6 +163,8 @@ onBeforeUnmount(() => {
                     <p>{{ success.message }}</p>
                 </div>
             </div>
+
+            <h3>{{ language.name }}</h3>
 
             <!-- words -->
             <h3>Words:</h3>

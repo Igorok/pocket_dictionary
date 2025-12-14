@@ -2,7 +2,7 @@
 import type { Unsubscribe } from 'firebase/auth';
 import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
-import { getAuthRepository } from './dao/AuthFirebase';
+import { getAuthDao } from './dao/AuthFirebase';
 import { useAuthStore } from './stores/auth';
 
 const menuHiddenRef = ref(true);
@@ -10,17 +10,17 @@ const menuToggle = () => {
     menuHiddenRef.value = !menuHiddenRef.value;
 };
 
-const authRepository = getAuthRepository(undefined);
+const AuthDao = getAuthDao(undefined);
 const authStore = useAuthStore();
 
-const user = authRepository.getCurrentUser();
+const user = AuthDao.getCurrentUser();
 if (user) {
     authStore.login(user);
 }
 
 let onAuthStateListener: Unsubscribe;
 onBeforeMount(async () => {
-    onAuthStateListener = authRepository.auth.onAuthStateChanged((updated) => {
+    onAuthStateListener = AuthDao.auth.onAuthStateChanged((updated) => {
         if (updated && !user) {
             authStore.login({
                 email: updated.email || '',
@@ -55,9 +55,7 @@ onBeforeUnmount(() => {
                 <div v-if="Boolean(authStore.getStudent?.id)">
                     <nav>
                         <RouterLink to="/">About</RouterLink>
-                        <RouterLink to="/youtube-links"
-                            >Youtube links</RouterLink
-                        >
+                        <RouterLink to="/youtube-links">Youtube links</RouterLink>
                         <RouterLink to="/profile">Profile</RouterLink>
                         <RouterLink to="/course/list">All courses</RouterLink>
                     </nav>

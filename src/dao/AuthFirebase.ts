@@ -7,7 +7,7 @@ import {
     signInWithEmailAndPassword
 } from 'firebase/auth';
 
-class AuthRepository {
+class AuthDao {
     auth: Auth;
 
     constructor(app: FirebaseApp) {
@@ -65,12 +65,12 @@ class AuthRepository {
     }
 }
 
-let repository: AuthRepository;
-export const getAuthRepository = (
+let repository: AuthDao;
+export const getAuthDao = (
     app: FirebaseApp | undefined
-): AuthRepository => {
+): AuthDao => {
     if (!repository && app) {
-        repository = new AuthRepository(app);
+        repository = new AuthDao(app);
     }
     return repository;
 };

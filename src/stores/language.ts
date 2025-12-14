@@ -9,12 +9,12 @@ export const useLanguageStore = defineStore('language', {
         };
     },
     getters: {
-        getStudent: (state): Language => {
+        getLanguage: (state): Language => {
             return state.language;
         }
     },
     actions: {
-        select({ code, name }: Language) {
+        selectLanguage({ code, name }: Language) {
             this.language = { code, name };
         }
     }
