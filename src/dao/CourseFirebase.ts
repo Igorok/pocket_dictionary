@@ -19,7 +19,19 @@ import {
     query
 } from 'firebase/firestore';
 
-import coursesJson from '../data_local/english/courses.json' with { type: 'json' };
+import coursesEnglish from '../data_local/english/courses.json' with { type: 'json' };
+import coursesSpanish from '../data_local/spanish/courses.json' with { type: 'json' };
+const coursesByLang = {
+    english: coursesEnglish,
+    spanish: coursesSpanish,
+};
+const coursesById = new Map();
+for (const course of coursesEnglish) {
+    coursesById.set(course.id, course);
+}
+for (const course of coursesSpanish) {
+    coursesById.set(course.id, course);
+}
 
 const LIMIT: number = 30;
 
@@ -30,15 +42,16 @@ class CourseRepository {
         this.db = db;
     }
 
-    getCourses({ type }: { type?: string }): Course[] {
+    getCourses({ type, language }: { type?: string, language: string }): Course[] {
+        const courses: Course[] = coursesByLang[language];
         if (type) {
-            return coursesJson.filter((course) => course.type === type);
+            return courses.filter((course) => course.type === type);
         }
-        return coursesJson;
+        return courses;
     }
 
     getCourseById(id: string): Course | undefined {
-        return coursesJson.find((course) => course.id === id);
+        return coursesById.get(id);
     }
 
     async joinCourse(param: StudentCourseDb): Promise<StudentCourse> {

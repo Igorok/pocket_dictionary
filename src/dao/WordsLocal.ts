@@ -1,13 +1,20 @@
 import type { Word } from '../dto/course';
-import wordsJson from '../data_local/english/words.json' with { type: 'json' };
+import wordsEnglish from '../data_local/english/words.json' with { type: 'json' };
+import wordsSpanish from '../data_local/spanish/words.json' with { type: 'json' };
+
+const wordsByLang = {
+    english: wordsEnglish,
+    spanish: wordsSpanish,
+};
 
 class WordsRepository {
-    getAllWords({ topic }: { topic?: string }): Word[] {
+    getAllWords({ topic, language }: { topic?: string, language: string }): Word[] {
+        const words = wordsByLang[language];
         if (!topic) {
-            return wordsJson;
+            return words;
         }
 
-        return wordsJson.filter(({ topics }) => topics.includes(topic));
+        return words.filter(({ topics }) => topics.includes(topic));
     }
 }
 

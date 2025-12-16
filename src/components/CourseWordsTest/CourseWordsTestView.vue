@@ -9,6 +9,7 @@ import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
 import { getWordsRepository } from '../../dao/WordsLocal';
 import { getCourseRepository } from '../../dao/CourseFirebase';
+import { useLanguageStore } from '../../stores/language';
 
 const WORDS_IN_LESSON = 50;
 const WORDS_IN_ITEM = 4;
@@ -16,6 +17,7 @@ const CHANGE_TIMEOUT = 1000;
 
 const courseId: string | string[] = useRoute().params.id;
 
+const langStore = useLanguageStore();
 const wordsRepository = getWordsRepository();
 const courseRepository = getCourseRepository(undefined);
 
@@ -45,7 +47,8 @@ const getLessonData = async (): Promise<void> => {
         );
 
         const courses: Course[] = courseRepository.getCourses({
-            type: 'words'
+            type: 'words',
+            language: langStore.language.code,
         });
 
         let course: Course | undefined | any = undefined;
@@ -60,7 +63,7 @@ const getLessonData = async (): Promise<void> => {
         if (!course) return;
 
         // group words
-        const words = wordsRepository.getAllWords({});
+        const words = wordsRepository.getAllWords({ language: langStore.language.code, });
         const wordsById = new Map();
         const wordsByTopic = new Map();
         words.forEach((word) => {
@@ -81,7 +84,6 @@ const getLessonData = async (): Promise<void> => {
             (a, b) => a.learned_at - b.learned_at
         );
 
-        let id = WORDS_IN_LESSON * WORDS_IN_ITEM;
         for (let i = 0; i < WORDS_IN_LESSON; ++i) {
             const sw = studentWords[i];
             const options: TestWordsItemOption[] = [];

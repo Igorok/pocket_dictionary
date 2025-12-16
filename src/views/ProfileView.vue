@@ -5,8 +5,10 @@
     import type { StudentProgressData } from '../dto/student';
     import { getCourseRepository } from '../dao/CourseFirebase';
     import LanguageView from '../components/language/selector.vue';
+    import { useLanguageStore } from '../stores/language';
 
     const authStore = useAuthStore();
+    const langStore = useLanguageStore();
     const courseRepository = getCourseRepository(undefined);
 
     const error = ref({
@@ -18,7 +20,7 @@
 
     const getProfileData = async () => {
         try {
-            const allCourses: Course[] = courseRepository.getCourses({});
+            const allCourses: Course[] = courseRepository.getCourses({ language: langStore.language?.code });
             const courseById = allCourses.reduce((acc, val) => {
                 acc.set(val.id, val);
                 return acc;

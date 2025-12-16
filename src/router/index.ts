@@ -36,7 +36,7 @@ const router = createRouter({
         {
             path: '/course/list',
             name: 'course/list',
-            component: () => import('../views/CourseListView.vue'),
+            component: () => import('../components/CourseList/CourseListView.vue'),
             meta: { requiresAuth: true },
         },
         {
@@ -90,7 +90,7 @@ router.beforeEach(async (to, from, next) => {
 
   if (to.meta.requiresAuth && !student?.id) {
     // If the route requires auth and the user is not logged in, redirect to login page
-    next({ name: 'signIn' });
+    next({ name: 'about' });
   } else {
     // Otherwise, allow navigation
     next();

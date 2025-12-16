@@ -1,13 +1,15 @@
 <script setup lang="ts">
-    import type { Course, StudentCourse, StudentCourseDb } from '../dto/course';
+    import type { Course, StudentCourse, StudentCourseDb } from '../../dto/course';
+    import { ref, watch, onBeforeMount } from 'vue';
+    import { getCourseRepository } from '../../dao/CourseFirebase';
+    import { getWordsRepository } from '../../dao/WordsLocal';
+    import { getVerbsRepository } from '../../dao/VerbsLocal';
+    import { getTensesRepository } from '../../dao/TensesLocal';
+    import { useAuthStore } from '../../stores/auth';
     import { storeToRefs } from 'pinia';
-    import { ref, onBeforeMount } from 'vue';
-    import { getCourseRepository } from '../dao/CourseFirebase';
-    import { getWordsRepository } from '../dao/WordsLocal';
-    import { getVerbsRepository } from '../dao/VerbsLocal';
-    import { getTensesRepository } from '../dao/TensesLocal';
-    import { useLanguageStore } from '../stores/language';
-    import { useAuthStore } from '../stores/auth';
+    import { useLanguageStore } from '../../stores/language';
+    import LanguageSelectView from '../../components/language/selector.vue';
+
 
     const authStore = useAuthStore();
     const langStore = useLanguageStore();
@@ -26,6 +28,11 @@
         message: ''
     });
 
+    watch(language, () => {
+        getCoursesData();
+    })
+
+
     const coursesWordsRefObj: CourseItem[] = [];
     const coursesOthersRefObj: CourseItem[] = [];
 
@@ -42,7 +49,10 @@
             const student = authStore.student;
             if (!student?.id) return;
 
-            const allCourses: Course[] = courseRepository.getCourses({});
+            coursesWordsRef.value = [];
+            coursesOthersRef.value = [];
+
+            const allCourses: Course[] = courseRepository.getCourses({ language: language.value.code });
             const joinedCourses: StudentCourse[] =
                 await courseRepository.getStudentCourses(student.id);
 
@@ -164,7 +174,9 @@
                 </div>
             </div>
 
-            <h3>{{ language.name }}</h3>
+            <p>
+                <LanguageSelectView />
+            </p>
 
             <!-- words -->
             <h3>Words:</h3>
