@@ -35,30 +35,23 @@
         "updated_at": 0
     },
     {
-        "id": "irr_verbs",
-        "title": "Irregular verbs",
-        "type": "verbs",
-        "topic": "irr_verbs",
-        "updated_at": 0
-    },
-    {
         "id": "ps_tense",
         "title": "Past tense",
-        "type": "tenses",
+        "type": "sentences",
         "topic": "past",
         "updated_at": 0
     },
     {
         "id": "pr_tense",
         "title": "Present tense",
-        "type": "tenses",
+        "type": "sentences",
         "topic": "present",
         "updated_at": 0
     },
     {
         "id": "ft_tenses",
         "title": "Future tense",
-        "type": "tenses",
+        "type": "sentences",
         "topic": "future",
         "updated_at": 0
     }

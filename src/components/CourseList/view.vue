@@ -1,48 +1,27 @@
 <script setup lang="ts">
-    import type { Course, StudentCourse, StudentCourseDb } from '../../dto/course';
+    import type { CourseItem } from './types';
+    import type { Alert } from '@/common/dto/alert';
     import { ref, watch, onBeforeMount } from 'vue';
-    import { getCourseRepository } from '../../dao/CourseFirebase';
-    import { getWordsRepository } from '../../dao/WordsLocal';
-    import { getVerbsRepository } from '../../dao/VerbsLocal';
-    import { getTensesRepository } from '../../dao/TensesLocal';
     import { useAuthStore } from '../../stores/auth';
+    import { useAlertsStore } from '../../stores/alerts';
     import { storeToRefs } from 'pinia';
-    import { useLanguageStore } from '../../stores/language';
+    import { useLanguageStore } from '@/stores/language';
     import LanguageSelectView from '../../components/language/selector.vue';
-
+    import { getDataAction, joinCourseAction } from './controller';
 
     const authStore = useAuthStore();
     const langStore = useLanguageStore();
+    const alertsStore = useAlertsStore();
     const { language } = storeToRefs(langStore);
-
-    type Joined = {
-        joined: boolean;
-        student_course_id: string;
-    };
-    type CourseItem = Course & Joined;
-
-    const success = ref({
-        message: ''
-    });
-    const error = ref({
-        message: ''
-    });
 
     watch(language, () => {
         getCoursesData();
-    })
-
+    });
 
     const coursesWordsRefObj: CourseItem[] = [];
     const coursesOthersRefObj: CourseItem[] = [];
-
     const coursesWordsRef = ref(coursesWordsRefObj);
     const coursesOthersRef = ref(coursesOthersRefObj);
-
-    const courseRepository = getCourseRepository(undefined);
-    const wordsRepository = getWordsRepository();
-    const verbsRepository = getVerbsRepository();
-    const tensesRepository = getTensesRepository();
 
     const getCoursesData = async (): Promise<void> => {
         try {
@@ -52,104 +31,53 @@
             coursesWordsRef.value = [];
             coursesOthersRef.value = [];
 
-            const allCourses: Course[] = courseRepository.getCourses({ language: language.value.code });
-            const joinedCourses: StudentCourse[] =
-                await courseRepository.getStudentCourses(student.id);
+            const data = await getDataAction(student.id, language.value.code);
 
-            const joinedMap = joinedCourses.reduce((acc, course) => {
-                acc.set(course.course_id, course);
-                return acc;
-            }, new Map());
-
-            allCourses.forEach((course) => {
-                let joined = false;
-                let student_course_id = '';
-                if (joinedMap.has(course.id)) {
-                    joined = true;
-                    student_course_id = joinedMap.get(course.id).id;
-                }
-
-                if (course.type === 'words') {
-                    coursesWordsRef.value.push({
-                        ...course,
-                        joined,
-                        student_course_id
-                    });
-                } else {
-                    coursesOthersRef.value.push({
-                        ...course,
-                        joined,
-                        student_course_id
-                    });
-                }
-            });
+            coursesWordsRef.value = data.words;
+            coursesOthersRef.value = data.sentences;
         } catch (e) {
             if (e instanceof Error) {
-                error.value.message = e.message;
+                const alert: Alert = {
+                    id: `get_course_${Date.now()}`,
+                    type: 'error',
+                    message: e.message,
+                };
+                alertsStore.notify(alert);
             }
         }
     };
 
-    const joinCourse = async (course_id: string | undefined) => {
-        if (!course_id) return;
+    const joinCourse = async (courseId: string | undefined) => {
+        if (!courseId) return;
 
         const student = authStore.student;
         if (!student?.id) return;
 
-        let course = coursesWordsRef.value.find(({ id }) => id === course_id);
+        let course = coursesWordsRef.value.find(({ id }) => id === courseId);
         if (!course?.id) {
-            course = coursesOthersRef.value.find(({ id }) => id === course_id);
+            course = coursesOthersRef.value.find(({ id }) => id === courseId);
         }
         if (!course?.id) return;
 
-        const { id, topic, title, type } = course;
-        const joined: StudentCourseDb = {
-            course_id: id,
-            student_id: student.id,
-            title,
-            topic,
-            type,
-            updated_at: Date.now(),
-            words: []
-        };
-
-        if (course.type === 'verbs') {
-            for (const item of verbsRepository.getVerbs()) {
-                joined.words.push({
-                    id: item.id,
-                    e: 0,
-                    l_at: 0
-                });
-            }
-        } else if (course.type === 'tenses') {
-            const descriptions = tensesRepository.getDescriptions({ topic });
-            const tenseIds = descriptions.map(({ id }) => id);
-            for (const item of tensesRepository.getSentences({ tenseIds })) {
-                joined.words.push({
-                    id: item.id,
-                    e: 0,
-                    l_at: 0
-                });
-            }
-        } else {
-            for (const item of wordsRepository.getAllWords({ topic })) {
-                joined.words.push({
-                    id: item.id,
-                    e: 0,
-                    l_at: 0
-                });
-            }
-        }
-
         try {
-            const newCourse = await courseRepository.joinCourse(joined);
+            const joinedCourse = await joinCourseAction(student.id, courseId);
             course.joined = true;
-            course.student_course_id = newCourse.id || '';
+            course.student_course_id = joinedCourse?.id ?? '';
 
-            success.value.message = 'Course successfully joined!';
+            const alert: Alert = {
+                id: `joined_${Date.now()}`,
+                type: 'success',
+                message: 'Course successfully joined!',
+            };
+            alertsStore.notify(alert);
         } catch (e) {
             if (e instanceof Error) {
-                error.value.message = e.message;
+                const alert: Alert = {
+                    id: `joined_${Date.now()}`,
+                    type: 'error',
+                    message: e.message,
+                };
+                alertsStore.notify(alert);
             }
         }
     };
@@ -163,17 +91,6 @@
 <template>
     <main>
         <div class="course-list">
-            <div v-if="Boolean(error.message)">
-                <div class="card item-error">
-                    <p>{{ error.message }}</p>
-                </div>
-            </div>
-            <div v-if="Boolean(success.message)">
-                <div class="card item-success">
-                    <p>{{ success.message }}</p>
-                </div>
-            </div>
-
             <p>
                 <LanguageSelectView />
             </p>

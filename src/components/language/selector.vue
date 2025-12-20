@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import type { Language } from '../../dto/language';
+import type { Language } from '../../common/dto/language';
 import { useLanguageStore } from '../../stores/language';
-import languagesJson from '../../data_local/languages.json' with { type: 'json' };
+import languagesJson from '../../common/data_local/languages.json' with { type: 'json' };
 
 const langStore = useLanguageStore();
 const languagesByCode = new Map();

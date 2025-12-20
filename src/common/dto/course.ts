@@ -8,12 +8,6 @@ export type Word = {
 
 export type StudentWord = {
     id: string;
-    errors: number;
-    learned_at: number;
-};
-
-export type StudentWordDb = {
-    id: string;
     e: number;
     l_at: number;
 };
@@ -35,17 +29,6 @@ export type StudentCourse = {
     course_id: string;
     student_id: string;
     words: StudentWord[];
-};
-
-export type StudentCourseDb = {
-    id?: string;
-    title: string;
-    topic: string;
-    type: string;
-    updated_at: number;
-    course_id: string;
-    student_id: string;
-    words: StudentWordDb[];
 };
 
 export type TestWordsItemOption = {
@@ -77,15 +60,16 @@ export type IrregularVerb = {
     tr_ru: string;
 };
 
-export type TenseDescription = {
+export type SentenceDescription = {
     id: string;
-    tense: string;
+    topic: string;
     title: string;
     description: string[];
 };
-export type TenseSentence = {
+
+export type Sentence = {
     id: string;
-    tense_id: string;
+    topic_id: string;
     sentence: string;
     tr_ru: string;
     words: string[];

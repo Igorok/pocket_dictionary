@@ -21,7 +21,7 @@ const convert = async () => {
         const key = _.snakeCase(word);
 
         merged[key] = {
-            id: i,
+            id: i.toString(),
             word,
             topics: [],
             tr_ru: tr,

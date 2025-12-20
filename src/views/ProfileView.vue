@@ -1,15 +1,14 @@
 <script setup lang="ts">
     import { ref, onBeforeMount } from 'vue';
     import { useAuthStore } from '../stores/auth';
-    import type { Course } from '../dto/course';
-    import type { StudentProgressData } from '../dto/student';
-    import { getCourseRepository } from '../dao/CourseFirebase';
-    import LanguageView from '../components/language/selector.vue';
+    import type { Course } from '../common/dto/course';
+    import type { StudentProgressData } from '../common/dto/student';
+    import { getCourseDao } from '../common/dao/CourseFirebase';
     import { useLanguageStore } from '../stores/language';
 
     const authStore = useAuthStore();
     const langStore = useLanguageStore();
-    const courseRepository = getCourseRepository(undefined);
+    const courseRepository = getCourseDao(undefined);
 
     const error = ref({
         message: ''
@@ -79,9 +78,6 @@
             </div>
         </div>
         <h3>{{ userRef.email }}</h3>
-        <p>
-            <LanguageView />
-        </p>
 
         <div class="stats-wrapper">
             <div v-for="stats in statsRef" :key="stats.date">

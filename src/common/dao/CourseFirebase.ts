@@ -1,10 +1,7 @@
-import { shuffle } from 'lodash';
 import type {
     Course,
     StudentCourse,
     StudentWord,
-    StudentWordDb,
-    StudentCourseDb
 } from '../dto/course';
 import type { CourseStats, StudentDailyStats, StudentStats } from '../dto/student';
 import type { Firestore } from 'firebase/firestore';
@@ -21,7 +18,12 @@ import {
 
 import coursesEnglish from '../data_local/english/courses.json' with { type: 'json' };
 import coursesSpanish from '../data_local/spanish/courses.json' with { type: 'json' };
-const coursesByLang = {
+
+type CourcesByLang = {
+    [key:string]: Course[],
+};
+
+const coursesByLang: CourcesByLang = {
     english: coursesEnglish,
     spanish: coursesSpanish,
 };
@@ -35,7 +37,7 @@ for (const course of coursesSpanish) {
 
 const LIMIT: number = 30;
 
-class CourseRepository {
+class CourseDao {
     db: Firestore;
 
     constructor(db: Firestore) {
@@ -54,22 +56,12 @@ class CourseRepository {
         return coursesById.get(id);
     }
 
-    async joinCourse(param: StudentCourseDb): Promise<StudentCourse> {
+    async joinCourse(param: StudentCourse): Promise<StudentCourse> {
         const { course_id, student_id, title, type, topic, updated_at, words } =
             param;
         const id = `${course_id}_${student_id}`;
-        const studentCourse: StudentCourseDb = {
-            id,
-            course_id,
-            student_id,
-            title,
-            type,
-            topic,
-            updated_at,
-            words: shuffle(words)
-        };
 
-        await setDoc(doc(this.db, 'student_courses', id), studentCourse);
+        await setDoc(doc(this.db, 'student_courses', id), param);
 
         return {
             id,
@@ -79,20 +71,14 @@ class CourseRepository {
             type,
             topic,
             updated_at,
-            words: words.map(({ id, e, l_at }) => {
-                return {
-                    id,
-                    errors: e,
-                    learned_at: l_at
-                };
-            })
+            words,
         };
     }
 
-    async getStudentCourses(student_id: string): Promise<StudentCourse[]> {
+    async getStudentCourses(studentId: string): Promise<StudentCourse[]> {
         const q = query(
             collection(this.db, 'student_courses'),
-            where('student_id', '==', student_id)
+            where('student_id', '==', studentId)
         );
 
         const querySnapshot = await getDocs(q);
@@ -117,22 +103,16 @@ class CourseRepository {
                 type,
                 topic,
                 updated_at,
-                words: words.map(({ id, e, l_at }: StudentWordDb) => {
-                    return {
-                        id,
-                        errors: e,
-                        learned_at: l_at
-                    };
-                })
+                words,
             });
         });
         return courses;
     }
 
     async getStudentCourseById(
-        student_course_id: string
+        studentCourseId: string
     ): Promise<StudentCourse> {
-        const docRef = doc(this.db, 'student_courses', student_course_id);
+        const docRef = doc(this.db, 'student_courses', studentCourseId);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -154,13 +134,7 @@ class CourseRepository {
                 type,
                 topic,
                 updated_at,
-                words: words.map(({ id, e, l_at }: StudentWordDb) => {
-                    return {
-                        id,
-                        errors: e,
-                        learned_at: l_at
-                    };
-                })
+                words,
             };
         } else {
             throw new Error('No such document!');
@@ -171,25 +145,18 @@ class CourseRepository {
         student_course_id: string,
         words: StudentWord[]
     ): Promise<void> {
-        const dbWords: StudentWordDb[] = words.map(
-            ({ id, errors, learned_at }) => ({
-                id,
-                e: errors,
-                l_at: learned_at
-            })
-        );
         const docRef = doc(this.db, 'student_courses', student_course_id);
-        await updateDoc(docRef, { words: dbWords });
+        await updateDoc(docRef, { words });
     }
 
-    async getStudentStats(student_id: string): Promise<StudentStats> {
+    async getStudentStats(studentId: string): Promise<StudentStats> {
         const q = query(
             collection(this.db, 'student_stats'),
-            where('student_id', '==', student_id)
+            where('student_id', '==', studentId)
         );
 
         let stats: StudentStats = {
-            student_id,
+            student_id: studentId,
             days: [],
         };
         const querySnapshot = await getDocs(q);
@@ -205,18 +172,18 @@ class CourseRepository {
     }
 
     async updateStudentStats({
-        student_id,
-        course_id,
+        studentId,
+        courseId,
         success,
         error
     }: {
-        student_id: string;
-        course_id: string;
+        studentId: string;
+        courseId: string;
         success: number;
         error: number;
     }): Promise<void> {
         const todayKey = new Date().toLocaleDateString('en-EN');
-        const userStats: StudentStats = await this.getStudentStats(student_id);
+        const userStats: StudentStats = await this.getStudentStats(studentId);
         let { days } = userStats;
         if (days.length > LIMIT) {
             days= days.slice(0, LIMIT);
@@ -227,23 +194,23 @@ class CourseRepository {
             days.unshift({
                 day: todayKey,
                 stats: [{
-                    id: course_id,
+                    id: courseId,
                     e: error,
                     s: success,
                 }],
             });
 
-            return setDoc(doc(this.db, 'student_stats', student_id), {
+            return setDoc(doc(this.db, 'student_stats', studentId), {
                 days,
-                student_id
+                student_id: studentId,
             });
         }
 
-        const courseStats: CourseStats | undefined = todayObj.stats.find(({ id }) => id === course_id);
+        const courseStats: CourseStats | undefined = todayObj.stats.find(({ id }) => id === courseId);
 
         if (!courseStats) {
             todayObj.stats.push({
-                id: course_id,
+                id: courseId,
                 e: error,
                 s: success,
             });
@@ -252,17 +219,17 @@ class CourseRepository {
             courseStats.s += success;
         }
 
-        return setDoc(doc(this.db, 'student_stats', student_id), {
+        return setDoc(doc(this.db, 'student_stats', studentId), {
             days,
-            student_id
+            student_id: studentId,
         });
     }
 }
 
-let repository: CourseRepository;
-export const getCourseRepository = (db?: Firestore): CourseRepository => {
-    if (!repository && db) {
-        repository = new CourseRepository(db);
+let courseDao: CourseDao;
+export const getCourseDao = (db?: Firestore): CourseDao => {
+    if (!courseDao && db) {
+        courseDao = new CourseDao(db);
     }
-    return repository;
+    return courseDao;
 };

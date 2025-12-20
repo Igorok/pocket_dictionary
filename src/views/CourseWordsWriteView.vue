@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import type { Course, StudentCourse } from '../dto/course';
-import type { LessonWriteData } from '../dto/lesson';
+import type { Course, StudentCourse } from '../common/dto/course';
+import type { LessonWriteData } from '../common/dto/lesson';
 import { cloneDeep } from 'lodash';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getWordsRepository } from '../dao/WordsLocal';
-import { getCourseRepository } from '../dao/CourseFirebase';
+import { getWordsRepository } from '../common/dao/WordsLocal';
+import { getCourseDao } from '../common/dao/CourseFirebase';
 
 const WORDS_IN_LESSON = 5;
 
 const courseId: string | string[] = useRoute().params.id;
 
 const wordsRepository = getWordsRepository();
-const courseRepository = getCourseRepository(undefined);
+const courseRepository = getCourseDao(undefined);
 
 const success = ref({
     message: ''

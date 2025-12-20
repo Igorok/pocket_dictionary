@@ -4,12 +4,14 @@ import type {
     StudentCourse,
     TestWordsItemOption,
     TestWordsLesson
-} from '../../dto/course';
+} from '../../common/dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getWordsRepository } from '../../dao/WordsLocal';
-import { getCourseRepository } from '../../dao/CourseFirebase';
+import { wordsDao } from '../../common/dao/WordsLocal';
+import { getCourseDao } from '../../common/dao/CourseFirebase';
 import { useLanguageStore } from '../../stores/language';
+import { useAlertsStore } from '@/stores/alerts';
+import type { Alert } from '@/common/dto/alert';
 
 const WORDS_IN_LESSON = 50;
 const WORDS_IN_ITEM = 4;
@@ -18,15 +20,9 @@ const CHANGE_TIMEOUT = 1000;
 const courseId: string | string[] = useRoute().params.id;
 
 const langStore = useLanguageStore();
-const wordsRepository = getWordsRepository();
-const courseRepository = getCourseRepository(undefined);
+const alertsStore = useAlertsStore();
+const courseRepository = getCourseDao(undefined);
 
-const success = ref({
-    message: ''
-});
-const error = ref({
-    message: ''
-});
 const successCount = ref(0);
 const errorCount = ref(0);
 
@@ -63,7 +59,7 @@ const getLessonData = async (): Promise<void> => {
         if (!course) return;
 
         // group words
-        const words = wordsRepository.getAllWords({ language: langStore.language.code, });
+        const words = wordsDao.getAllWords({ language: langStore.language.code, });
         const wordsById = new Map();
         const wordsByTopic = new Map();
         words.forEach((word) => {
@@ -81,7 +77,7 @@ const getLessonData = async (): Promise<void> => {
         lessonObjRef.value.title = course.title;
 
         const studentWords = studentCourse.words.sort(
-            (a, b) => a.learned_at - b.learned_at
+            (a, b) => a.l_at - b.l_at
         );
 
         for (let i = 0; i < WORDS_IN_LESSON; ++i) {
@@ -125,7 +121,12 @@ const getLessonData = async (): Promise<void> => {
         lessonObjRef.value.words[activeItem].active = true;
     } catch (e) {
         if (e instanceof Error) {
-            error.value.message = e.message;
+            const alert: Alert = {
+                id: `get_course_${Date.now()}`,
+                type: 'error',
+                message: e.message,
+            };
+            alertsStore.notify(alert);
         }
     }
 };
@@ -141,8 +142,8 @@ const updateStudentCourseWords = async () => {
         }, new Map());
         studentCourse.words.forEach((word) => {
             if (wordsById.has(word.id)) {
-                word.errors += wordsById.get(word.id);
-                word.learned_at = leardedAt;
+                word.e += wordsById.get(word.id);
+                word.l_at = leardedAt;
             }
         });
 
@@ -152,15 +153,20 @@ const updateStudentCourseWords = async () => {
                 studentCourse.words
             ),
             courseRepository.updateStudentStats({
-                student_id: studentCourse.student_id,
-                course_id: studentCourse.course_id,
+                studentId: studentCourse.student_id,
+                courseId: studentCourse.course_id,
                 error: errorCount.value,
                 success: successCount.value
             })
         ]);
     } catch (e) {
         if (e instanceof Error) {
-            error.value.message = e.message;
+            const alert: Alert = {
+                id: `get_course_${Date.now()}`,
+                type: 'error',
+                message: e.message,
+            };
+            alertsStore.notify(alert);
         }
     }
 };
@@ -205,17 +211,6 @@ onBeforeMount(async () => {
 <template>
     <main>
         <div class="dictionary">
-            <div v-if="Boolean(error.message)">
-                <div class="card item-error">
-                    <p>{{ error.message }}</p>
-                </div>
-            </div>
-            <div v-if="Boolean(success.message)">
-                <div class="card item-success">
-                    <p>{{ success.message }}</p>
-                </div>
-            </div>
-
             <h3>Test: {{ lessonObjRef.title }}</h3>
             <p>
                 <b class="font-success">Success: {{ successCount }}</b>

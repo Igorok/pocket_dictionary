@@ -1,5 +1,5 @@
 import type { IrregularVerb } from '../dto/course';
-import verbsJson from '../data_local/english/verbs.json' with { type: 'json' };
+import verbsJson from '../data_local/english/__verbs.json' with { type: 'json' };
 
 class VerbsRepository {
     getVerbs(): IrregularVerb[] {

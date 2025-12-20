@@ -4,19 +4,19 @@ import type {
     StudentCourse,
     TenseSentence,
     TenseDescription
-} from '../dto/course';
-import type { LessonWriteTenseData } from '../dto/lesson';
+} from '../common/dto/course';
+import type { LessonWriteTenseData } from '../common/dto/lesson';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getTensesRepository } from '../dao/TensesLocal';
-import { getCourseRepository } from '../dao/CourseFirebase';
+import { getTensesRepository } from '../common/dao/SentencesLocal';
+import { getCourseDao } from '../common/dao/CourseFirebase';
 
 const WORDS_IN_LESSON = 3;
 
 const courseId: string | string[] = useRoute().params.id;
 
 const tensesRepository = getTensesRepository();
-const courseRepository = getCourseRepository(undefined);
+const courseRepository = getCourseDao(undefined);
 
 const success = ref({
     message: ''

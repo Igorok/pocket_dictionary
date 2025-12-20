@@ -2,8 +2,9 @@
 import type { Unsubscribe } from 'firebase/auth';
 import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
-import { getAuthDao } from './dao/AuthFirebase';
+import { getAuthDao } from './common/dao/AuthFirebase';
 import { useAuthStore } from './stores/auth';
+import ALertView from '@/components/alert/view.vue';
 
 const menuHiddenRef = ref(true);
 const menuToggle = () => {
@@ -71,7 +72,10 @@ onBeforeUnmount(() => {
         </div>
     </header>
 
-    <RouterView />
+    <div class="content">
+        <ALertView />
+        <RouterView />
+    </div>
 </template>
 
 <style scoped></style>

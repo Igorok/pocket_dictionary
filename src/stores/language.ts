@@ -1,4 +1,4 @@
-import type { Language } from '../dto/language';
+import type { Language } from '../common/dto/language';
 import { defineStore } from 'pinia';
 
 export const useLanguageStore = defineStore('language', {

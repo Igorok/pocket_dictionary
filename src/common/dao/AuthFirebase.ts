@@ -65,12 +65,12 @@ class AuthDao {
     }
 }
 
-let repository: AuthDao;
+let authDao: AuthDao;
 export const getAuthDao = (
     app: FirebaseApp | undefined
 ): AuthDao => {
-    if (!repository && app) {
-        repository = new AuthDao(app);
+    if (!authDao && app) {
+        authDao = new AuthDao(app);
     }
-    return repository;
+    return authDao;
 };

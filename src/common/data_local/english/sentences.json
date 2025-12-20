@@ -2,7 +2,7 @@
     "description": [
         {
             "id": "1",
-            "tense": "present",
+            "topic": "present",
             "title": "Present Simple",
             "description": [
                 "Used for habitual actions or general truths: She reads every morning.",
@@ -15,7 +15,7 @@
         },
         {
             "id": "2",
-            "tense": "present",
+            "topic": "present",
             "title": "Present Continuous",
             "description": [
                 "Describes actions happening now or around the current time: She is reading right now.",
@@ -28,7 +28,7 @@
         },
         {
             "id": "3",
-            "tense": "present",
+            "topic": "present",
             "title": "Present Perfect",
             "description": [
                 "Indicates an action that occurred at an unspecified time before now: She has read five books this month.",
@@ -41,7 +41,7 @@
         },
         {
             "id": "4",
-            "tense": "present",
+            "topic": "present",
             "title": "Present Perfect Continuous",
             "description": [
                 "Emphasizes the duration of an ongoing action that started in the past: She has been reading for two hours.",
@@ -54,7 +54,7 @@
         },
         {
             "id": "5",
-            "tense": "past",
+            "topic": "past",
             "title": "Past Simple",
             "description": [
                 "Describes completed actions at a specific time in the past: She read the book yesterday.",
@@ -67,7 +67,7 @@
         },
         {
             "id": "6",
-            "tense": "past",
+            "topic": "past",
             "title": "Past Continuous",
             "description": [
                 "Focuses on actions that were in progress at a specific time in the past: She was reading when I called her.",
@@ -80,7 +80,7 @@
         },
         {
             "id": "7",
-            "tense": "past",
+            "topic": "past",
             "title": "Past Perfect",
             "description": [
                 "Indicates an action completed before another past action: She had read the book before the meeting.",
@@ -93,7 +93,7 @@
         },
         {
             "id": "8",
-            "tense": "past",
+            "topic": "past",
             "title": "Past Perfect Continuous",
             "description": [
                 "Emphasizes the duration of an action that was ongoing before another past action: She had been reading for an hour when he arrived.",
@@ -106,7 +106,7 @@
         },
         {
             "id": "9",
-            "tense": "future",
+            "topic": "future",
             "title": "Future Simple",
             "description": [
                 "Indicates actions that will happen at a later time: She will read the book tomorrow.",
@@ -118,7 +118,7 @@
         },
         {
             "id": "10",
-            "tense": "future",
+            "topic": "future",
             "title": "Future Continuous",
             "description": [
                 "Describes actions that will be in progress at a specific time in the future: She will be reading at 5 PM.",
@@ -130,7 +130,7 @@
         },
         {
             "id": "11",
-            "tense": "future",
+            "topic": "future",
             "title": "Future Perfect",
             "description": [
                 "Refers to actions that will be completed before a specified future time: She will have read the book by tomorrow.",
@@ -142,7 +142,7 @@
         },
         {
             "id": "12",
-            "tense": "future",
+            "topic": "future",
             "title": "Future Perfect Continuous",
             "description": [
                 "Emphasizes the duration of an ongoing action that will continue up to a point in the future: She will have been reading for two hours by the time you arrive.",
@@ -156,1680 +156,1680 @@
     "sentences": [
         {
             "id": "0",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "She walks to school every day.",
             "tr_ru": "Она ходит в школу каждый день.",
             "words": []
         },
         {
             "id": "1",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "He plays soccer on weekends.",
             "tr_ru": "По выходным он играет в футбол.",
             "words": []
         },
         {
             "id": "2",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "They eat breakfast together in the morning.",
             "tr_ru": "Утром они вместе завтракают.",
             "words": []
         },
         {
             "id": "3",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "The sun rises in the east.",
             "tr_ru": "Солнце встает на востоке.",
             "words": []
         },
         {
             "id": "4",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "I read a book before bed.",
             "tr_ru": "Я читаю книгу перед сном.",
             "words": []
         },
         {
             "id": "5",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "You always help your friends.",
             "tr_ru": "Ты всегда помогаешь своим друзьям.",
             "words": []
         },
         {
             "id": "6",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "The train leaves at 6 PM.",
             "tr_ru": "Поезд отправляется в 6 вечера.",
             "words": []
         },
         {
             "id": "7",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "We enjoy hiking in the mountains.",
             "tr_ru": "Мы любим походы в горы.",
             "words": []
         },
         {
             "id": "8",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "She studies English every afternoon.",
             "tr_ru": "Каждый день после обеда она изучает английский язык.",
             "words": []
         },
         {
             "id": "9",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "He likes to watch movies on Fridays.",
             "tr_ru": "По пятницам он любит смотреть фильмы.",
             "words": []
         },
         {
             "id": "10",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "Birds sing in the spring.",
             "tr_ru": "Весной поют птицы.",
             "words": []
         },
         {
             "id": "11",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "It rains a lot in the fall.",
             "tr_ru": "Осенью часто идут дожди.",
             "words": []
         },
         {
             "id": "12",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "My brother works at a grocery store.",
             "tr_ru": "Мой брат работает в продуктовом магазине.",
             "words": []
         },
         {
             "id": "13",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "The baby sleeps through the night.",
             "tr_ru": "Ребенок спит всю ночь.",
             "words": []
         },
         {
             "id": "14",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "Cats chase mice.",
             "tr_ru": "Кошки гоняются за мышами.",
             "words": []
         },
         {
             "id": "15",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "We often visit our grandparents.",
             "tr_ru": "Мы часто навещаем наших бабушек и дедушек.",
             "words": []
         },
         {
             "id": "16",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "You travel to different countries for work.",
             "tr_ru": "Вы ездите в разные страны по работе.",
             "words": []
         },
         {
             "id": "17",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "The library opens at 9 AM.",
             "tr_ru": "Библиотека открывается в 9 утра.",
             "words": []
         },
         {
             "id": "18",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "I drink coffee in the morning.",
             "tr_ru": "Я пью кофе по утрам.",
             "words": []
         },
         {
             "id": "19",
-            "tense_id": "1",
+            "topic_id": "1",
             "sentence": "They celebrate their birthdays in July.",
             "tr_ru": "Они отмечают свои дни рождения в июле.",
             "words": []
         },
         {
             "id": "20",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "She is walking to school right now.",
             "tr_ru": "Сейчас она идет в школу.",
             "words": []
         },
         {
             "id": "21",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "He is playing soccer with his friends.",
             "tr_ru": "Он играет в футбол со своими друзьями.",
             "words": []
         },
         {
             "id": "22",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "They are eating dinner at the moment.",
             "tr_ru": "В данный момент они ужинают.",
             "words": []
         },
         {
             "id": "23",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "The sun is shining brightly today.",
             "tr_ru": "Сегодня ярко светит солнце.",
             "words": []
         },
         {
             "id": "24",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "I am reading a fascinating book.",
             "tr_ru": "Я читаю увлекательную книгу.",
             "words": []
         },
         {
             "id": "25",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "You are always helping your classmates.",
             "tr_ru": "Ты всегда помогаешь своим одноклассникам.",
             "words": []
         },
         {
             "id": "26",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "The train is arriving at the station.",
             "tr_ru": "Поезд прибывает на станцию.",
             "words": []
         },
         {
             "id": "27",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "We are enjoying our vacation this week.",
             "tr_ru": "На этой неделе мы наслаждаемся отпуском.",
             "words": []
         },
         {
             "id": "28",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "She is studying for her exams.",
             "tr_ru": "Она готовится к экзаменам.",
             "words": []
         },
         {
             "id": "29",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "He is watching a movie right now.",
             "tr_ru": "Прямо сейчас он смотрит фильм.",
             "words": []
         },
         {
             "id": "30",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "The kids are playing in the park.",
             "tr_ru": "Дети играют в парке.",
             "words": []
         },
         {
             "id": "31",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "It is raining outside.",
             "tr_ru": "На улице идет дождь.",
             "words": []
         },
         {
             "id": "32",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "My brother is working on a new project.",
             "tr_ru": "Мой брат работает над новым проектом.",
             "words": []
         },
         {
             "id": "33",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "The baby is sleeping peacefully.",
             "tr_ru": "Ребенок мирно спит.",
             "words": []
         },
         {
             "id": "34",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "Cats are chasing butterflies in the garden.",
             "tr_ru": "Кошки гоняются за бабочками в саду.",
             "words": []
         },
         {
             "id": "35",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "We are visiting our friends this weekend.",
             "tr_ru": "В эти выходные мы навещаем друзей.",
             "words": []
         },
         {
             "id": "36",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "You are traveling to Paris next month.",
             "tr_ru": "В следующем месяце вы едете в Париж.",
             "words": []
         },
         {
             "id": "37",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "The library is closing early today.",
             "tr_ru": "Библиотека сегодня закрывается рано.",
             "words": []
         },
         {
             "id": "38",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "I am drinking my morning coffee.",
             "tr_ru": "Я пью утренний кофе.",
             "words": []
         },
         {
             "id": "39",
-            "tense_id": "2",
+            "topic_id": "2",
             "sentence": "They are celebrating their anniversary tonight.",
             "tr_ru": "Сегодня вечером они празднуют свою годовщину.",
             "words": []
         },
         {
             "id": "40",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "She has visited France twice.",
             "tr_ru": "Она дважды посетила Францию.",
             "words": []
         },
         {
             "id": "41",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "He has finished his homework.",
             "tr_ru": "Он закончил свою домашнюю работу.",
             "words": []
         },
         {
             "id": "42",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "They have eaten lunch already.",
             "tr_ru": "Они уже пообедали.",
             "words": []
         },
         {
             "id": "43",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "I have read that book before.",
             "tr_ru": "Я уже читал эту книгу.",
             "words": []
         },
         {
             "id": "44",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "You have seen that movie many times.",
             "tr_ru": "Вы видели этот фильм много раз.",
             "words": []
         },
         {
             "id": "45",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "We have traveled to several countries.",
             "tr_ru": "Мы побывали в нескольких странах.",
             "words": []
         },
         {
             "id": "46",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "The team has won three championships.",
             "tr_ru": "Команда выиграла три чемпионата.",
             "words": []
         },
         {
             "id": "47",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "She has learned to play the guitar.",
             "tr_ru": "Она научилась играть на гитаре.",
             "words": []
         },
         {
             "id": "48",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "He has just arrived at the airport.",
             "tr_ru": "Он только что прибыл в аэропорт.",
             "words": []
         },
         {
             "id": "49",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "They have started a new project.",
             "tr_ru": "Они начали новый проект.",
             "words": []
         },
         {
             "id": "50",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "I have lived in this city for five years.",
             "tr_ru": "Я живу в этом городе уже пять лет.",
             "words": []
         },
         {
             "id": "51",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "You have completed the assignment.",
             "tr_ru": "Вы выполнили задание.",
             "words": []
         },
         {
             "id": "52",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "We have made dinner plans for tonight.",
             "tr_ru": "Мы составили планы на ужин на сегодняшний вечер.",
             "words": []
         },
         {
             "id": "53",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "She has forgotten her keys again.",
             "tr_ru": "Она снова забыла ключи.",
             "words": []
         },
         {
             "id": "54",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "He has never been to a concert.",
             "tr_ru": "Он никогда не был на концерте.",
             "words": []
         },
         {
             "id": "55",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "They have cleaned the house.",
             "tr_ru": "Они убрались в доме.",
             "words": []
         },
         {
             "id": "56",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "I have bought a new car.",
             "tr_ru": "Я купил новую машину.",
             "words": []
         },
         {
             "id": "57",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "You have improved your English skills.",
             "tr_ru": "Вы улучшили свои знания английского языка.",
             "words": []
         },
         {
             "id": "58",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "We have enjoyed the concert so far.",
             "tr_ru": "Пока что нам очень понравился концерт.",
             "words": []
         },
         {
             "id": "59",
-            "tense_id": "3",
+            "topic_id": "3",
             "sentence": "The children have grown so much this year.",
             "tr_ru": "За этот год дети очень выросли.",
             "words": []
         },
         {
             "id": "60",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "She has been studying for her exams all week.",
             "tr_ru": "Она всю неделю готовилась к экзаменам.",
             "words": []
         },
         {
             "id": "61",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "He has been playing soccer since morning.",
             "tr_ru": "Он играет в футбол с утра.",
             "words": []
         },
         {
             "id": "62",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "They have been working on the project for several months.",
             "tr_ru": "Они работали над проектом несколько месяцев.",
             "words": []
         },
         {
             "id": "63",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "I have been reading this book for two hours.",
             "tr_ru": "Я читаю эту книгу уже два часа.",
             "words": []
         },
         {
             "id": "64",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "You have been helping your friend with his homework.",
             "tr_ru": "Вы помогаете своему другу с домашним заданием.",
             "words": []
         },
         {
             "id": "65",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "We have been waiting for the bus for 30 minutes.",
             "tr_ru": "Мы ждем автобус уже 30 минут.",
             "words": []
         },
         {
             "id": "66",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "The kids have been playing outside all afternoon.",
             "tr_ru": "Дети весь день играли на улице.",
             "words": []
         },
         {
             "id": "67",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "She has been practicing the piano daily.",
             "tr_ru": "Она ежедневно занимается игрой на пианино.",
             "words": []
         },
         {
             "id": "68",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "He has been watching that series since last month.",
             "tr_ru": "Он смотрит этот сериал с прошлого месяца.",
             "words": []
         },
         {
             "id": "69",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "They have been trying to fix the car all day.",
             "tr_ru": "Они весь день пытались починить машину.",
             "words": []
         },
         {
             "id": "70",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "I have been learning Spanish for a year.",
             "tr_ru": "Я изучаю испанский язык уже год.",
             "words": []
         },
         {
             "id": "71",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "You have been exercising regularly lately.",
             "tr_ru": "В последнее время вы регулярно занимаетесь спортом.",
             "words": []
         },
         {
             "id": "72",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "We have been discussing the proposal for an hour.",
             "tr_ru": "Мы обсуждаем это предложение уже час.",
             "words": []
         },
         {
             "id": "73",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "She has been cooking dinner for her family.",
             "tr_ru": "Она готовила ужин для своей семьи.",
             "words": []
         },
         {
             "id": "74",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "He has been writing a novel since last summer.",
             "tr_ru": "Он пишет роман с прошлого лета.",
             "words": []
         },
         {
             "id": "75",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "They have been cleaning the house for the past hour.",
             "tr_ru": "Они убирались в доме уже час.",
             "words": []
         },
         {
             "id": "76",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "I have been thinking about the issue a lot.",
             "tr_ru": "Я много думал об этом вопросе.",
             "words": []
         },
         {
             "id": "77",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "You have been traveling a lot this year.",
             "tr_ru": "В этом году вы много путешествовали.",
             "words": []
         },
         {
             "id": "78",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "We have been enjoying our time together.",
             "tr_ru": "Мы прекрасно проводим время вместе.",
             "words": []
         },
         {
             "id": "79",
-            "tense_id": "4",
+            "topic_id": "4",
             "sentence": "The team has been training hard for the competition.",
             "tr_ru": "Команда усиленно готовилась к соревнованиям.",
             "words": []
         },
         {
             "id": "80",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "She walked to school yesterday.",
             "tr_ru": "Вчера она пошла в школу пешком.",
             "words": []
         },
         {
             "id": "81",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "He played soccer last weekend.",
             "tr_ru": "В прошлые выходные он играл в футбол.",
             "words": []
         },
         {
             "id": "82",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "They ate dinner at a new restaurant.",
             "tr_ru": "Они поужинали в новом ресторане.",
             "words": []
         },
         {
             "id": "83",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "I read that book last month.",
             "tr_ru": "Я прочитал эту книгу в прошлом месяце.",
             "words": []
         },
         {
             "id": "84",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "You saw that movie last night.",
             "tr_ru": "Вы видели этот фильм вчера вечером.",
             "words": []
         },
         {
             "id": "85",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "We traveled to Italy last summer.",
             "tr_ru": "Прошлым летом мы ездили в Италию.",
             "words": []
         },
         {
             "id": "86",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "The team won the championship.",
             "tr_ru": "Команда выиграла чемпионат.",
             "words": []
         },
         {
             "id": "87",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "She studied hard for the exam.",
             "tr_ru": "Она усердно готовилась к экзамену.",
             "words": []
         },
         {
             "id": "88",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "He watched a documentary on TV.",
             "tr_ru": "Он посмотрел документальный фильм по телевизору.",
             "words": []
         },
         {
             "id": "89",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "They cleaned the house on Saturday.",
             "tr_ru": "В субботу они убирались в доме.",
             "words": []
         },
         {
             "id": "90",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "I visited my grandparents last week.",
             "tr_ru": "На прошлой неделе я навестил бабушку и дедушку.",
             "words": []
         },
         {
             "id": "91",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "You finished your project on time.",
             "tr_ru": "Вы завершили свой проект вовремя.",
             "words": []
         },
         {
             "id": "92",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "We went to the beach for vacation.",
             "tr_ru": "Мы поехали отдыхать на пляж.",
             "words": []
         },
         {
             "id": "93",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "She wrote a letter to her friend.",
             "tr_ru": "Она написала письмо своей подруге.",
             "words": []
         },
         {
             "id": "94",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "He bought a new bike.",
             "tr_ru": "Он купил новый велосипед.",
             "words": []
         },
         {
             "id": "95",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "They celebrated their anniversary in April.",
             "tr_ru": "В апреле они отметили годовщину.",
             "words": []
         },
         {
             "id": "96",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "I slept well last night.",
             "tr_ru": "Я хорошо спал прошлой ночью.",
             "words": []
         },
         {
             "id": "97",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "You cooked a delicious dinner.",
             "tr_ru": "Вы приготовили вкусный ужин.",
             "words": []
         },
         {
             "id": "98",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "We enjoyed the concert last Friday.",
             "tr_ru": "Нам понравился концерт в прошлую пятницу.",
             "words": []
         },
         {
             "id": "99",
-            "tense_id": "5",
+            "topic_id": "5",
             "sentence": "The children played in the park all day.",
             "tr_ru": "Дети весь день играли в парке.",
             "words": []
         },
         {
             "id": "100",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "She was walking to school when it started to rain.",
             "tr_ru": "Она шла в школу, когда начался дождь.",
             "words": []
         },
         {
             "id": "101",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "He was playing soccer when he got injured.",
             "tr_ru": "Он получил травму, играя в футбол.",
             "words": []
         },
         {
             "id": "102",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "They were eating dinner when the power went out.",
             "tr_ru": "Они ужинали, когда отключилось электричество.",
             "words": []
         },
         {
             "id": "103",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "I was reading a book while waiting for my friend.",
             "tr_ru": "Я читал книгу, ожидая своего друга.",
             "words": []
         },
         {
             "id": "104",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "You were watching TV during the storm.",
             "tr_ru": "Вы смотрели телевизор во время шторма.",
             "words": []
         },
         {
             "id": "105",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "We were traveling through Europe last summer.",
             "tr_ru": "Прошлым летом мы путешествовали по Европе.",
             "words": []
         },
         {
             "id": "106",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "The team was practicing for the big game.",
             "tr_ru": "Команда готовилась к важной игре.",
             "words": []
         },
         {
             "id": "107",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "She was studying for her exams all night.",
             "tr_ru": "Она всю ночь готовилась к экзаменам.",
             "words": []
         },
         {
             "id": "108",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "He was working on his project when I called.",
             "tr_ru": "Когда я позвонил, он работал над своим проектом.",
             "words": []
         },
         {
             "id": "109",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "They were cleaning the house all day.",
             "tr_ru": "Они убирались в доме весь день.",
             "words": []
         },
         {
             "id": "110",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "I was cooking dinner while listening to music.",
             "tr_ru": "Я готовила ужин и слушала музыку.",
             "words": []
         },
         {
             "id": "111",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "You were driving when the accident happened.",
             "tr_ru": "Вы были за рулем, когда произошла авария.",
             "words": []
         },
         {
             "id": "112",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "We were enjoying our vacation when it started to rain.",
             "tr_ru": "Мы наслаждались отпуском, когда начался дождь.",
             "words": []
         },
         {
             "id": "113",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "She was writing an email at that moment.",
             "tr_ru": "В этот момент она писала электронное письмо.",
             "words": []
         },
         {
             "id": "114",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "He was fixing the car when I arrived.",
             "tr_ru": "Когда я приехал, он ремонтировал машину.",
             "words": []
         },
         {
             "id": "115",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "They were playing video games in the living room.",
             "tr_ru": "Они играли в видеоигры в гостиной.",
             "words": []
         },
         {
             "id": "116",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "I was trying to solve a puzzle.",
             "tr_ru": "Я пытался решить головоломку.",
             "words": []
         },
         {
             "id": "117",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "You were sleeping when I knocked on the door.",
             "tr_ru": "Ты спал, когда я постучал в дверь.",
             "words": []
         },
         {
             "id": "118",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "We were discussing plans for the weekend.",
             "tr_ru": "Мы обсуждали планы на выходные.",
             "words": []
         },
         {
             "id": "119",
-            "tense_id": "6",
+            "topic_id": "6",
             "sentence": "The children were playing outside when it got dark.",
             "tr_ru": "Когда стемнело, дети играли на улице.",
             "words": []
         },
         {
             "id": "120",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "She had walked to school before it started to rain.",
             "tr_ru": "Она дошла до школы до того, как начался дождь.",
             "words": []
         },
         {
             "id": "121",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "He had played soccer for years before he got injured.",
             "tr_ru": "Он много лет играл в футбол, прежде чем получил травму.",
             "words": []
         },
         {
             "id": "122",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "They had eaten dinner before the guests arrived.",
             "tr_ru": "Они поужинали до прихода гостей.",
             "words": []
         },
         {
             "id": "123",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "I had read that book before the movie came out.",
             "tr_ru": "Я прочитал эту книгу еще до выхода фильма.",
             "words": []
         },
         {
             "id": "124",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "You had seen that movie before it was nominated for an award.",
             "tr_ru": "Вы видели этот фильм до того, как он был номинирован на премию.",
             "words": []
         },
         {
             "id": "125",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "We had traveled to Italy before the pandemic began.",
             "tr_ru": "Мы ездили в Италию до начала пандемии.",
             "words": []
         },
         {
             "id": "126",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "The team had won three championships by the time I joined.",
             "tr_ru": "К тому времени, как я присоединился, команда выиграла три чемпионата.",
             "words": []
         },
         {
             "id": "127",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "She had studied hard for the exam, so she passed with flying colors.",
             "tr_ru": "Она усердно готовилась к экзамену и сдала его блестяще.",
             "words": []
         },
         {
             "id": "128",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "He had finished his project before the deadline.",
             "tr_ru": "Он завершил свой проект до истечения срока.",
             "words": []
         },
         {
             "id": "129",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "They had cleaned the house before their friends visited.",
             "tr_ru": "Они убрались в доме перед приходом друзей.",
             "words": []
         },
         {
             "id": "130",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "I had visited my grandparents before they moved away.",
             "tr_ru": "Я навестил бабушку и дедушку до того, как они уехали.",
             "words": []
         },
         {
             "id": "131",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "You had completed your work before the meeting started.",
             "tr_ru": "Вы завершили свою работу до начала встречи.",
             "words": []
         },
         {
             "id": "132",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "We had enjoyed the concert before the rain began.",
             "tr_ru": "Мы наслаждались концертом до того, как начался дождь.",
             "words": []
         },
         {
             "id": "133",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "She had written a letter to her friend before she left.",
             "tr_ru": "Перед отъездом она написала письмо своей подруге.",
             "words": []
         },
         {
             "id": "134",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "He had bought a new car before his old one broke down.",
             "tr_ru": "Он купил новую машину до того, как сломалась старая.",
             "words": []
         },
         {
             "id": "135",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "They had celebrated their anniversary before going on a trip.",
             "tr_ru": "Перед поездкой они отпраздновали годовщину.",
             "words": []
         },
         {
             "id": "136",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "I had slept well the night before the big day.",
             "tr_ru": "Я хорошо спал в ночь перед важным днем.",
             "words": []
         },
         {
             "id": "137",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "You had cooked dinner before they arrived.",
             "tr_ru": "Вы приготовили ужин до их прихода.",
             "words": []
         },
         {
             "id": "138",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "We had discussed our plans before the presentation.",
             "tr_ru": "Мы обсудили наши планы перед презентацией.",
             "words": []
         },
         {
             "id": "139",
-            "tense_id": "7",
+            "topic_id": "7",
             "sentence": "The children had played outside before it got dark.",
             "tr_ru": "Дети играли на улице до наступления темноты.",
             "words": []
         },
         {
             "id": "140",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "She had been walking to school for an hour before it started to rain.",
             "tr_ru": "Она шла в школу целый час, прежде чем начался дождь.",
             "words": []
         },
         {
             "id": "141",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "He had been playing soccer for two hours when he got injured.",
             "tr_ru": "Он играл в футбол в течение двух часов, когда получил травму.",
             "words": []
         },
         {
             "id": "142",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "They had been eating dinner when the power went out.",
             "tr_ru": "Они ужинали, когда отключилось электричество.",
             "words": []
         },
         {
             "id": "143",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "I had been reading that book before I fell asleep.",
             "tr_ru": "Я читал эту книгу перед тем, как уснуть.",
             "words": []
         },
         {
             "id": "144",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "You had been watching TV for a while when the phone rang.",
             "tr_ru": "Вы уже некоторое время смотрели телевизор, когда зазвонил телефон.",
             "words": []
         },
         {
             "id": "145",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "We had been traveling for days before we reached our destination.",
             "tr_ru": "Мы путешествовали несколько дней, прежде чем достигли места назначения.",
             "words": []
         },
         {
             "id": "146",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "The team had been practicing for weeks before the championship.",
             "tr_ru": "Команда тренировалась несколько недель перед чемпионатом.",
             "words": []
         },
         {
             "id": "147",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "She had been studying all night and was exhausted.",
             "tr_ru": "Она училась всю ночь и была измотана.",
             "words": []
         },
         {
             "id": "148",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "He had been working on his project for months before the deadline.",
             "tr_ru": "Он работал над своим проектом несколько месяцев до наступления крайнего срока.",
             "words": []
         },
         {
             "id": "149",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "They had been cleaning the house for hours before the guests arrived.",
             "tr_ru": "Они несколько часов убирались в доме, прежде чем пришли гости.",
             "words": []
         },
         {
             "id": "150",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "I had been visiting my grandparents regularly before they moved.",
             "tr_ru": "Я регулярно навещал бабушку и дедушку до того, как они переехали.",
             "words": []
         },
         {
             "id": "151",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "You had been exercising consistently, so you felt strong.",
             "tr_ru": "Вы постоянно занимались спортом, поэтому чувствовали себя сильным.",
             "words": []
         },
         {
             "id": "152",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "We had been discussing our plans for a long time before making a decision.",
             "tr_ru": "Мы долго обсуждали наши планы, прежде чем принять решение.",
             "words": []
         },
         {
             "id": "153",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "She had been writing her novel for years before she published it.",
             "tr_ru": "Она писала свой роман много лет, прежде чем опубликовала его.",
             "words": []
         },
         {
             "id": "154",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "He had been fixing the car when I arrived.",
             "tr_ru": "Когда я приехал, он ремонтировал машину.",
             "words": []
         },
         {
             "id": "155",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "They had been waiting for the bus for over an hour.",
             "tr_ru": "Они ждали автобус больше часа.",
             "words": []
         },
         {
             "id": "156",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "I had been thinking about the issue before we talked about it.",
             "tr_ru": "Я думал об этом вопросе, прежде чем мы его заговорили.",
             "words": []
         },
         {
             "id": "157",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "You had been playing video games all day when I called.",
             "tr_ru": "Когда я позвонил, ты весь день играл в видеоигры.",
             "words": []
         },
         {
             "id": "158",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "We had been enjoying the concert until it started to rain.",
             "tr_ru": "Мы наслаждались концертом, пока не начался дождь.",
             "words": []
         },
         {
             "id": "159",
-            "tense_id": "8",
+            "topic_id": "8",
             "sentence": "The children had been playing outside for hours before dinner.",
             "tr_ru": "Перед ужином дети несколько часов играли на улице.",
             "words": []
         },
         {
             "id": "160",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "She will walk to school tomorrow.",
             "tr_ru": "Завтра она пойдёт в школу пешком.",
             "words": []
         },
         {
             "id": "161",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "He will play soccer next weekend.",
             "tr_ru": "На следующих выходных он будет играть в футбол.",
             "words": []
         },
         {
             "id": "162",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "They will eat dinner at a restaurant tonight.",
             "tr_ru": "Сегодня вечером они поужинают в ресторане.",
             "words": []
         },
         {
             "id": "163",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "I will read that book next month.",
             "tr_ru": "Я прочту эту книгу в следующем месяце.",
             "words": []
         },
         {
             "id": "164",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "You will see that movie next week.",
             "tr_ru": "Вы увидите этот фильм на следующей неделе.",
             "words": []
         },
         {
             "id": "165",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "We will travel to Italy this summer.",
             "tr_ru": "Этим летом мы поедем в Италию.",
             "words": []
         },
         {
             "id": "166",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "The team will win the championship.",
             "tr_ru": "Команда выиграет чемпионат.",
             "words": []
         },
         {
             "id": "167",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "She will study for her exams next week.",
             "tr_ru": "На следующей неделе она будет готовиться к экзаменам.",
             "words": []
         },
         {
             "id": "168",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "He will watch a documentary this evening.",
             "tr_ru": "Сегодня вечером он посмотрит документальный фильм.",
             "words": []
         },
         {
             "id": "169",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "They will clean the house on Saturday.",
             "tr_ru": "В субботу они уберутся в доме.",
             "words": []
         },
         {
             "id": "170",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "I will visit my grandparents next week.",
             "tr_ru": "На следующей неделе я навещу бабушку и дедушку.",
             "words": []
         },
         {
             "id": "171",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "You will finish your project on time.",
             "tr_ru": "Вы завершите свой проект вовремя.",
             "words": []
         },
         {
             "id": "172",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "We will go to the beach this weekend.",
             "tr_ru": "В эти выходные мы поедем на пляж.",
             "words": []
         },
         {
             "id": "173",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "She will write a letter to her friend.",
             "tr_ru": "Она напишет письмо своей подруге.",
             "words": []
         },
         {
             "id": "174",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "He will buy a new bike next month.",
             "tr_ru": "В следующем месяце он купит новый велосипед.",
             "words": []
         },
         {
             "id": "175",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "They will celebrate their anniversary in April.",
             "tr_ru": "В апреле они отпразднуют свой юбилей.",
             "words": []
         },
         {
             "id": "176",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "I will sleep early tonight.",
             "tr_ru": "Сегодня я лягу спать пораньше.",
             "words": []
         },
         {
             "id": "177",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "You will cook dinner for your family.",
             "tr_ru": "Вы приготовите ужин для своей семьи.",
             "words": []
         },
         {
             "id": "178",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "We will enjoy the concert next Friday.",
             "tr_ru": "Мы насладимся концертом в следующую пятницу.",
             "words": []
         },
         {
             "id": "179",
-            "tense_id": "9",
+            "topic_id": "9",
             "sentence": "The children will play in the park tomorrow.",
             "tr_ru": "Завтра дети будут играть в парке.",
             "words": []
         },
         {
             "id": "180",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "She will be walking to school at 8 AM tomorrow.",
             "tr_ru": "Завтра в 8 утра она пойдет в школу пешком.",
             "words": []
         },
         {
             "id": "181",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "He will be playing soccer when you arrive.",
             "tr_ru": "Когда вы приедете, он будет играть в футбол.",
             "words": []
         },
         {
             "id": "182",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "They will be eating dinner at 7 PM tonight.",
             "tr_ru": "Сегодня в 7 вечера они будут ужинать.",
             "words": []
         },
         {
             "id": "183",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "I will be reading a book during the flight.",
             "tr_ru": "Во время полета я буду читать книгу.",
             "words": []
         },
         {
             "id": "184",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "You will be seeing that movie next weekend.",
             "tr_ru": "Вы увидите этот фильм на следующих выходных.",
             "words": []
         },
         {
             "id": "185",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "We will be traveling to Italy this summer.",
             "tr_ru": "Этим летом мы поедем в Италию.",
             "words": []
         },
         {
             "id": "186",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "The team will be practicing for the championship all week.",
             "tr_ru": "Команда будет тренироваться для участия в чемпионате всю неделю.",
             "words": []
         },
         {
             "id": "187",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "She will be studying for her exams all night.",
             "tr_ru": "Она будет готовиться к экзаменам всю ночь.",
             "words": []
         },
         {
             "id": "188",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "He will be working on his project at that time.",
             "tr_ru": "В это время он будет работать над своим проектом.",
             "words": []
         },
         {
             "id": "189",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "They will be cleaning the house when the guests arrive.",
             "tr_ru": "Они будут убирать дом, когда приедут гости.",
             "words": []
         },
         {
             "id": "190",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "I will be visiting my grandparents next Sunday.",
             "tr_ru": "В следующее воскресенье я навещу бабушку и дедушку.",
             "words": []
         },
         {
             "id": "191",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "You will be finishing your report by the deadline.",
             "tr_ru": "Вы закончите свой отчет к установленному сроку.",
             "words": []
         },
         {
             "id": "192",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "We will be going to the beach tomorrow afternoon.",
             "tr_ru": "Завтра днём мы пойдём на пляж.",
             "words": []
         },
         {
             "id": "193",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "She will be writing a letter while waiting for her flight.",
             "tr_ru": "Она будет писать письмо, ожидая своего рейса.",
             "words": []
         },
         {
             "id": "194",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "He will be buying groceries later today.",
             "tr_ru": "Сегодня он пойдёт покупать продукты.",
             "words": []
         },
         {
             "id": "195",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "They will be celebrating their anniversary next month.",
             "tr_ru": "В следующем месяце они будут праздновать свою годовщину.",
             "words": []
         },
         {
             "id": "196",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "I will be sleeping during the meeting.",
             "tr_ru": "Во время встречи я буду спать.",
             "words": []
         },
         {
             "id": "197",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "You will be cooking dinner for your family tonight.",
             "tr_ru": "Сегодня вечером вы будете готовить ужин для своей семьи.",
             "words": []
         },
         {
             "id": "198",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "We will be enjoying the concert next Friday.",
             "tr_ru": "Мы насладимся концертом в следующую пятницу.",
             "words": []
         },
         {
             "id": "199",
-            "tense_id": "10",
+            "topic_id": "10",
             "sentence": "The children will be playing outside when it gets warm.",
             "tr_ru": "Дети будут играть на улице, когда станет тепло.",
             "words": []
         },
         {
             "id": "200",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "She will have walked to school by the time the bell rings.",
             "tr_ru": "К тому времени, как прозвенит звонок, она уже дойдёт до школы.",
             "words": []
         },
         {
             "id": "201",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "He will have played soccer for ten years by next season.",
             "tr_ru": "К следующему сезону он будет играть в футбол уже десять лет.",
             "words": []
         },
         {
             "id": "202",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "They will have eaten dinner before the movie starts.",
             "tr_ru": "Они успеют поужинать до начала фильма.",
             "words": []
         },
         {
             "id": "203",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "I will have read that book by the end of the month.",
             "tr_ru": "Я прочитаю эту книгу к концу месяца.",
             "words": []
         },
         {
             "id": "204",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "You will have seen that movie before it leaves theaters.",
             "tr_ru": "Вы наверняка увидите этот фильм до того, как он выйдет в прокат.",
             "words": []
         },
         {
             "id": "205",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "We will have traveled to five countries by the end of the year.",
             "tr_ru": "К концу года мы посетим пять стран.",
             "words": []
         },
         {
             "id": "206",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "The team will have won three championships by next summer.",
             "tr_ru": "К следующему лету команда выиграет три чемпионата.",
             "words": []
         },
         {
             "id": "207",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "She will have studied for her exams by the time they arrive.",
             "tr_ru": "К моменту их сдачи она уже подготовится к экзаменам.",
             "words": []
         },
         {
             "id": "208",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "He will have finished his project before the deadline.",
             "tr_ru": "Он завершит свой проект до истечения срока.",
             "words": []
         },
         {
             "id": "209",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "They will have cleaned the house before the guests come.",
             "tr_ru": "Они уберутся в доме перед приходом гостей.",
             "words": []
         },
         {
             "id": "210",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "I will have visited my grandparents twice this year.",
             "tr_ru": "В этом году я дважды навещу бабушку и дедушку.",
             "words": []
         },
         {
             "id": "211",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "You will have completed your work by the time we meet.",
             "tr_ru": "К моменту нашей встречи вы уже закончите свою работу.",
             "words": []
         },
         {
             "id": "212",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "We will have gone to the beach five times this summer.",
             "tr_ru": "Этим летом мы съездим на пляж пять раз.",
             "words": []
         },
         {
             "id": "213",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "She will have written her report before the presentation.",
             "tr_ru": "Она напишет свой отчет до презентации.",
             "words": []
         },
         {
             "id": "214",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "He will have bought a new car by next month.",
             "tr_ru": "К следующему месяцу он купит новую машину.",
             "words": []
         },
         {
             "id": "215",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "They will have celebrated their anniversary by then.",
             "tr_ru": "К тому времени они уже отпразднуют свою годовщину.",
             "words": []
         },
         {
             "id": "216",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "I will have slept for eight hours by morning.",
             "tr_ru": "К утру я просплю восемь часов.",
             "words": []
         },
         {
             "id": "217",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "You will have cooked dinner before they arrive.",
             "tr_ru": "Вы приготовите ужин до их прихода.",
             "words": []
         },
         {
             "id": "218",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "We will have enjoyed the concert by the time we leave.",
             "tr_ru": "К тому времени, как мы уйдем, мы уже насладимся концертом.",
             "words": []
         },
         {
             "id": "219",
-            "tense_id": "11",
+            "topic_id": "11",
             "sentence": "The children will have played outside all afternoon.",
             "tr_ru": "Дети, должно быть, играли на улице весь день.",
             "words": []
         },
         {
             "id": "220",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "She will have been walking to school for 30 minutes by the time you call her.",
             "tr_ru": "К тому времени, как вы ей позвоните, она будет идти до школы уже 30 минут.",
             "words": []
         },
         {
             "id": "221",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "He will have been playing soccer for two hours by the time the match ends.",
             "tr_ru": "К моменту окончания матча он будет играть в футбол уже два часа.",
             "words": []
         },
         {
             "id": "222",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "They will have been eating dinner for an hour when we arrive.",
             "tr_ru": "К моменту нашего прибытия они будут ужинать уже час.",
             "words": []
         },
         {
             "id": "223",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "I will have been reading that book for a month by the time I finish it.",
             "tr_ru": "К тому времени, как я закончу читать эту книгу, будет уже месяц.",
             "words": []
         },
         {
             "id": "224",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "You will have been studying for your exams for weeks before they start.",
             "tr_ru": "Вам предстоит готовиться к экзаменам в течение нескольких недель, прежде чем они начнутся.",
             "words": []
         },
         {
             "id": "225",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "We will have been traveling for three days by the time we reach our destination.",
             "tr_ru": "К тому времени, как мы достигнем места назначения, мы будем в пути уже три дня.",
             "words": []
         },
         {
             "id": "226",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "The team will have been practicing for the championship for months.",
             "tr_ru": "Команда будет тренироваться для участия в чемпионате в течение нескольких месяцев.",
             "words": []
         },
         {
             "id": "227",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "She will have been studying all night by the time the test begins.",
             "tr_ru": "К моменту начала теста она будет готовиться всю ночь.",
             "words": []
         },
         {
             "id": "228",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "He will have been working on his project for a year when it's completed.",
             "tr_ru": "К моменту завершения проекта он будет работать над ним уже год.",
             "words": []
         },
         {
             "id": "229",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "They will have been cleaning the house for hours when the guests arrive.",
             "tr_ru": "Они будут убираться в доме уже несколько часов, когда приедут гости.",
             "words": []
         },
         {
             "id": "230",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "I will have been visiting my grandparents every month for two years by next spring.",
             "tr_ru": "К следующей весне будет уже два года, как я каждый месяц навещаю бабушку и дедушку.",
             "words": []
         },
         {
             "id": "231",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "You will have been exercising regularly for six months by then.",
             "tr_ru": "К тому времени вы будете регулярно заниматься спортом уже в течение шести месяцев.",
             "words": []
         },
         {
             "id": "232",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "We will have been discussing our plans for a long time by the end of the meeting.",
             "tr_ru": "К концу встречи мы будем долго обсуждать наши планы.",
             "words": []
         },
         {
             "id": "233",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "She will have been writing her novel for over a year by the time it's published.",
             "tr_ru": "К моменту публикации ее роман будет написан уже больше года.",
             "words": []
         },
         {
             "id": "234",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "He will have been fixing the car for a while when I check on him.",
             "tr_ru": "К тому времени, как я приду к нему, он уже будет чинить машину.",
             "words": []
         },
         {
             "id": "235",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "They will have been waiting for the bus for 45 minutes by the time it arrives.",
             "tr_ru": "К моменту прибытия автобуса они будут ждать его уже 45 минут.",
             "words": []
         },
         {
             "id": "236",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "I will have been thinking about the project for days before presenting it.",
             "tr_ru": "Я буду думать о проекте несколько дней, прежде чем представить его.",
             "words": []
         },
         {
             "id": "237",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "You will have been playing video games for hours when I come over.",
             "tr_ru": "К тому времени, как я приду, ты уже много часов будешь играть в видеоигры.",
             "words": []
         },
         {
             "id": "238",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "We will have been enjoying the concert for two hours by the time it ends.",
             "tr_ru": "К моменту окончания концерта мы будем наслаждаться им уже два часа.",
             "words": []
         },
         {
             "id": "239",
-            "tense_id": "12",
+            "topic_id": "12",
             "sentence": "The children will have been playing outside all afternoon before dinner.",
             "tr_ru": "Дети будут играть на улице весь день до ужина.",
             "words": []

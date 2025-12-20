@@ -1,4 +1,4 @@
-import type { Student } from '../dto/student';
+import type { Student } from '../common/dto/student';
 import { defineStore } from 'pinia';
 
 export const useAuthStore = defineStore('student', {

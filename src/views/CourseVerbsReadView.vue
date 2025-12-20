@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { IrregularVerb } from '../dto/course';
+import type { IrregularVerb } from '../common/dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getVerbsRepository } from '../dao/VerbsLocal';
-import { getCourseRepository } from '../dao/CourseFirebase';
+import { getVerbsRepository } from '../common/dao/VerbsLocal';
+import { getCourseDao } from '../common/dao/CourseFirebase';
 
 const courseId: string | string[] = useRoute().params.id;
 
 const verbsRepository = getVerbsRepository();
-const courseRepository = getCourseRepository();
+const courseRepository = getCourseDao();
 
 const verbs: IrregularVerb[] = [];
 const verbsRef = ref(verbs);

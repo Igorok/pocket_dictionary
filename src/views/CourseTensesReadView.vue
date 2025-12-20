@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { TenseDescription } from '../dto/course';
+import type { TenseDescription } from '../common/dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getTensesRepository } from '../dao/TensesLocal';
-import { getCourseRepository } from '../dao/CourseFirebase';
+import { getTensesRepository } from '../common/dao/SentencesLocal';
+import { getCourseDao } from '../common/dao/CourseFirebase';
 
 const courseId: string | string[] = useRoute().params.id;
 
 const tensesRepository = getTensesRepository();
-const courseRepository = getCourseRepository();
+const courseRepository = getCourseDao();
 
 const descriptions: TenseDescription[] = [];
 const descriptionsRef = ref(descriptions);

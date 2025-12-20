@@ -36,13 +36,13 @@ const router = createRouter({
         {
             path: '/course/list',
             name: 'course/list',
-            component: () => import('../components/CourseList/CourseListView.vue'),
+            component: () => import('../components/CourseList/view.vue'),
             meta: { requiresAuth: true },
         },
         {
             path: '/course/words/test/:id',
             name: 'course-words-test',
-            component: () => import('../components/CourseWordsTest/CourseWordsTestView.vue'),
+            component: () => import('../components/CourseWordsTest/view.vue'),
             meta: { requiresAuth: true },
         },
         {
@@ -70,14 +70,14 @@ const router = createRouter({
             meta: { requiresAuth: true },
         },
         {
-            path: '/course/tenses/read/:id',
-            name: 'course-tenses-read',
+            path: '/course/sentences/read/:id',
+            name: 'course-sentences-read',
             component: () => import('../views/CourseTensesReadView.vue'),
             meta: { requiresAuth: true },
         },
         {
-            path: '/course/tenses/write/:id',
-            name: 'course-tenses-write',
+            path: '/course/sentences/write/:id',
+            name: 'course-sentences-write',
             component: () => import('../views/CourseTensesWriteView.vue'),
             meta: { requiresAuth: true },
         }

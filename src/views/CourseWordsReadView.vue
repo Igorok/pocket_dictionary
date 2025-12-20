@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import type { Word } from '../dto/course';
+import type { Word } from '../common/dto/course';
 import { chunk } from 'lodash';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getWordsRepository } from '../dao/WordsLocal';
-import { getCourseRepository } from '../dao/CourseFirebase';
+import { getWordsRepository } from '../common/dao/WordsLocal';
+import { getCourseDao } from '../common/dao/CourseFirebase';
 import { useLanguageStore } from '../stores/language';
 
 const courseId: string | string[] = useRoute().params.id;
 
 const wordsRepository = getWordsRepository();
-const courseRepository = getCourseRepository();
+const courseRepository = getCourseDao();
 const langStore = useLanguageStore();
 
 const words: Word[][] = [];

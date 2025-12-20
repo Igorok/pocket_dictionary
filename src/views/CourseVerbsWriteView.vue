@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { Course, StudentCourse } from '../dto/course';
-import type { LessonWriteVerbData } from '../dto/lesson';
+import type { Course, StudentCourse } from '../common/dto/course';
+import type { LessonWriteVerbData } from '../common/dto/lesson';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getVerbsRepository } from '../dao/VerbsLocal';
-import { getCourseRepository } from '../dao/CourseFirebase';
+import { getVerbsRepository } from '../common/dao/VerbsLocal';
+import { getCourseDao } from '../common/dao/CourseFirebase';
 
 const WORDS_IN_LESSON = 5;
 
 const courseId: string | string[] = useRoute().params.id;
 
 const verbsRepository = getVerbsRepository();
-const courseRepository = getCourseRepository(undefined);
+const courseRepository = getCourseDao(undefined);
 
 const success = ref({
     message: ''
