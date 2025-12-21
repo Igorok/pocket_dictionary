@@ -31,27 +31,6 @@ export type StudentCourse = {
     words: StudentWord[];
 };
 
-export type TestWordsItemOption = {
-    id: string;
-    word: string;
-    tr_ru: string;
-    error: boolean;
-    success: boolean;
-};
-export type TestWordsItem = {
-    word: Word;
-    options: TestWordsItemOption[];
-    success: boolean;
-    completed: boolean;
-    active: boolean;
-};
-
-export type TestWordsLesson = {
-    title: string;
-    words: TestWordsItem[];
-    completed: boolean;
-};
-
 export type IrregularVerb = {
     id: string;
     base_form: string;

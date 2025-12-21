@@ -3,13 +3,12 @@ import type { Word } from '../common/dto/course';
 import { chunk } from 'lodash';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getWordsRepository } from '../common/dao/WordsLocal';
+import { wordsDao } from '../common/dao/WordsLocal';
 import { getCourseDao } from '../common/dao/CourseFirebase';
 import { useLanguageStore } from '../stores/language';
 
 const courseId: string | string[] = useRoute().params.id;
 
-const wordsRepository = getWordsRepository();
 const courseRepository = getCourseDao();
 const langStore = useLanguageStore();
 
@@ -23,7 +22,7 @@ const getWordsData = () => {
 
     titleRef.value = course?.title;
 
-    let arr: Word[] = wordsRepository.getAllWords({ topic: course.topic, language: langStore.language?.code });
+    let arr: Word[] = wordsDao.getAllWords({ topic: course.topic, language: langStore.language?.code });
     arr = arr.sort((a, b) => (a.word < b.word ? -1 : 1));
     const chunkSize = Math.ceil(arr.length / 3);
     wordsRef.value = chunk(arr, chunkSize);
@@ -39,7 +38,7 @@ onBeforeMount(async () => {
         <div class="vocabulary-wrapper">
             <div class="vocabulary-container" v-for="chunk in wordsRef">
                 <p v-for="item in chunk" :key="item.id">
-                    {{ item.word }}: {{ item.tr_ru }}, {{ item.topics.join() }}
+                    {{ item.word }}: {{ item.tr_ru }}
                 </p>
             </div>
         </div>

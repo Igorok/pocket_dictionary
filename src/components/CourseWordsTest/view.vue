@@ -1,124 +1,48 @@
 <script setup lang="ts">
-import type {
-    Course,
-    StudentCourse,
-    TestWordsItemOption,
-    TestWordsLesson
-} from '../../common/dto/course';
+import type { StudentWord } from '@/common/dto/course';
+import type { TestWordsItemOption, TestWordsItem, TestWordsLesson } from './types';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { wordsDao } from '../../common/dao/WordsLocal';
-import { getCourseDao } from '../../common/dao/CourseFirebase';
-import { useLanguageStore } from '../../stores/language';
+import { useLanguageStore } from '@/stores/language';
 import { useAlertsStore } from '@/stores/alerts';
 import type { Alert } from '@/common/dto/alert';
+import CompledtedList from './CompletedList.vue';
+import TestItem from './TestItem.vue';
 
-const WORDS_IN_LESSON = 50;
-const WORDS_IN_ITEM = 4;
+import { getLessonDataAction, updateStudentCourseAction } from './controller'
+
 const CHANGE_TIMEOUT = 1000;
 
-const courseId: string | string[] = useRoute().params.id;
+const courseId: string = useRoute().params.id as string;
 
 const langStore = useLanguageStore();
 const alertsStore = useAlertsStore();
-const courseRepository = getCourseDao(undefined);
 
 const successCount = ref(0);
 const errorCount = ref(0);
 
-let lessonObj: TestWordsLesson = {
+const lessonWords: StudentWord[] = [];
+let lessonData: TestWordsLesson = {
+    courseId: '',
+    studentCourseId: '',
     title: '',
     words: [],
-    completed: false
+    completed: false,
 };
-const lessonObjRef = ref(lessonObj);
+const lessonDataRef = ref(lessonData);
 
-let studentCourse: StudentCourse;
-let activeItem = 0;
+const activeItem: TestWordsItem = {
+    word: { id: '', word: '', tr_ru: '', topics: [], updated_at: 0 },
+    options: [],
+    success: undefined,
+};
+const activeItemRef = ref(activeItem);
+let activeId: number = 0;
 
 const getLessonData = async (): Promise<void> => {
     try {
-        studentCourse = await courseRepository.getStudentCourseById(
-            String(courseId)
-        );
-
-        const courses: Course[] = courseRepository.getCourses({
-            type: 'words',
-            language: langStore.language.code,
-        });
-
-        let course: Course | undefined | any = undefined;
-        let otherTopics: String[] = [];
-        courses.forEach((c: Course) => {
-            if (c.id === studentCourse.course_id) {
-                course = c;
-            } else if (otherTopics.length < WORDS_IN_ITEM - 1) {
-                otherTopics.push(c.topic);
-            }
-        });
-        if (!course) return;
-
-        // group words
-        const words = wordsDao.getAllWords({ language: langStore.language.code, });
-        const wordsById = new Map();
-        const wordsByTopic = new Map();
-        words.forEach((word) => {
-            word.topics.forEach((topic) => {
-                if (topic === studentCourse.topic) {
-                    wordsById.set(word.id, word);
-                }
-                if (!wordsByTopic.has(topic)) {
-                    wordsByTopic.set(topic, []);
-                }
-                wordsByTopic.get(topic).push(word);
-            });
-        });
-
-        lessonObjRef.value.title = course.title;
-
-        const studentWords = studentCourse.words.sort(
-            (a, b) => a.l_at - b.l_at
-        );
-
-        for (let i = 0; i < WORDS_IN_LESSON; ++i) {
-            const sw = studentWords[i];
-            const options: TestWordsItemOption[] = [];
-            const rId = Math.round(Math.random() * (WORDS_IN_ITEM - 2));
-
-            for (let j = 0; j < WORDS_IN_ITEM - 1; ++j) {
-                const topic = otherTopics[j];
-                const otherWords = wordsByTopic.get(topic);
-                const optId = Math.floor(Math.random() * otherWords.length);
-                const optW = otherWords[optId];
-
-                options.push({
-                    id: optW.id,
-                    word: optW.word,
-                    tr_ru: optW.tr_ru,
-                    error: false,
-                    success: false
-                });
-                if (j == rId) {
-                    options.push({
-                        id: sw.id,
-                        word: wordsById.get(sw.id).word,
-                        tr_ru: wordsById.get(sw.id).tr_ru,
-                        error: false,
-                        success: false
-                    });
-                }
-            }
-
-            lessonObjRef.value.words.push({
-                word: wordsById.get(sw.id),
-                options: options,
-                success: false,
-                completed: false,
-                active: false
-            });
-        }
-
-        lessonObjRef.value.words[activeItem].active = true;
+        lessonDataRef.value = await getLessonDataAction(courseId, langStore.language.code);
+        activeItemRef.value = lessonDataRef.value.words[activeId];
     } catch (e) {
         if (e instanceof Error) {
             const alert: Alert = {
@@ -133,32 +57,12 @@ const getLessonData = async (): Promise<void> => {
 
 const updateStudentCourseWords = async () => {
     try {
-        if (!studentCourse) return;
-
-        const leardedAt = Date.now();
-        const wordsById = lessonObjRef.value.words.reduce((acc, val) => {
-            acc.set(val.word.id, val.success ? 0 : 1);
-            return acc;
-        }, new Map());
-        studentCourse.words.forEach((word) => {
-            if (wordsById.has(word.id)) {
-                word.e += wordsById.get(word.id);
-                word.l_at = leardedAt;
-            }
+        await updateStudentCourseAction({
+            studentCourseId: courseId,
+            lessonWords,
+            successCount: successCount.value,
+            errorCount: errorCount.value,
         });
-
-        await Promise.all([
-            courseRepository.updateStudentCourseWords(
-                String(studentCourse.id),
-                studentCourse.words
-            ),
-            courseRepository.updateStudentStats({
-                studentId: studentCourse.student_id,
-                courseId: studentCourse.course_id,
-                error: errorCount.value,
-                success: successCount.value
-            })
-        ]);
     } catch (e) {
         if (e instanceof Error) {
             const alert: Alert = {
@@ -171,7 +75,6 @@ const updateStudentCourseWords = async () => {
     }
 };
 
-
 let isSelectionBlocked = false;
 const selectCard = (option: TestWordsItemOption) => {
     if (isSelectionBlocked) {
@@ -179,26 +82,26 @@ const selectCard = (option: TestWordsItemOption) => {
     }
     isSelectionBlocked = true;
 
-    if (option.word === lessonObjRef.value.words[activeItem].word.word) {
+    if (option.word === lessonDataRef.value.words[activeId].word.word) {
         option.success = true;
-        lessonObjRef.value.words[activeItem].success = true;
+        lessonDataRef.value.words[activeId].success = true;
         successCount.value += 1;
+
+        lessonWords.push({ id: option.id, l_at: 0, e: 0 });
     } else {
         option.error = true;
         errorCount.value += 1;
+        lessonWords.push({ id: option.id, l_at: 0, e: 1 });
     }
 
     setTimeout(() => {
-        lessonObjRef.value.words[activeItem].completed = true;
-        lessonObjRef.value.words[activeItem].active = false;
-
-        activeItem += 1;
-        if (activeItem === lessonObjRef.value.words.length) {
-            lessonObjRef.value.completed = true;
+        activeId += 1;
+        if (activeId === lessonDataRef.value.words.length) {
+            lessonDataRef.value.completed = true;
             return updateStudentCourseWords();
         }
-        lessonObjRef.value.words[activeItem].active = true;
 
+        activeItemRef.value = lessonDataRef.value.words[activeId];
         isSelectionBlocked = false;
     }, CHANGE_TIMEOUT);
 };
@@ -211,65 +114,18 @@ onBeforeMount(async () => {
 <template>
     <main>
         <div class="dictionary">
-            <h3>Test: {{ lessonObjRef.title }}</h3>
+            <h3>Test: {{ lessonDataRef.title }}</h3>
             <p>
                 <b class="font-success">Success: {{ successCount }}</b>
                 <span>&nbsp;</span>
                 <b class="font-error">Error: {{ errorCount }}</b>
             </p>
 
-            <div v-if="lessonObjRef.completed">
-                <h3>Lesson is completed</h3>
-                <RouterLink
-                    :to="{
-                        name: 'course-words-test',
-                        params: { id: courseId }
-                    }"
-                    class="btn btn-green"
-                    >Continue testing
-                </RouterLink>
-                &nbsp;
-                <RouterLink
-                    :to="{
-                        name: 'course-words-write',
-                        params: { id: courseId }
-                    }"
-                    class="btn btn-green"
-                    >Continue writing
-                </RouterLink>
-                <br />
-                <br />
-                <div v-for="item in lessonObjRef.words" :key="item.word.word">
-                    <p
-                        :class="{
-                            'font-success': item.success,
-                            'font-error': !item.success
-                        }"
-                    >
-                        {{ item.word.word }} - {{ item.word.tr_ru }}
-                    </p>
-                </div>
+            <div v-if="lessonDataRef.completed">
+                <CompledtedList :lessonDataRef="lessonDataRef" />
             </div>
             <div v-else class="lesson-item">
-                <div v-for="item in lessonObjRef.words" :key="item.word.word">
-                    <div v-if="item.active">
-                        <h3>{{ item.word.tr_ru }}</h3>
-                        <div class="card-wrapper">
-                            <div
-                                class="card"
-                                :class="{
-                                    'alert-success': option.success,
-                                    'alert-error': option.error
-                                }"
-                                v-for="option in item.options"
-                                :key="option.word"
-                                v-on:click="selectCard(option)"
-                            >
-                                {{ option.word }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <TestItem :activeItemRef="activeItemRef" @selectCard="selectCard" />
             </div>
         </div>
     </main>

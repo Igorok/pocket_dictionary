@@ -57,18 +57,18 @@ const router = createRouter({
             component: () => import('../views/CourseWordsReadView.vue'),
             meta: { requiresAuth: true },
         },
-        {
-            path: '/course/verbs/read/:id',
-            name: 'course-verbs-read',
-            component: () => import('../views/CourseVerbsReadView.vue'),
-            meta: { requiresAuth: true },
-        },
-        {
-            path: '/course/verbs/write/:id',
-            name: 'course-verbs-write',
-            component: () => import('../views/CourseVerbsWriteView.vue'),
-            meta: { requiresAuth: true },
-        },
+        // {
+        //     path: '/course/verbs/read/:id',
+        //     name: 'course-verbs-read',
+        //     component: () => import('../views/CourseVerbsReadView.vue'),
+        //     meta: { requiresAuth: true },
+        // },
+        // {
+        //     path: '/course/verbs/write/:id',
+        //     name: 'course-verbs-write',
+        //     component: () => import('../views/CourseVerbsWriteView.vue'),
+        //     meta: { requiresAuth: true },
+        // },
         {
             path: '/course/sentences/read/:id',
             name: 'course-sentences-read',
@@ -86,13 +86,11 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore();
-  const student = authStore.getStudent; // Assumes a state property
+  const student = authStore.getStudent;
 
   if (to.meta.requiresAuth && !student?.id) {
-    // If the route requires auth and the user is not logged in, redirect to login page
     next({ name: 'about' });
   } else {
-    // Otherwise, allow navigation
     next();
   }
 });
