@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import type { TenseDescription } from '../common/dto/course';
+import type { SentenceDescription } from '@/common/dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import { getTensesRepository } from '../common/dao/SentencesLocal';
+import { sentencesDao } from '../common/dao/SentencesLocal';
 import { getCourseDao } from '../common/dao/CourseFirebase';
+import { useLanguageStore } from '@/stores/language';
 
 const courseId: string | string[] = useRoute().params.id;
 
-const tensesRepository = getTensesRepository();
+const langStore = useLanguageStore();
 const courseRepository = getCourseDao();
 
-const descriptions: TenseDescription[] = [];
+const descriptions: SentenceDescription[] = [];
 const descriptionsRef = ref(descriptions);
 const titleRef = ref('');
 
@@ -20,7 +21,7 @@ const getWordsData = () => {
 
     const { topic } = course;
     titleRef.value = course?.title;
-    descriptionsRef.value = tensesRepository.getDescriptions({ topic });
+    descriptionsRef.value = sentencesDao.getDescriptions({ topic, language: langStore.language.code });
 };
 onBeforeMount(async () => {
     getWordsData();

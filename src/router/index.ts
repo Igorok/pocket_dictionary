@@ -72,13 +72,13 @@ const router = createRouter({
         {
             path: '/course/sentences/read/:id',
             name: 'course-sentences-read',
-            component: () => import('../views/CourseTensesReadView.vue'),
+            component: () => import('../views/CourseSentenceReadView.vue'),
             meta: { requiresAuth: true },
         },
         {
             path: '/course/sentences/write/:id',
             name: 'course-sentences-write',
-            component: () => import('../views/CourseTensesWriteView.vue'),
+            component: () => import('@/components/CourseSentenceWrite/view.vue'),
             meta: { requiresAuth: true },
         }
     ]

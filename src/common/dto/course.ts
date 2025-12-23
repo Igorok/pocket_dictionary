@@ -39,17 +39,32 @@ export type IrregularVerb = {
     tr_ru: string;
 };
 
-export type SentenceDescription = {
+export type _SentenceDescription = {
     id: string;
     topic: string;
     title: string;
     description: string[];
 };
 
-export type Sentence = {
+export type _Sentence = {
     id: string;
     topic_id: string;
     sentence: string;
     tr_ru: string;
     words: string[];
+};
+
+export type Sentence = {
+    id: string;
+    topics: string[];
+    sentence: string;
+    tr_ru: string;
+    hint?: string;
+};
+
+export type SentenceCourseDescription = {
+    id: string;
+    topic: string;
+    title: string;
+    descriptions: string[];
 };

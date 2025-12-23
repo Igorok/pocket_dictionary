@@ -23,12 +23,12 @@ const getDescriptions = ({ language, topic }: { language: string, topic?: string
     return data.description;
 }
 
-const getSentences = ({ language, senteceIds }: { language: string, senteceIds?: string[] }): Sentence[] => {
+const getSentences = ({ language, subTopicIds }: { language: string, subTopicIds?: string[] }): Sentence[] => {
     const data: SenteceData = courcesByLang[language];
 
-    if (senteceIds?.length) {
+    if (subTopicIds?.length) {
         return data.sentences.filter((sentence) =>
-            senteceIds.includes(sentence.topic_id)
+            subTopicIds.includes(sentence.topic_id)
         );
     }
     return data.sentences;
