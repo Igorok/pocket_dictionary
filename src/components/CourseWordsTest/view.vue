@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import type { StudentWord } from '@/common/dto/course';
-import type { TestWordsItemOption, TestWordsItem, TestWordsLesson } from './types';
+import type {
+    TestWordsItemOption,
+    TestWordsItem,
+    TestWordsLesson
+} from './types';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
 import { useLanguageStore } from '@/stores/language';
 import { useAlertsStore } from '@/stores/alerts';
 import type { Alert } from '@/common/dto/alert';
-import CompledtedList from './CompletedList.vue';
+import CompletedList from './CompletedList.vue';
 import TestItem from './TestItem.vue';
 
-import { getLessonDataAction, updateStudentCourseAction } from './controller'
+import { getLessonDataAction, updateStudentCourseAction } from './controller';
 
 const CHANGE_TIMEOUT = 1000;
 
@@ -27,28 +31,31 @@ let lessonData: TestWordsLesson = {
     studentCourseId: '',
     title: '',
     words: [],
-    completed: false,
+    completed: false
 };
 const lessonDataRef = ref(lessonData);
 
 const activeItem: TestWordsItem = {
     word: { id: '', word: '', tr_ru: '', topics: [], updated_at: 0 },
     options: [],
-    success: undefined,
+    success: undefined
 };
 const activeItemRef = ref(activeItem);
 let activeId: number = 0;
 
 const getLessonData = async (): Promise<void> => {
     try {
-        lessonDataRef.value = await getLessonDataAction(courseId, langStore.language.code);
+        lessonDataRef.value = await getLessonDataAction(
+            courseId,
+            langStore.language.code
+        );
         activeItemRef.value = lessonDataRef.value.words[activeId];
     } catch (e) {
         if (e instanceof Error) {
             const alert: Alert = {
                 id: `get_course_${Date.now()}`,
                 type: 'error',
-                message: e.message,
+                message: e.message
             };
             alertsStore.notify(alert);
         }
@@ -61,14 +68,14 @@ const updateStudentCourseWords = async () => {
             studentCourseId: courseId,
             lessonWords,
             successCount: successCount.value,
-            errorCount: errorCount.value,
+            errorCount: errorCount.value
         });
     } catch (e) {
         if (e instanceof Error) {
             const alert: Alert = {
                 id: `get_course_${Date.now()}`,
                 type: 'error',
-                message: e.message,
+                message: e.message
             };
             alertsStore.notify(alert);
         }
@@ -122,10 +129,13 @@ onBeforeMount(async () => {
             </p>
 
             <div v-if="lessonDataRef.completed">
-                <CompledtedList :lessonDataRef="lessonDataRef" />
+                <CompletedList :lessonDataRef="lessonDataRef" />
             </div>
             <div v-else class="lesson-item">
-                <TestItem :activeItemRef="activeItemRef" @selectCard="selectCard" />
+                <TestItem
+                    :activeItemRef="activeItemRef"
+                    @selectCard="selectCard"
+                />
             </div>
         </div>
     </main>

@@ -48,7 +48,7 @@ const router = createRouter({
         {
             path: '/course/words/write/:id',
             name: 'course-words-write',
-            component: () => import('../views/CourseWordsWriteView.vue'),
+            component: () => import('../components/CourseWordsWrite/view.vue'),
             meta: { requiresAuth: true },
         },
         {
