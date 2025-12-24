@@ -1,5 +1,5 @@
-import type { Course, StudentCourse, Sentence, SentenceDescription, StudentWord } from '@/common/dto/course';
-import type { LessonWriteSenteceData, LessonWriteSentece, updateStatsDto } from './types';
+import type { Course, StudentCourse, Sentence, StudentWord } from '@/common/dto/course';
+import type { LessonWriteSenteceData, UpdateStatsDto } from './types';
 import { sentencesDao } from '@/common/dao/SentencesLocal';
 import { getCourseDao } from '@/common/dao/CourseFirebase';
 
@@ -19,32 +19,20 @@ const getLessonDataAction = async (courseStudentId: string, language: string): P
         throw new Error('Course not found!');
     }
 
-    const descriptions = sentencesDao.getDescriptions({
-        topic: course.topic, language,
-    });
-    const subTopicIds = descriptions.map(({ id }) => id);
-    const sentences = sentencesDao.getSentences({ subTopicIds, language });
-
-    const descriptionById: Map<string, SentenceDescription> =
-        descriptions.reduce((map, item) => {
-            map.set(item.id, item);
-            return map;
-        }, new Map());
+    const sentences = sentencesDao.getSentences({ topic: course.topic, language });
 
     const allLessonSentecesMap: Map<string, StudentWord> = new Map();
-    const sentencesById: Map<string, Sentence> = sentences.reduce(
-        (map, item) => {
-            map.set(item.id, item);
-            allLessonSentecesMap.set(item.id, { id: item.id, e: 0, l_at: 0 })
-            return map;
-        },
-        new Map());
+    const sentencesById: Map<string, Sentence> = new Map();
 
-
+    for (const sentece of sentences) {
+        sentencesById.set(sentece.id, sentece);
+        allLessonSentecesMap.set(sentece.id, { id: sentece.id, e: 0, l_at: 0 })
+    }
 
     studentCourse.words.forEach((word) => {
         allLessonSentecesMap.set(word.id, word);
     });
+
     const allLessonSenteces = [...allLessonSentecesMap.values()].sort((a, b) => a.l_at - b.l_at);
 
     const lessonWriteData: LessonWriteSenteceData = {
@@ -54,22 +42,21 @@ const getLessonDataAction = async (courseStudentId: string, language: string): P
     };
 
     for (let i = 0; i < WORDS_IN_LESSON; ++i) {
-        const studentSentence = allLessonSenteces[0];
+        const studentSentence = allLessonSenteces[i];
         const sentence = sentencesById.get(studentSentence.id);
         if (!sentence) {
             continue;
         }
 
-        const subTopic = descriptionById.get(sentence.topic_id);
-
         lessonWriteData.sentences.push({
             id: sentence.id,
-            subTopicId: subTopic?.id ?? '',
-            subTopicTitle: subTopic?.title ?? '',
             sentence: sentence.sentence,
             tr_ru: sentence.tr_ru,
+            hint: sentence?.hint ? `(${sentence.hint})` : '',
+
             error: false,
             success: false,
+
             userInput: '',
         });
     }
@@ -82,7 +69,7 @@ const updateStudentCourseAction = async ({
     lessonSentences,
     successCount,
     errorCount
-}: updateStatsDto): Promise<void> => {
+}: UpdateStatsDto): Promise<void> => {
     // get courses
     const studentCourse: StudentCourse =
         await courseDao.getStudentCourseById(courseStudentId);

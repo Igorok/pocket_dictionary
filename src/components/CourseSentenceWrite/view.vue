@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Course, StudentCourse } from '@/common/dto/course';
 import type { LessonWriteSenteceData, LessonWriteSentece } from './types';
 import type { Alert } from '@/common/dto/alert';
 import { ref, onBeforeMount } from 'vue';
@@ -9,8 +8,6 @@ import { useAlertsStore } from '@/stores/alerts';
 
 import { getLessonDataAction, updateStudentCourseAction } from './controller';
 
-const WORDS_IN_LESSON = 3;
-
 const courseStudentId: string = useRoute().params.id as string;
 
 const langStore = useLanguageStore();
@@ -18,27 +15,28 @@ const alertsStore = useAlertsStore();
 
 const successCount = ref(0);
 const errorCount = ref(0);
-const userInputRef = ref('');
 
 const lessonWriteData: LessonWriteSenteceData = {
     title: '',
     sentences: [],
     step: 0,
 };
+
 const activeSentence: LessonWriteSentece = {
     id: '',
-    subTopicId: '',
-    subTopicTitle: '',
     sentence: '',
     tr_ru: '',
+    hint: '',
+
     error: false,
     success: false,
+
     userInput: '',
 };
 
 const lessonWriteDataRef = ref(lessonWriteData);
 const activeSentenceRef = ref(activeSentence);
-let activeId = 0;
+let activeId: number = 0;
 
 const getLessonData = async (): Promise<void> => {
     try {
@@ -56,49 +54,86 @@ const getLessonData = async (): Promise<void> => {
     }
 };
 
-const applySentence = async () => {
-    const sentence: string = lessonWriteDataRef.value.sentences[activeId].sentence
+const formatSentence = (sentence: string) => {
+    return sentence
         .replace(/\,*\.*/g, '')
         .trim()
         .toLowerCase();
-    const userInput: string = userInputRef.value
-        .replace(/\,*\.*/g, '')
-        .trim()
-        .toLocaleLowerCase();
+};
+
+const writeSentence = () => {
+    const sentence: string = formatSentence(lessonWriteDataRef.value.sentences[activeId].sentence);
+    const userInput: string = formatSentence(activeSentenceRef.value.userInput);
 
     if (sentence !== userInput) {
-        lessonWriteDataRef.value.sentences[activeId].error =
-            lessonWriteDataRef.value.write_sentence;
-        if (lessonWriteDataRef.value.check) {
-            errorCount.value += 1;
-        } else {
-            return;
-        }
+        activeSentenceRef.value.error = true;
+        return;
+    }
+
+    activeSentenceRef.value.userInput = '';
+    activeSentenceRef.value.error = false;
+
+    activeId += 1;
+
+    if (activeId === lessonWriteDataRef.value.sentences.length) {
+        activeId = 0;
+        lessonWriteDataRef.value.step = 1;
+    }
+
+    activeSentenceRef.value = lessonWriteDataRef.value.sentences[activeId];
+};
+
+const testSentence = async () => {
+    const sentence: string = formatSentence(lessonWriteDataRef.value.sentences[activeId].sentence);
+    const userInput: string = formatSentence(activeSentenceRef.value.userInput);
+
+    lessonWriteDataRef.value.sentences[activeId].userInput = activeSentenceRef.value.userInput;
+
+    if (sentence !== userInput) {
+        lessonWriteDataRef.value.sentences[activeId].error = true;
+        errorCount.value += 1;
     } else {
         lessonWriteDataRef.value.sentences[activeId].success = true;
-        if (lessonWriteDataRef.value.check) {
-            successCount.value += 1;
-        } else {
-            lessonWriteDataRef.value.sentences[activeId].error = '';
-        }
+        successCount.value += 1;
     }
 
-    lessonWriteDataRef.value.sentences[activeId].active = false;
-    lessonWriteDataRef.value.write_sentence = '';
+    activeId += 1;
 
-    activeItem += 1;
-
-    if (activeId === WORDS_IN_LESSON) {
-        if (lessonWriteDataRef.value.check) {
-            lessonWriteDataRef.value.completed = true;
-            return await updateStudentCourseWords();
-        }
+    if (activeId === lessonWriteDataRef.value.sentences.length) {
         activeId = 0;
-        lessonWriteDataRef.value.check = true;
+        lessonWriteDataRef.value.step = 2;
+        return updateStudentCourseAction({
+            courseStudentId,
+            lessonSentences: lessonWriteDataRef.value.sentences,
+            successCount: successCount.value,
+            errorCount: errorCount.value,
+        });
     }
 
-    lessonWriteDataRef.value.sentences[activeId].active = true;
+    activeSentenceRef.value = lessonWriteDataRef.value.sentences[activeId];
+    activeSentenceRef.value.userInput = ''
 };
+
+const submitSentence = async () => {
+    try {
+        if (lessonWriteDataRef.value.step === 0) {
+            writeSentence();
+        } else {
+            await testSentence();
+        }
+    } catch (e) {
+        if (e instanceof Error) {
+            const alert: Alert = {
+                id: `sentence_${Date.now()}`,
+                type: 'error',
+                message: e.message
+            };
+            alertsStore.notify(alert);
+        }
+    }
+
+};
+
 
 onBeforeMount(async () => {
     await getLessonData();
@@ -118,22 +153,22 @@ onBeforeMount(async () => {
 
             <!-- if -->
             <div v-if="lessonWriteDataRef.step < 2">
-                <h4 :class="{ 'font-error': Boolean(activeSentence.error) }">
-                    {{ activeSentence.tr_ru }} ({{ activeSentence.subTopicTitle }})
+                <h4 :class="{ 'font-error': Boolean(activeSentenceRef.error) }">
+                    {{ activeSentenceRef.tr_ru }} {{ activeSentenceRef.hint }}
                 </h4>
-                <p v-if="lessonWriteDataRef.step === 0">{{ activeSentence.sentence }}</p>
+                <p v-if="lessonWriteDataRef.step === 0">{{ activeSentenceRef.sentence }}</p>
                 <br />
 
-                <form @submit.prevent="applySentence">
+                <form @submit.prevent="submitSentence">
                     <div>
                         <textarea
                             type="text"
                             class="input-text"
                             :class="{
-                                'input-error': activeSentence.error,
+                                'input-error': activeSentenceRef.error,
                             }"
                             id="write_sentence"
-                            v-model="activeSentence.userInput"
+                            v-model="activeSentenceRef.userInput"
                             autocomplete="off"
                             required
                         />
@@ -145,20 +180,9 @@ onBeforeMount(async () => {
                 </form>
             </div>
 
-
             <!-- else -->
             <div v-else class="lesson-item">
                 <h3>Lesson is completed</h3>
-                <p>
-                    <RouterLink
-                        :to="{
-                            name: 'course-tenses-read',
-                            params: { id: lessonWriteDataRef.course_id }
-                        }"
-                        class="btn btn-green"
-                        >Read this course
-                    </RouterLink>
-                </p>
                 <br />
                 <div
                     v-for="item in lessonWriteDataRef.sentences"
@@ -168,9 +192,9 @@ onBeforeMount(async () => {
                         'font-error': Boolean(item.error)
                     }"
                 >
-                    <p>{{ item.tr_ru }} ({{ item.subTopicTitle }})</p>
+                    <p>{{ item.tr_ru }} {{ item.hint ?? '' }}</p>
                     <p>{{ item.sentence }}</p>
-                    <p v-if="Boolean(item.error)">Wrong: {{ item.error }}</p>
+                    <p v-if="Boolean(item.error)">Wrong: {{ item.userInput }}</p>
                     <br />
                 </div>
             </div>

@@ -1,40 +1,39 @@
-import type { SentenceDescription, Sentence } from '../dto/course';
-import englishJson from '../data_local/english/sentences.json' with { type: 'json' };
+import type { CourseDescription, Sentence } from '../dto/course';
+import englishSentencesJson from '../data_local/english/sentences.json' with { type: 'json' };
+import englishDescriptionJson from '../data_local/english/cources_description.json' with { type: 'json' };
 
-type SenteceData = {
-    description: SentenceDescription[],
-    sentences: Sentence[],
+type SentencesByLang = {
+    [key:string]: Sentence[],
+};
+
+type DescriptionsByLang = {
+    [key:string]: CourseDescription[],
+};
+
+const sentencesByLang: SentencesByLang = {
+    english: englishSentencesJson,
+};
+
+const descriptionByLang: DescriptionsByLang = {
+    english: englishDescriptionJson,
+};
+
+
+const getDescriptionByTopic = ({ language, topic }: { language: string, topic: string }): CourseDescription => {
+    const descriptions: CourseDescription[] = descriptionByLang[language];
+    return descriptions.find((val) => val.topic === topic);
 }
 
-type DataByLang = {
-    [key:string]: SenteceData,
-};
-
-const courcesByLang: DataByLang = {
-    english: englishJson,
-};
-
-const getDescriptions = ({ language, topic }: { language: string, topic?: string }): SentenceDescription[] => {
-    const data: SenteceData = courcesByLang[language];
+const getSentences = ({ language, topic }: { language: string, topic?: string }): Sentence[] => {
+    const sentences: Sentence[] = sentencesByLang[language];
 
     if (topic) {
-        return data.description.filter((val) => val.topic === topic);
+        return sentences.filter((sentence) => sentence.topics.includes(topic));
     }
-    return data.description;
-}
-
-const getSentences = ({ language, subTopicIds }: { language: string, subTopicIds?: string[] }): Sentence[] => {
-    const data: SenteceData = courcesByLang[language];
-
-    if (subTopicIds?.length) {
-        return data.sentences.filter((sentence) =>
-            subTopicIds.includes(sentence.topic_id)
-        );
-    }
-    return data.sentences;
+    return sentences;
 }
 
 export const sentencesDao = {
-    getDescriptions,
+    getDescriptionByTopic,
     getSentences,
 };

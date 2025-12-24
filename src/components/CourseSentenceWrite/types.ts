@@ -1,9 +1,9 @@
 export type LessonWriteSentece = {
     id: string;
-    subTopicId: string;
-    subTopicTitle: string;
     sentence: string;
     tr_ru: string;
+    hint?: string;
+
     error: boolean;
     success: boolean;
 
@@ -17,7 +17,7 @@ export type LessonWriteSenteceData = {
 };
 
 
-export type updateStatsDto = {
+export type UpdateStatsDto = {
     courseStudentId: string,
     lessonSentences: LessonWriteSentece[],
     successCount: number,

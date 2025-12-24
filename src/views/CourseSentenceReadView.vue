@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SentenceDescription } from '@/common/dto/course';
+import type { CourseDescription } from '@/common/dto/course';
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
 import { sentencesDao } from '../common/dao/SentencesLocal';
@@ -11,17 +11,20 @@ const courseId: string | string[] = useRoute().params.id;
 const langStore = useLanguageStore();
 const courseRepository = getCourseDao();
 
-const descriptions: SentenceDescription[] = [];
-const descriptionsRef = ref(descriptions);
-const titleRef = ref('');
+const description: CourseDescription = {
+    id: '',
+    topic: '',
+    title: '',
+    descriptions: [],
+};
+const descriptionRef = ref(description);
 
 const getWordsData = () => {
     const course = courseRepository.getCourseById(String(courseId));
     if (!course) return;
 
     const { topic } = course;
-    titleRef.value = course?.title;
-    descriptionsRef.value = sentencesDao.getDescriptions({ topic, language: langStore.language.code });
+    descriptionRef.value = sentencesDao.getDescriptionByTopic({ topic, language: langStore.language.code });
 };
 onBeforeMount(async () => {
     getWordsData();
@@ -30,14 +33,12 @@ onBeforeMount(async () => {
 
 <template>
     <main>
-        <h3 class="font-success">{{ titleRef }}:</h3>
+        <h3 class="font-success">{{ descriptionRef.title }}:</h3>
 
-        <div v-for="item in descriptionsRef" :key="item.id">
-            <h4>{{ item.title }}</h4>
-            <div v-for="example in item.description">
-                <p>{{ example }}</p>
-            </div>
-            <br />
+        <h4>{{ descriptionRef.title }}</h4>
+        <div v-for="example in descriptionRef.descriptions">
+            <p>{{ example }}</p>
         </div>
+        <br />
     </main>
 </template>
