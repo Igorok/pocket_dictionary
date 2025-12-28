@@ -110,6 +110,8 @@ const getLessonDataAction = async (courseId: string, language: string): Promise<
         lesson.words.push(item);
     }
 
+    lesson.words = shuffle(lesson.words);
+
     return lesson;
 };
 
@@ -121,7 +123,7 @@ const updateStudentCourseAction = async ({ studentCourseId, lessonWords, success
     if (!studentCourse) {
         throw new Error('Course not found!');
     }
-    
+
     const studentStats: Map<string, StudentWord> = studentCourse.words.reduce((map, word) => {
         map.set(word.id, word);
         return map;

@@ -1,25 +1,22 @@
 <script setup lang="ts">
+    import type { Course } from '@/common/dto/course';
+    import type { StudentProgressData } from '@/common/dto/student';
     import { ref, onBeforeMount } from 'vue';
-    import { useAuthStore } from '../stores/auth';
-    import type { Course } from '../common/dto/course';
-    import type { StudentProgressData } from '../common/dto/student';
-    import { getCourseDao } from '../common/dao/CourseFirebase';
-    import { useLanguageStore } from '../stores/language';
+    import { useAuthStore } from '@/stores/auth';
+    import { useAlertsStore } from '@/stores/alerts';;
+    import { getCourseDao } from '@/common/dao/CourseFirebase';
 
     const authStore = useAuthStore();
-    const langStore = useLanguageStore();
     const courseRepository = getCourseDao(undefined);
+    const alertsStore = useAlertsStore();
 
-    const error = ref({
-        message: ''
-    });
     const statsData: StudentProgressData[] = [];
     const statsRef = ref(statsData);
     const userRef = ref(authStore.student);
 
     const getProfileData = async () => {
         try {
-            const allCourses: Course[] = courseRepository.getCourses({ language: langStore.language?.code });
+            const allCourses: Course[] = courseRepository.getCourses({});
             const courseById = allCourses.reduce((acc, val) => {
                 acc.set(val.id, val);
                 return acc;
@@ -39,6 +36,7 @@
                     const course = courseById.get(id);
                     if (!course) {
                         console.log('courseId', id);
+                        return;
                     }
 
                     info.error += e;
@@ -59,7 +57,11 @@
             statsRef.value = userStats;
         } catch (e) {
             if (e instanceof Error) {
-                error.value.message = e.message;
+                alertsStore.notify({
+                    id: `profile_${Date.now()}`,
+                    type: 'error',
+                    message: e.message
+                });
             }
         }
     };
@@ -72,11 +74,6 @@
 
 <template>
     <main>
-        <div v-if="Boolean(error.message)">
-            <div class="card item-error">
-                <p>{{ error.message }}</p>
-            </div>
-        </div>
         <h3>{{ userRef.email }}</h3>
 
         <div class="stats-wrapper">

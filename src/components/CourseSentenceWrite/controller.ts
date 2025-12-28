@@ -1,5 +1,6 @@
 import type { Course, StudentCourse, Sentence, StudentWord } from '@/common/dto/course';
 import type { LessonWriteSenteceData, UpdateStatsDto } from './types';
+import { shuffle } from 'lodash';
 import { sentencesDao } from '@/common/dao/SentencesLocal';
 import { getCourseDao } from '@/common/dao/CourseFirebase';
 
@@ -60,6 +61,8 @@ const getLessonDataAction = async (courseStudentId: string, language: string): P
             userInput: '',
         });
     }
+
+    lessonWriteData.sentences = shuffle(lessonWriteData.sentences);
 
     return lessonWriteData;
 };

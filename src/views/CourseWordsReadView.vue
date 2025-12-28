@@ -38,7 +38,7 @@ onBeforeMount(async () => {
         <div class="vocabulary-wrapper">
             <div class="vocabulary-container" v-for="chunk in wordsRef">
                 <p v-for="item in chunk" :key="item.id">
-                    {{ item.word }}: {{ item.tr_ru }}
+                    {{ item.word }} - {{ item.tr_ru }}
                 </p>
             </div>
         </div>

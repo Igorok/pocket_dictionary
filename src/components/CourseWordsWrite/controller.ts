@@ -1,4 +1,5 @@
 import type { LessonWriteData, LessonWriteWord, updateStatsDto } from './types';
+import { shuffle } from 'lodash';
 import type { Course, StudentCourse, StudentWord, Word } from '@/common/dto/course';
 import { wordsDao } from '@/common/dao/WordsLocal';
 import { getCourseDao } from '@/common/dao/CourseFirebase';
@@ -39,7 +40,6 @@ const getLessonDataAction = async (
         }
     }
 
-    const lessonWriteWords: LessonWriteWord[] = [];
     const lessonWords: StudentWord[] = [...lessonWordsMap.values()].sort(
         (a, b) => a.l_at - b.l_at
     );
@@ -70,6 +70,8 @@ const getLessonDataAction = async (
             success: false
         });
     }
+
+    lessonData.words = shuffle(lessonData.words);
 
     return lessonData;
 };

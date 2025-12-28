@@ -44,8 +44,10 @@ class CourseDao {
         this.db = db;
     }
 
-    getCourses({ type, language }: { type?: string, language: string }): Course[] {
-        const courses: Course[] = coursesByLang[language];
+    getCourses({ type, language }: { type?: string, language?: string }): Course[] {
+        const courses: Course[] = language
+            ? coursesByLang[language]
+            : [...coursesEnglish, ...coursesSpanish];
         if (type) {
             return courses.filter((course) => course.type === type);
         }
