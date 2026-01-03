@@ -54,5 +54,12 @@
         "type": "sentences",
         "topic": "future",
         "updated_at": 0
+    },
+    {
+      "id": "irregular_verbs",
+      "title": "Irregular verbs",
+      "type": "sentences",
+      "topic": "irregular_verbs",
+      "updated_at": 0
     }
 ]

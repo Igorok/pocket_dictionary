@@ -35,7 +35,6 @@ onBeforeMount(async () => {
     <main>
         <h3 class="font-success">{{ descriptionRef.title }}:</h3>
 
-        <h4>{{ descriptionRef.title }}</h4>
         <div v-for="example in descriptionRef.descriptions">
             <p>{{ example }}</p>
         </div>
