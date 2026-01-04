@@ -6,8 +6,8 @@ import languagesJson from '../../common/data_local/languages.json' with { type: 
 
 const langStore = useLanguageStore();
 const languagesByCode = new Map();
-for (const { code, name } of languagesJson) {
-    languagesByCode.set(code, { code, name });
+for (const { code, name, chars } of languagesJson) {
+    languagesByCode.set(code, { code, name, chars });
 }
 
 let selected = ref(langStore.language.code);

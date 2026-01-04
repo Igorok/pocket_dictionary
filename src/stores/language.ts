@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 
 export const useLanguageStore = defineStore('language', {
     state: () => {
-        const language: Language = { code: 'english', name: 'English' };
+        const language: Language = { code: 'english', name: 'English', chars: [], };
         return {
             language,
         };
@@ -14,8 +14,8 @@ export const useLanguageStore = defineStore('language', {
         }
     },
     actions: {
-        selectLanguage({ code, name }: Language) {
-            this.language = { code, name };
+        selectLanguage({ code, name, chars }: Language) {
+            this.language = { code, name, chars };
         }
     }
 });

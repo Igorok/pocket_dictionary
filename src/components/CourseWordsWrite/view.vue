@@ -13,6 +13,7 @@ const courseStudentId: string = useRoute().params.id as string;
 const langStore = useLanguageStore();
 const alertsStore = useAlertsStore();
 
+const langCharsRef = ref(langStore.language.chars.join(', '));
 const successCount = ref(0);
 const errorCount = ref(0);
 const titleRef = ref('');
@@ -187,6 +188,8 @@ onBeforeMount(async () => {
                 <p v-for="item in repeatItemsRef" :key="item.id">
                     {{ item.word }}
                 </p>
+
+                <p>{{langCharsRef}}</p>
             </div>
 
             <div v-else>

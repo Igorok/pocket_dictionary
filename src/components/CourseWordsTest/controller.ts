@@ -74,7 +74,7 @@ const getLessonDataAction = async (courseId: string, language: string): Promise<
         words: [],
     };
 
-    for (let i = 0; i < WORDS_IN_LESSON; ++i) {
+    for (let i = 0; i < Math.min(WORDS_IN_LESSON, lessonWordsMap.size); ++i) {
         const current: StudentWord = lessonWords[i];
         const word = wordsForLessonById.get(current.id);
         const item = {

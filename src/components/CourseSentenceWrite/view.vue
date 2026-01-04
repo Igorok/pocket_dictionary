@@ -13,6 +13,7 @@ const courseStudentId: string = useRoute().params.id as string;
 const langStore = useLanguageStore();
 const alertsStore = useAlertsStore();
 
+const langCharsRef = ref(langStore.language.chars.join(', '));
 const successCount = ref(0);
 const errorCount = ref(0);
 
@@ -178,6 +179,8 @@ onBeforeMount(async () => {
                     <button class="btn btn-green">Click!</button>
                     <br />
                 </form>
+
+                <p>{{langCharsRef}}</p>
             </div>
 
             <!-- else -->

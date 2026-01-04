@@ -1,10 +1,16 @@
 [
     {
         "code": "spanish",
-        "name": "Spanish"
+        "name": "Spanish",
+        "chars": [
+            "á", "é", "í", "ó", "ú",
+            "Ñ/ñ",
+            "¿", "¡"
+        ]
     },
     {
         "code": "english",
-        "name": "English"
+        "name": "English",
+        "chars": []
     }
 ]
