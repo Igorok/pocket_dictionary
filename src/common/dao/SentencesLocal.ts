@@ -19,13 +19,13 @@ const descriptionByLang: DescriptionsByLang = {
 };
 
 
-const getDescriptionByTopic = ({ language, topic }: { language: string, topic: string }): CourseDescription => {
-    const descriptions: CourseDescription[] = descriptionByLang[language];
+const getDescriptionByTopic = ({ language, topic }: { language: string, topic: string }): CourseDescription|undefined => {
+    const descriptions: CourseDescription[] = descriptionByLang[language] ?? [];
     return descriptions.find((val) => val.topic === topic);
 }
 
 const getSentences = ({ language, topic }: { language: string, topic?: string }): Sentence[] => {
-    const sentences: Sentence[] = sentencesByLang[language];
+    const sentences: Sentence[] = sentencesByLang[language] ?? [];
 
     if (topic) {
         return sentences.filter((sentence) => sentence.topics.includes(topic));

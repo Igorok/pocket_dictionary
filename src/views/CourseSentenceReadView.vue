@@ -24,7 +24,10 @@ const getWordsData = () => {
     if (!course) return;
 
     const { topic } = course;
-    descriptionRef.value = sentencesDao.getDescriptionByTopic({ topic, language: langStore.language.code });
+    const desc = sentencesDao.getDescriptionByTopic({ topic, language: langStore.language.code });
+    if (desc) {
+        descriptionRef.value = desc;
+    }
 };
 onBeforeMount(async () => {
     getWordsData();
