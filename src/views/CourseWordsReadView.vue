@@ -23,7 +23,6 @@ const getWordsData = () => {
     titleRef.value = course?.title;
 
     let arr: Word[] = wordsDao.getAllWords({ topic: course.topic, language: langStore.language?.code });
-    arr = arr.sort((a, b) => (a.word < b.word ? -1 : 1));
     const chunkSize = Math.ceil(arr.length / 3);
     wordsRef.value = chunk(arr, chunkSize);
 };
