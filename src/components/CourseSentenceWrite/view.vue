@@ -8,10 +8,10 @@ import { useAlertsStore } from '@/stores/alerts';
 
 import { getLessonDataAction, updateStudentCourseAction } from './controller';
 
-const CHANGE_TIMEOUT = 5_000;
-const sleep = async () => {
+const sleep = async (time?: number) => {
+    const timeout = time ?? 5_000;
     return new Promise((res) => {
-        setTimeout(() => res(0), CHANGE_TIMEOUT);
+        setTimeout(() => res(0), timeout);
     });
 };
 
@@ -70,7 +70,8 @@ const formatSentence = (sentence: string) => {
 };
 
 const writeSentence = async () => {
-    const sentence: string = formatSentence(lessonWriteDataRef.value.sentences[activeId].sentence);
+    const curr = lessonWriteDataRef.value.sentences[activeId].sentence;
+    const sentence: string = formatSentence(curr);
     const userInput: string = formatSentence(activeSentenceRef.value.userInput);
 
     if (sentence !== userInput) {
@@ -79,14 +80,14 @@ const writeSentence = async () => {
     }
 
     // speak
-    const speechSynthesis = new SpeechSynthesisUtterance(lessonWriteDataRef.value.sentences[activeId].sentence);
+    const speechSynthesis = new SpeechSynthesisUtterance(curr);
     window.speechSynthesis.speak(speechSynthesis);
 
     activeSentenceRef.value.userInput = '';
     activeSentenceRef.value.error = false;
 
     // sleep
-    await sleep();
+    await sleep(curr.length * 80);
 
     activeId += 1;
 
@@ -99,13 +100,14 @@ const writeSentence = async () => {
 };
 
 const testSentence = async () => {
-    const sentence: string = formatSentence(lessonWriteDataRef.value.sentences[activeId].sentence);
+    const curr = lessonWriteDataRef.value.sentences[activeId].sentence;
+    const sentence: string = formatSentence(curr);
     const userInput: string = formatSentence(activeSentenceRef.value.userInput);
 
     lessonWriteDataRef.value.sentences[activeId].userInput = activeSentenceRef.value.userInput;
 
     // speak
-    const speechSynthesis = new SpeechSynthesisUtterance(lessonWriteDataRef.value.sentences[activeId].sentence);
+    const speechSynthesis = new SpeechSynthesisUtterance(curr);
     window.speechSynthesis.speak(speechSynthesis);
 
     if (sentence !== userInput) {
@@ -115,6 +117,9 @@ const testSentence = async () => {
         lessonWriteDataRef.value.sentences[activeId].success = true;
         successCount.value += 1;
     }
+
+    // sleep
+    await sleep(curr.length * 80);
 
     activeId += 1;
 

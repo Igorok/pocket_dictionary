@@ -15,10 +15,10 @@ import TestItem from './TestItem.vue';
 
 import { getLessonDataAction, updateStudentCourseAction } from './controller';
 
-const CHANGE_TIMEOUT = 1_500;
-const sleep = async () => {
+const sleep = async (time?:number) => {
+    const timeout = time ?? 1_500;
     return new Promise((res) => {
-        setTimeout(() => res(0), CHANGE_TIMEOUT);
+        setTimeout(() => res(0), timeout);
     });
 };
 
@@ -93,13 +93,14 @@ const selectCard = async (option: TestWordsItemOption) => {
         return;
     }
     isSelectionBlocked = true;
+    const curr = lessonDataRef.value.words[activeId].word.word;
 
     // speak
-    const speechSynthesis = new SpeechSynthesisUtterance(lessonDataRef.value.words[activeId].word.word);
+    const speechSynthesis = new SpeechSynthesisUtterance(curr);
     window.speechSynthesis.speak(speechSynthesis);
 
     // process
-    if (option.word === lessonDataRef.value.words[activeId].word.word) {
+    if (option.word === curr) {
         option.success = true;
         lessonDataRef.value.words[activeId].success = true;
         successCount.value += 1;
@@ -112,7 +113,7 @@ const selectCard = async (option: TestWordsItemOption) => {
     }
 
     // sleep
-    await sleep();
+    await sleep(curr.length * 80);
 
     activeId += 1;
     if (activeId === lessonDataRef.value.words.length) {
