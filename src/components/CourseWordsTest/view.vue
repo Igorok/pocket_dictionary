@@ -15,7 +15,12 @@ import TestItem from './TestItem.vue';
 
 import { getLessonDataAction, updateStudentCourseAction } from './controller';
 
-const CHANGE_TIMEOUT = 1000;
+const CHANGE_TIMEOUT = 1_500;
+const sleep = async () => {
+    return new Promise((res) => {
+        setTimeout(() => res(0), CHANGE_TIMEOUT);
+    });
+};
 
 const courseId: string = useRoute().params.id as string;
 
@@ -83,12 +88,20 @@ const updateStudentCourseWords = async () => {
 };
 
 let isSelectionBlocked = false;
-const selectCard = (option: TestWordsItemOption) => {
+const selectCard = async (option: TestWordsItemOption) => {
     if (isSelectionBlocked) {
         return;
     }
     isSelectionBlocked = true;
 
+    // speak
+    const speechSynthesis = new SpeechSynthesisUtterance(lessonDataRef.value.words[activeId].word.word);
+    window.speechSynthesis.speak(speechSynthesis);
+
+    // sleep
+    await sleep();
+
+    // process
     if (option.word === lessonDataRef.value.words[activeId].word.word) {
         option.success = true;
         lessonDataRef.value.words[activeId].success = true;
@@ -101,16 +114,14 @@ const selectCard = (option: TestWordsItemOption) => {
         lessonWords.push({ id: option.id, l_at: 0, e: 1 });
     }
 
-    setTimeout(() => {
-        activeId += 1;
-        if (activeId === lessonDataRef.value.words.length) {
-            lessonDataRef.value.completed = true;
-            return updateStudentCourseWords();
-        }
+    activeId += 1;
+    if (activeId === lessonDataRef.value.words.length) {
+        lessonDataRef.value.completed = true;
+        return updateStudentCourseWords();
+    }
 
-        activeItemRef.value = lessonDataRef.value.words[activeId];
-        isSelectionBlocked = false;
-    }, CHANGE_TIMEOUT);
+    activeItemRef.value = lessonDataRef.value.words[activeId];
+    isSelectionBlocked = false;
 };
 
 onBeforeMount(async () => {

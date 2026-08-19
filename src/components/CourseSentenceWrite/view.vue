@@ -8,6 +8,13 @@ import { useAlertsStore } from '@/stores/alerts';
 
 import { getLessonDataAction, updateStudentCourseAction } from './controller';
 
+const CHANGE_TIMEOUT = 5_000;
+const sleep = async () => {
+    return new Promise((res) => {
+        setTimeout(() => res(0), CHANGE_TIMEOUT);
+    });
+};
+
 const courseStudentId: string = useRoute().params.id as string;
 
 const langStore = useLanguageStore();
@@ -62,7 +69,7 @@ const formatSentence = (sentence: string) => {
         .toLowerCase();
 };
 
-const writeSentence = () => {
+const writeSentence = async () => {
     const sentence: string = formatSentence(lessonWriteDataRef.value.sentences[activeId].sentence);
     const userInput: string = formatSentence(activeSentenceRef.value.userInput);
 
@@ -70,6 +77,13 @@ const writeSentence = () => {
         activeSentenceRef.value.error = true;
         return;
     }
+
+    // speak
+    const speechSynthesis = new SpeechSynthesisUtterance(lessonWriteDataRef.value.sentences[activeId].sentence);
+    window.speechSynthesis.speak(speechSynthesis);
+
+    // sleep
+    await sleep();
 
     activeSentenceRef.value.userInput = '';
     activeSentenceRef.value.error = false;
@@ -89,6 +103,10 @@ const testSentence = async () => {
     const userInput: string = formatSentence(activeSentenceRef.value.userInput);
 
     lessonWriteDataRef.value.sentences[activeId].userInput = activeSentenceRef.value.userInput;
+
+    // speak
+    const speechSynthesis = new SpeechSynthesisUtterance(lessonWriteDataRef.value.sentences[activeId].sentence);
+    window.speechSynthesis.speak(speechSynthesis);
 
     if (sentence !== userInput) {
         lessonWriteDataRef.value.sentences[activeId].error = true;

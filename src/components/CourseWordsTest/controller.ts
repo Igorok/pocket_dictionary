@@ -59,7 +59,9 @@ const getLessonDataAction = async (courseId: string, language: string): Promise<
 
     // update stats
     studentCourse.words.forEach((word: StudentWord) => {
-        lessonWordsMap.set(word.id, word);
+        if (lessonWordsMap.has(word.id)) {
+            lessonWordsMap.set(word.id, word);
+        }
     });
     const lessonWords = [...lessonWordsMap.values()].sort(
         (a, b) => a.l_at - b.l_at
@@ -77,6 +79,7 @@ const getLessonDataAction = async (courseId: string, language: string): Promise<
     for (let i = 0; i < Math.min(WORDS_IN_LESSON, lessonWordsMap.size); ++i) {
         const current: StudentWord = lessonWords[i];
         const word = wordsForLessonById.get(current.id);
+
         const item = {
             word,
             success: undefined,
