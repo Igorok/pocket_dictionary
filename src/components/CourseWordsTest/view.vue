@@ -98,9 +98,6 @@ const selectCard = async (option: TestWordsItemOption) => {
     const speechSynthesis = new SpeechSynthesisUtterance(lessonDataRef.value.words[activeId].word.word);
     window.speechSynthesis.speak(speechSynthesis);
 
-    // sleep
-    await sleep();
-
     // process
     if (option.word === lessonDataRef.value.words[activeId].word.word) {
         option.success = true;
@@ -113,6 +110,9 @@ const selectCard = async (option: TestWordsItemOption) => {
         errorCount.value += 1;
         lessonWords.push({ id: option.id, l_at: 0, e: 1 });
     }
+
+    // sleep
+    await sleep();
 
     activeId += 1;
     if (activeId === lessonDataRef.value.words.length) {

@@ -82,11 +82,11 @@ const writeSentence = async () => {
     const speechSynthesis = new SpeechSynthesisUtterance(lessonWriteDataRef.value.sentences[activeId].sentence);
     window.speechSynthesis.speak(speechSynthesis);
 
-    // sleep
-    await sleep();
-
     activeSentenceRef.value.userInput = '';
     activeSentenceRef.value.error = false;
+
+    // sleep
+    await sleep();
 
     activeId += 1;
 
