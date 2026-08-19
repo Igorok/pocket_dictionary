@@ -15,6 +15,7 @@ import TestItem from './TestItem.vue';
 
 import { getLessonDataAction, updateStudentCourseAction } from './controller';
 
+const TIME_FOR_CHAR = 115;
 const sleep = async (time?:number) => {
     const timeout = time ?? 1_500;
     return new Promise((res) => {
@@ -113,7 +114,7 @@ const selectCard = async (option: TestWordsItemOption) => {
     }
 
     // sleep
-    await sleep(curr.length * 80);
+    await sleep(curr.length * TIME_FOR_CHAR);
 
     activeId += 1;
     if (activeId === lessonDataRef.value.words.length) {

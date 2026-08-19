@@ -8,6 +8,7 @@ import { useAlertsStore } from '@/stores/alerts';
 
 import { getLessonDataAction, updateStudentCourseAction } from './controller';
 
+const TIME_FOR_CHAR = 95;
 const sleep = async (time?: number) => {
     const timeout = time ?? 5_000;
     return new Promise((res) => {
@@ -87,7 +88,7 @@ const writeSentence = async () => {
     activeSentenceRef.value.error = false;
 
     // sleep
-    await sleep(curr.length * 80);
+    await sleep(curr.length * TIME_FOR_CHAR);
 
     activeId += 1;
 
@@ -119,7 +120,7 @@ const testSentence = async () => {
     }
 
     // sleep
-    await sleep(curr.length * 80);
+    await sleep(curr.length * TIME_FOR_CHAR);
 
     activeId += 1;
 
